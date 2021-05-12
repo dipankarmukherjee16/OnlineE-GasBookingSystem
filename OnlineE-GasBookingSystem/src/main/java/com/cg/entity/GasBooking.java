@@ -25,7 +25,7 @@ import org.hibernate.annotations.ManyToAny;
 @Table(name = "egas_booking")
 public class GasBooking {
 	@Id
-	@Column(name="cylinderId")
+	@Column(name="gasBookingId")
 	@GeneratedValue(strategy = GenerationType.AUTO,generator = "seq3")
 	@SequenceGenerator(name = "seq3", sequenceName = "egas_seq3", allocationSize = 1 )
 	private int gasBookingId;
@@ -39,11 +39,11 @@ public class GasBooking {
 	@Column(name = "bill")
 	private float bill;
 	
-	@Column(name = "dispatch")
+	@Column(name = "dispatchDate")
 	private LocalDate dispatchDate;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "cust_Id", referencedColumnName = "customerId")
+	@JoinColumn(name = "cus_Id", referencedColumnName = "custId")
 	private Customer customer= new Customer();
 
 	public int getGasBookingId() {
