@@ -8,4 +8,5 @@ public class GasBooking {
 	private LocalDate bookingDate;
 	private boolean status;
 	private float bill;
+	private LocalDate dispatchDate;
 }
