@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
@@ -25,18 +26,18 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name="egas_customer")
 public class Customer {
 	@Id
-	@Column(name="custId")
+	@Column(name="customer_id")
 	@GeneratedValue(strategy = GenerationType.AUTO,generator = "seq1")
 	@SequenceGenerator(name = "seq1", sequenceName = "egas_seq1", allocationSize = 1 )
 	private int customerId;
 	
-	@Column(name = "userName", length = 25, nullable = false, unique = true)
+	@Column(name = "user_name", length = 25, nullable = false, unique = true)
 	private String userName;
 	
-	@Column(name = "pwd", nullable = false)
+	@Column(name = "password", nullable = false)
 	private String password;
 	
-	@Column(name = "mobNumber", nullable = false,unique = true)
+	@Column(name = "mob_number", nullable = false,unique = true)
 	private String mobileNumber;
 	
 	@Column(name = "email", nullable = false, unique = true)
@@ -46,7 +47,7 @@ public class Customer {
 	private String pan;
 
 	
-	@Column(name = "noOfCylinderLeft")
+	@Column(name = "no_of_cylinders_left")
 	private int noOfCylinderLeft;
 
 	public int getCustomerId() {
@@ -106,8 +107,8 @@ public class Customer {
 		this.noOfCylinderLeft = noOfCylinderLeft;
 	}
 	
-	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "cid", referencedColumnName = "cylinderId")
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "cId", referencedColumnName = "cylinder_id")
 	private Cylinder cylinder= new Cylinder();
 	
 
@@ -138,6 +139,5 @@ public class Customer {
 		// TODO Auto-generated method stub
 		return super.toString();
 	}
-	
 	
 }

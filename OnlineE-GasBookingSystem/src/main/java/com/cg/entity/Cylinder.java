@@ -17,10 +17,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @DynamicInsert
 @DynamicUpdate
-@Table(name="egas_cylinder")
+@Table(name="egas_cylinder_connection")
 public class Cylinder {
 	@Id
-	@Column(name="cylinderId")
+	@Column(name="cylinder_id")
 	@GeneratedValue(strategy = GenerationType.AUTO,generator = "seq2")
 	@SequenceGenerator(name = "seq2", sequenceName = "egas_seq2", allocationSize = 1 )
 	private int cylinderId;
@@ -31,23 +31,12 @@ public class Cylinder {
 	@Column(name = "weight")
 	private float weight;
 	
-	@Column(name = "strapcolor", nullable = false)
+	@Column(name = "strap_color", nullable = false)
 	private String strapColor;
 	
 	@Column(name = "price")
 	private float price;
-	
-	@OneToOne(mappedBy = "cylinder")
-	@JsonIgnore
-	private Customer customer;
-
-	public int getCylinderId() {
-		return cylinderId;
-	}
-
-	public void setCylinderId(int cylinderId) {
-		this.cylinderId = cylinderId;
-	}
+		
 
 	public String getType() {
 		return type;
