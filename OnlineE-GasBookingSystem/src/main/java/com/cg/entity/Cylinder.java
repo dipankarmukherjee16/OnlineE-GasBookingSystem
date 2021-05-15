@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Cylinder {
 	@Id
 	@Column(name="cylinder_id")
-	@GeneratedValue(strategy = GenerationType.AUTO,generator = "seq2")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "seq2")
 	@SequenceGenerator(name = "seq2", sequenceName = "egas_seq2", allocationSize = 1 )
 	private int cylinderId;
 	
