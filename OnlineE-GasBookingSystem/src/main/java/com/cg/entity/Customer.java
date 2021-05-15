@@ -53,7 +53,7 @@ public class Customer {
 	private String connectionStatus;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "cId", referencedColumnName = "cylinder_id")
+	@JoinColumn(name = "cylinder_id", referencedColumnName = "cylinder_id")
 	private Cylinder cylinder= new Cylinder();
 	
 	@OneToMany(mappedBy = "customer")
