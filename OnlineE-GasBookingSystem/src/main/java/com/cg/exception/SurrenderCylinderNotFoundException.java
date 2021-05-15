@@ -2,9 +2,14 @@ package com.cg.exception;
 
 public class SurrenderCylinderNotFoundException extends Exception {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 914569459626622748L;
+	public SurrenderCylinderNotFoundException() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
+	public SurrenderCylinderNotFoundException(String message) {
+		super(message);
+		// TODO Auto-generated constructor stub
+	}
+	
 }

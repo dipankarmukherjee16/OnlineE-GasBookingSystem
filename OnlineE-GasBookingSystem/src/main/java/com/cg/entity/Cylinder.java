@@ -23,52 +23,81 @@ public class Cylinder {
 	@Column(name="cylinder_id")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "seq2")
 	@SequenceGenerator(name = "seq2", sequenceName = "egas_seq2", allocationSize = 1 )
-	private int cylinderId;
+	private Integer cylinderId;
 	
 	@Column(name = "type", nullable = false)
 	private String type;
 	
 	@Column(name = "weight")
-	private float weight;
+	private Float weight;
 	
 	@Column(name = "strap_color", nullable = false)
 	private String strapColor;
 	
 	@Column(name = "price")
-	private float price;
+	private Float price;
 		
+	
+
+	public Integer getCylinderId() {
+		return cylinderId;
+	}
+
+
+
+	public void setCylinderId(Integer cylinderId) {
+		this.cylinderId = cylinderId;
+	}
+
+
 
 	public String getType() {
 		return type;
 	}
 
+
+
 	public void setType(String type) {
 		this.type = type;
 	}
 
-	public float getWeight() {
+
+
+	public Float getWeight() {
 		return weight;
 	}
 
-	public void setWeight(float weight) {
+
+
+	public void setWeight(Float weight) {
 		this.weight = weight;
 	}
+
+
 
 	public String getStrapColor() {
 		return strapColor;
 	}
 
+
+
 	public void setStrapColor(String strapColor) {
 		this.strapColor = strapColor;
 	}
 
-	public float getPrice() {
+
+
+	public Float getPrice() {
 		return price;
 	}
 
-	public void setPrice(float price) {
+
+
+	public void setPrice(Float price) {
 		this.price = price;
 	}
+
+
 
 	@Override
 	public String toString() {

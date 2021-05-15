@@ -1,16 +1,17 @@
 package com.cg.exception;
 
-public class GasBookingNotFoundException extends Exception {
+public class CylinderTypeMismatchException extends Exception{
 
-	public GasBookingNotFoundException() {
+	public CylinderTypeMismatchException() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public GasBookingNotFoundException(String message) {
+	public CylinderTypeMismatchException(String message) {
 		super(message);
 		// TODO Auto-generated constructor stub
 	}
+	
 	
 
 }

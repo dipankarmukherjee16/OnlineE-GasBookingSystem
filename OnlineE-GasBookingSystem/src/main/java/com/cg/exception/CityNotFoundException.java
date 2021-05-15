@@ -1,13 +1,13 @@
 package com.cg.exception;
 
-public class GasBookingNotFoundException extends Exception {
+public class CityNotFoundException extends Exception{
 
-	public GasBookingNotFoundException() {
+	public CityNotFoundException() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public GasBookingNotFoundException(String message) {
+	public CityNotFoundException(String message) {
 		super(message);
 		// TODO Auto-generated constructor stub
 	}

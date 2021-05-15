@@ -29,7 +29,7 @@ public class Customer {
 	@Column(name="customer_id")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "seq1")
 	@SequenceGenerator(name = "seq1", sequenceName = "egas_seq1", allocationSize = 1 )
-	private int customerId;
+	private Integer customerId;
 	
 	@Column(name = "user_name", length = 25, nullable = false, unique = true)
 	private String userName;
@@ -40,16 +40,19 @@ public class Customer {
 	@Column(name = "email", nullable = false, unique = true)
 	private String email;
 	
-	@Column(name = "aadhar_card",nullable = false, unique = true)
+	@Column(name = "aadhar_card", unique = true)
 	private String aadharCard;
 	
-	@Column(name = "address")
+	@Column(name = "address", nullable = false, length = 50)
 	private String adderss;
 	
-	@Column(name = "no_of_cylinders_left")
-	private int noOfCylindersLeft;
+	@Column(name = "city", nullable = false, length = 20)
+	private String city;
 	
-	@Column(name="connection_status")
+	@Column(name = "no_of_cylinders_left")
+	private Integer noOfCylindersLeft;
+	
+	@Column(name="connection_status", nullable = false, length = 10)
 	private String connectionStatus;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -60,86 +63,139 @@ public class Customer {
 	@JsonIgnore
 	private Set<GasBooking> gasBookings;
 
-	public int getCustomerId() {
+	
+
+	public Integer getCustomerId() {
 		return customerId;
 	}
 
-	public void setCustomerId(int customerId) {
+
+
+	public void setCustomerId(Integer customerId) {
 		this.customerId = customerId;
 	}
+
+
 
 	public String getUserName() {
 		return userName;
 	}
 
+
+
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
+
+
 
 	public String getMobileNumber() {
 		return mobileNumber;
 	}
 
+
+
 	public void setMobileNumber(String mobileNumber) {
 		this.mobileNumber = mobileNumber;
 	}
+
+
 
 	public String getEmail() {
 		return email;
 	}
 
+
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
-	
+
+
 	public String getAadharCard() {
 		return aadharCard;
 	}
+
+
 
 	public void setAadharCard(String aadharCard) {
 		this.aadharCard = aadharCard;
 	}
 
-	public String getConnectionStatus() {
-		return connectionStatus;
-	}
 
-	public void setConnectionStatus(String connectionStatus) {
-		this.connectionStatus = connectionStatus;
-	}
 
 	public String getAdderss() {
 		return adderss;
 	}
 
+
+
 	public void setAdderss(String adderss) {
 		this.adderss = adderss;
 	}
 
-	public int getNoOfCylindersLeft() {
+
+
+	public String getCity() {
+		return city;
+	}
+
+
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+
+
+	public Integer getNoOfCylindersLeft() {
 		return noOfCylindersLeft;
 	}
 
-	public void setNoOfCylindersLeft(int noOfCylinderLeft) {
-		this.noOfCylindersLeft = noOfCylinderLeft;
+
+
+	public void setNoOfCylindersLeft(Integer noOfCylindersLeft) {
+		this.noOfCylindersLeft = noOfCylindersLeft;
 	}
-		
+
+
+
+	public String getConnectionStatus() {
+		return connectionStatus;
+	}
+
+
+
+	public void setConnectionStatus(String connectionStatus) {
+		this.connectionStatus = connectionStatus;
+	}
+
+
+
 	public Cylinder getCylinder() {
 		return cylinder;
 	}
+
+
 
 	public void setCylinder(Cylinder cylinder) {
 		this.cylinder = cylinder;
 	}
 
+
+
 	public Set<GasBooking> getGasBookings() {
 		return gasBookings;
 	}
 
+
+
 	public void setGasBookings(Set<GasBooking> gasBookings) {
 		this.gasBookings = gasBookings;
 	}
+
+
 
 	@Override
 	public String toString() {

@@ -26,7 +26,7 @@ public class GasBooking {
 	@Column(name="gas_booking_id")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "seq3")
 	@SequenceGenerator(name = "seq3", sequenceName = "egas_seq3", allocationSize = 1 )
-	private int gasBookingId;
+	private Integer gasBookingId;
 	
 	@Column(name = "booking_date")
 	private LocalDate bookingDate;
@@ -35,10 +35,10 @@ public class GasBooking {
 	private String status;
 	
 	@Column(name = "bill")
-	private float bill;
+	private Float bill;
 	
 	@Column(name = "dac_number")
-	private int dacNumber;
+	private Integer dacNumber;
 	
 	@Column(name = "dispatch_date")
 	private LocalDate dispatchDate;
@@ -47,11 +47,11 @@ public class GasBooking {
 	@JoinColumn(name = "cust_id", referencedColumnName = "customer_id")
 	private Customer customer= new Customer();
 
-	public int getGasBookingId() {
+	public Integer getGasBookingId() {
 		return gasBookingId;
 	}
 
-	public void setGasBookingId(int gasBookingId) {
+	public void setGasBookingId(Integer gasBookingId) {
 		this.gasBookingId = gasBookingId;
 	}
 
@@ -71,20 +71,20 @@ public class GasBooking {
 		this.status = status;
 	}
 
-	public int getDacNumber() {
-		return dacNumber;
-	}
-
-	public void setDacNumber(int dacNumber) {
-		this.dacNumber = dacNumber;
-	}
-
-	public float getBill() {
+	public Float getBill() {
 		return bill;
 	}
 
-	public void setBill(float bill) {
+	public void setBill(Float bill) {
 		this.bill = bill;
+	}
+
+	public Integer getDacNumber() {
+		return dacNumber;
+	}
+
+	public void setDacNumber(Integer dacNumber) {
+		this.dacNumber = dacNumber;
 	}
 
 	public LocalDate getDispatchDate() {
@@ -102,5 +102,7 @@ public class GasBooking {
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
+
+	
 	
 }
