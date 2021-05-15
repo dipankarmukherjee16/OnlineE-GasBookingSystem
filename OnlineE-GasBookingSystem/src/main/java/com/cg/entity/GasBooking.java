@@ -32,10 +32,13 @@ public class GasBooking {
 	private LocalDate bookingDate;
 	
 	@Column(name = "status")
-	private boolean status;
+	private String status;
 	
 	@Column(name = "bill")
 	private float bill;
+	
+	@Column(name = "dac_number")
+	private int dacNumber;
 	
 	@Column(name = "dispatch_date")
 	private LocalDate dispatchDate;
@@ -60,12 +63,20 @@ public class GasBooking {
 		this.bookingDate = bookingDate;
 	}
 
-	public boolean isStatus() {
+	public String getStatus() {
 		return status;
 	}
 
-	public void setStatus(boolean status) {
+	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public int getDacNumber() {
+		return dacNumber;
+	}
+
+	public void setDacNumber(int dacNumber) {
+		this.dacNumber = dacNumber;
 	}
 
 	public float getBill() {
@@ -91,7 +102,5 @@ public class GasBooking {
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
-	
-	
 	
 }

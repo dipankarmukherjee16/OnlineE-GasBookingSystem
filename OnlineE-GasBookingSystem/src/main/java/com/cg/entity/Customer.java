@@ -34,21 +34,31 @@ public class Customer {
 	@Column(name = "user_name", length = 25, nullable = false, unique = true)
 	private String userName;
 	
-	@Column(name = "password", nullable = false)
-	private String password;
-	
 	@Column(name = "mob_number", nullable = false,unique = true)
 	private String mobileNumber;
 	
 	@Column(name = "email", nullable = false, unique = true)
 	private String email;
 	
-	@Column(name = "pan",nullable = false, unique = true)
-	private String pan;
-
+	@Column(name = "aadhar_card",nullable = false, unique = true)
+	private String aadharCard;
+	
+	@Column(name = "address")
+	private String adderss;
 	
 	@Column(name = "no_of_cylinders_left")
-	private int noOfCylinderLeft;
+	private int noOfCylindersLeft;
+	
+	@Column(name="connection_status")
+	private String connectionStatus;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "cId", referencedColumnName = "cylinder_id")
+	private Cylinder cylinder= new Cylinder();
+	
+	@OneToMany(mappedBy = "customer")
+	@JsonIgnore
+	private Set<GasBooking> gasBookings;
 
 	public int getCustomerId() {
 		return customerId;
@@ -64,14 +74,6 @@ public class Customer {
 
 	public void setUserName(String userName) {
 		this.userName = userName;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 
 	public String getMobileNumber() {
@@ -90,28 +92,39 @@ public class Customer {
 		this.email = email;
 	}
 
-	public String getPan() {
-		return pan;
-	}
-
-	public void setPan(String pan) {
-		this.pan = pan;
-	}
-
 	
-	public int getNoOfCylinderLeft() {
-		return noOfCylinderLeft;
+	public String getAadharCard() {
+		return aadharCard;
 	}
 
-	public void setNoOfCylinderLeft(int noOfCylinderLeft) {
-		this.noOfCylinderLeft = noOfCylinderLeft;
+	public void setAadharCard(String aadharCard) {
+		this.aadharCard = aadharCard;
 	}
-	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "cId", referencedColumnName = "cylinder_id")
-	private Cylinder cylinder= new Cylinder();
-	
 
+	public String getConnectionStatus() {
+		return connectionStatus;
+	}
+
+	public void setConnectionStatus(String connectionStatus) {
+		this.connectionStatus = connectionStatus;
+	}
+
+	public String getAdderss() {
+		return adderss;
+	}
+
+	public void setAdderss(String adderss) {
+		this.adderss = adderss;
+	}
+
+	public int getNoOfCylindersLeft() {
+		return noOfCylindersLeft;
+	}
+
+	public void setNoOfCylindersLeft(int noOfCylinderLeft) {
+		this.noOfCylindersLeft = noOfCylinderLeft;
+	}
+		
 	public Cylinder getCylinder() {
 		return cylinder;
 	}
@@ -119,12 +132,6 @@ public class Customer {
 	public void setCylinder(Cylinder cylinder) {
 		this.cylinder = cylinder;
 	}
-	
-	@OneToMany(mappedBy = "customer")
-	@JsonIgnore
-	private Set<GasBooking> gasBookings;
-	
-	
 
 	public Set<GasBooking> getGasBookings() {
 		return gasBookings;
