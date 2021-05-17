@@ -2,27 +2,33 @@ package com.cg.dto;
 
 public class CylinderDto {
 
-	private Integer cylinderId;
+	private Integer cylinderTypeId;
 	private Float weight;
+	private String cylinderType;
 	private Float price;
 	
 	public CylinderDto()
 	{
-		
+		super();
 	}
 	
-	public CylinderDto(Integer cylinderId, Float weight, Float price) {
+	
+	
+	public CylinderDto(Integer cylinderTypeId, Float weight, String cylinderType, Float price) {
 		super();
-		this.cylinderId = cylinderId;
+		this.cylinderTypeId = cylinderTypeId;
 		this.weight = weight;
+		this.cylinderType = cylinderType;
 		this.price = price;
 	}
-	
+
+
+
 	public Integer getCylinderId() {
-		return cylinderId;
+		return cylinderTypeId;
 	}
-	public void setCylinderId(Integer cylinderId) {
-		this.cylinderId = cylinderId;
+	public void setCylinderId(Integer cylinderTypeId) {
+		this.cylinderTypeId = cylinderTypeId;
 	}
 	public Float getWeight() {
 		return weight;
@@ -35,6 +41,14 @@ public class CylinderDto {
 	}
 	public void setPrice(Float price) {
 		this.price = price;
+	}
+
+	public String getCylinderType() {
+		return cylinderType;
+	}
+
+	public void setCylinderType(String cylinderType) {
+		this.cylinderType = cylinderType;
 	}
 	
 }

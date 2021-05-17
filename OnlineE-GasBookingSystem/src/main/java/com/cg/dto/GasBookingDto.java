@@ -10,12 +10,14 @@ public class GasBookingDto {
 	private Integer dacNumber;
 	private LocalDate dispatchDate;
 	private Integer customerId;
+	private Integer cylinderId;
 	
 	public GasBookingDto() {
 		super();
 	}
+	
 	public GasBookingDto(Integer gasBookingId, LocalDate bookingDate, String status, Float bill, Integer dacNumber,
-			LocalDate dispatchDate) {
+			LocalDate dispatchDate, Integer customerId, Integer cylinderId) {
 		super();
 		this.gasBookingId = gasBookingId;
 		this.bookingDate = bookingDate;
@@ -23,7 +25,10 @@ public class GasBookingDto {
 		this.bill = bill;
 		this.dacNumber = dacNumber;
 		this.dispatchDate = dispatchDate;
+		this.customerId = customerId;
+		this.cylinderId = cylinderId;
 	}
+
 	public Integer getGasBookingId() {
 		return gasBookingId;
 	}
@@ -65,6 +70,12 @@ public class GasBookingDto {
 	}
 	public void setCustomerId(Integer customerId) {
 		this.customerId = customerId;
+	}
+	public Integer getCylinderId() {
+		return cylinderId;
+	}
+	public void setCylinderId(Integer cylinderId) {
+		this.cylinderId = cylinderId;
 	}
 	
 }

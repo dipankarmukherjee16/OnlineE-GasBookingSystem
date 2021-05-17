@@ -1,5 +1,7 @@
 package com.cg.dto;
 
+import com.cg.util.CgUtil;
+
 public class CustomerDto {
 	private Integer customerId;
 	private String userName;
@@ -99,8 +101,8 @@ public class CustomerDto {
 		return connectionStatus;
 	}
 
-	public void setConnectionStatus(String connectionStatus) {
-		this.connectionStatus = connectionStatus;
+	public void setConnectionStatus() {
+		this.connectionStatus = CgUtil.CONNECTIONSTATUS;
 	}
 
 	public String getCylinderType() {
@@ -110,7 +112,5 @@ public class CustomerDto {
 	public void setCylinderType(String cylinderType) {
 		this.cylinderType = cylinderType;
 	}
-	
-	
 
 }

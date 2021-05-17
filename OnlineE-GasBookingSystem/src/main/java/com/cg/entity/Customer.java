@@ -55,6 +55,7 @@ public class Customer {
 	@Column(name="connection_status", nullable = false, length = 10)
 	private String connectionStatus;
 	
+	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "cylinder_id", referencedColumnName = "cylinder_id")
 	private Cylinder cylinder= new Cylinder();

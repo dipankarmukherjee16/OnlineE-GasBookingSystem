@@ -43,6 +43,9 @@ public class GasBooking {
 	@Column(name = "dispatch_date")
 	private LocalDate dispatchDate;
 	
+	@Column(name = "cylinder_id")
+	private Integer cylinderId;
+	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "cust_id", referencedColumnName = "customer_id")
 	private Customer customer= new Customer();
@@ -102,6 +105,16 @@ public class GasBooking {
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
+
+	public Integer getCylinderId() {
+		return cylinderId;
+	}
+
+	public void setCylinderId(Integer cylinderId) {
+		this.cylinderId = cylinderId;
+	}
+	
+	
 
 	
 	

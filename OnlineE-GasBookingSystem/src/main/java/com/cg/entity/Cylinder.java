@@ -20,13 +20,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name="egas_cylinder_connection")
 public class Cylinder {
 	@Id
-	@Column(name="cylinder_id")
+	@Column(name="cylinder_type_id")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "seq2")
 	@SequenceGenerator(name = "seq2", sequenceName = "egas_seq2", allocationSize = 1 )
-	private Integer cylinderId;
+	private Integer cylinderTypeId;
 	
-	@Column(name = "type", nullable = false)
-	private String type;
+	@Column(name = "cylinder_type", nullable = false)
+	private String cylinderType;
 	
 	@Column(name = "weight")
 	private Float weight;
@@ -36,26 +36,26 @@ public class Cylinder {
 		
 	
 
-	public Integer getCylinderId() {
-		return cylinderId;
+	public Integer getCylinderTypeId() {
+		return cylinderTypeId;
 	}
 
 
 
-	public void setCylinderId(Integer cylinderId) {
-		this.cylinderId = cylinderId;
+	public void setCylinderTypeId(Integer cylinderTypeId) {
+		this.cylinderTypeId = cylinderTypeId;
 	}
 
 
 
-	public String getType() {
-		return type;
+	public String getCylinderType() {
+		return cylinderType;
 	}
 
 
 
-	public void setType(String type) {
-		this.type = type;
+	public void setCylinderType(String cylinderType) {
+		this.cylinderType = cylinderType;
 	}
 
 

@@ -10,7 +10,7 @@ public class SurrenderCylinderDto {
 	
 	public SurrenderCylinderDto()
 	{
-		
+		super();
 	}
 	
 	public SurrenderCylinderDto(int surrenderId, LocalDate surrenderDate, int customerId) {
