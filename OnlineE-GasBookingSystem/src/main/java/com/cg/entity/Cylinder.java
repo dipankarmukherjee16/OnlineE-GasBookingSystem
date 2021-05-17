@@ -31,9 +31,6 @@ public class Cylinder {
 	@Column(name = "weight")
 	private Float weight;
 	
-	@Column(name = "strap_color", nullable = false)
-	private String strapColor;
-	
 	@Column(name = "price")
 	private Float price;
 		
@@ -71,18 +68,6 @@ public class Cylinder {
 
 	public void setWeight(Float weight) {
 		this.weight = weight;
-	}
-
-
-
-	public String getStrapColor() {
-		return strapColor;
-	}
-
-
-
-	public void setStrapColor(String strapColor) {
-		this.strapColor = strapColor;
 	}
 
 

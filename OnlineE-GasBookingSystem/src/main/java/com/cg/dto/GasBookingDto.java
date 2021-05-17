@@ -9,6 +9,7 @@ public class GasBookingDto {
 	private Float bill;
 	private Integer dacNumber;
 	private LocalDate dispatchDate;
+	private Integer customerId;
 	
 	public GasBookingDto() {
 		super();
@@ -58,6 +59,12 @@ public class GasBookingDto {
 	}
 	public void setDispatchDate(LocalDate dispatchDate) {
 		this.dispatchDate = dispatchDate;
+	}
+	public Integer getCustomerId() {
+		return customerId;
+	}
+	public void setCustomerId(Integer customerId) {
+		this.customerId = customerId;
 	}
 	
 }
