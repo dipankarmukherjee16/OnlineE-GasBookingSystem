@@ -33,6 +33,7 @@ public class SurrenderCylinderServiceImpl implements ISurrenderCylinderService{
 		
 		Customer customer=null;
 		customer=customerDao.findByCustomerId(surrenderCylinderDto.getCustomerId());
+		
 		if(customer==null)
 			throw new CustomerNotFoundException("Customer not found");
 		customer.setConnectionStatus("inactive");
