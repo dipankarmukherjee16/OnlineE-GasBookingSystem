@@ -25,15 +25,11 @@ public class Cylinder {
 	@SequenceGenerator(name = "seq2", sequenceName = "egas_seq2", allocationSize = 1 )
 	private Integer cylinderTypeId;
 	
-	@Column(name = "cylinder_type", nullable = false)
+	@Column(name = "cylinder_type", length = 10, nullable = false)
 	private String cylinderType;
 	
 	@Column(name = "weight")
 	private Float weight;
-	
-	@Column(name = "price")
-	private Float price;
-		
 	
 
 	public Integer getCylinderTypeId() {
@@ -70,17 +66,6 @@ public class Cylinder {
 		this.weight = weight;
 	}
 
-
-
-	public Float getPrice() {
-		return price;
-	}
-
-
-
-	public void setPrice(Float price) {
-		this.price = price;
-	}
 
 
 

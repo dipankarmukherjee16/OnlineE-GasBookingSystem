@@ -5,7 +5,6 @@ public class CylinderDto {
 	private Integer cylinderTypeId;
 	private Float weight;
 	private String cylinderType;
-	private Float price;
 	
 	public CylinderDto()
 	{
@@ -14,12 +13,12 @@ public class CylinderDto {
 	
 	
 	
-	public CylinderDto(Integer cylinderTypeId, Float weight, String cylinderType, Float price) {
+	public CylinderDto(Integer cylinderTypeId, Float weight, String cylinderType) {
 		super();
 		this.cylinderTypeId = cylinderTypeId;
 		this.weight = weight;
 		this.cylinderType = cylinderType;
-		this.price = price;
+	
 	}
 
 
@@ -36,13 +35,7 @@ public class CylinderDto {
 	public void setWeight(Float weight) {
 		this.weight = weight;
 	}
-	public Float getPrice() {
-		return price;
-	}
-	public void setPrice(Float price) {
-		this.price = price;
-	}
-
+	
 	public String getCylinderType() {
 		return cylinderType;
 	}

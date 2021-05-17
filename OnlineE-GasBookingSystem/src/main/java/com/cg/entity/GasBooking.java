@@ -31,7 +31,7 @@ public class GasBooking {
 	@Column(name = "booking_date")
 	private LocalDate bookingDate;
 	
-	@Column(name = "status")
+	@Column(name = "status", length = 10)
 	private String status;
 	
 	@Column(name = "bill")

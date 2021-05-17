@@ -34,13 +34,13 @@ public class Customer {
 	@Column(name = "user_name", length = 25, nullable = false, unique = true)
 	private String userName;
 	
-	@Column(name = "mob_number", nullable = false,unique = true)
+	@Column(name = "mob_number", length = 10, nullable = false,unique = true)
 	private String mobileNumber;
 	
-	@Column(name = "email", nullable = false, unique = true)
+	@Column(name = "email", length = 20, nullable = false, unique = true)
 	private String email;
 	
-	@Column(name = "aadhar_card", unique = true)
+	@Column(name = "aadhar_card",length = 12, unique = true)
 	private String aadharCard;
 	
 	@Column(name = "address", nullable = false, length = 50)
@@ -54,7 +54,7 @@ public class Customer {
 	
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "cylinder_id", referencedColumnName = "cylinder_id")
+	@JoinColumn(name = "cylinder_type_id", referencedColumnName = "cylinder_type_id")
 	private Cylinder cylinder= new Cylinder();
 	
 	@OneToMany(mappedBy = "customer")
