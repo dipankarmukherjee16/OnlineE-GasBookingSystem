@@ -19,16 +19,6 @@ public class ViewCustomerServiceImpl implements IViewCustomerService{
 	@Autowired
 	private ICustomerDao custDao;
 	
-	@Autowired
-	private ICylinderDao cylinderDao;
-	
-	@Autowired
-	private IGasBookingDao gasBookingDao;
-	
-	@Autowired
-	private ISurrenderCylinderDao surrenderCylinderDao;
-	
-	
 	@Override
 	public List<Customer> viewAllCustomers() throws CustomerNotFoundException {
 		List<Customer> lst= custDao.findAll();

@@ -24,12 +24,6 @@ public class CustomerServiceImpl implements ICustomerService{
 	@Autowired
 	private ICylinderDao cylinderDao;
 	
-	@Autowired
-	private IGasBookingDao gasbookingDao;
-	
-	@Autowired
-	private ISurrenderCylinderDao surrenderDao;
-
 	@Override
 	@Transactional
 	public Integer insertCustomer(CustomerDto customerdto) throws CylinderTypeMismatchException, CylinderNotFoundException {

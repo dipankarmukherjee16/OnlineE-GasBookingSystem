@@ -7,7 +7,7 @@ import com.cg.entity.Cylinder;
 import com.cg.exception.CylinderNotFoundException;
 import com.cg.exception.CylinderTypeMismatchException;
 
-public interface ICylinder {
+public interface ICylinderService {
 	public Integer addCylinder(CylinderDto cylinderDto)throws CylinderTypeMismatchException;
 	public List<Cylinder> viewAllCylinder()throws CylinderNotFoundException;
 
