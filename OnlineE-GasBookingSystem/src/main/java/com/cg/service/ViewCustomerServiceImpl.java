@@ -63,9 +63,10 @@ public class ViewCustomerServiceImpl implements IViewCustomerService{
 	public List<Customer> viewCustomerbyArea(String city) throws CustomerNotFoundException, CityNotFoundException {
 		List<Customer> lst= custDao.viewCustomerByCity(city);
 		if(lst.isEmpty()) {
-			throw new CustomerNotFoundException()
+			throw new CustomerNotFoundException("Customer not found");
 		}
-		return null;
+		lst.sort((e1,e2)->e1.getUserName().compareTo(e2.getUserName()));
+		return lst;
 	}
 	
 
