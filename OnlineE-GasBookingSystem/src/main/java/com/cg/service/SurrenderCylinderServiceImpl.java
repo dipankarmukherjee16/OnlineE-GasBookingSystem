@@ -49,7 +49,7 @@ public class SurrenderCylinderServiceImpl implements ISurrenderCylinderService{
 		List<SurrenderCylinder> lst=surrenderCylinderDao.findAll();
 		if(lst.isEmpty())
 			throw new CustomerNotFoundException("No customer found");
-		lst.stream().filter(e->e.getCustomer()).sorted((e1,e2)->e1.compareTo(e2)).collect(Collectors.toList()));
+		lst.stream().map(e->)
 		
 		return lst;
 	}
