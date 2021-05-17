@@ -49,9 +49,6 @@ public class Customer {
 	@Column(name = "city", nullable = false, length = 20)
 	private String city;
 	
-	@Column(name = "no_of_cylinders_left")
-	private Integer noOfCylindersLeft;
-	
 	@Column(name="connection_status", nullable = false, length = 10)
 	private String connectionStatus;
 	
@@ -146,18 +143,6 @@ public class Customer {
 
 	public void setCity(String city) {
 		this.city = city;
-	}
-
-
-
-	public Integer getNoOfCylindersLeft() {
-		return noOfCylindersLeft;
-	}
-
-
-
-	public void setNoOfCylindersLeft(Integer noOfCylindersLeft) {
-		this.noOfCylindersLeft = noOfCylindersLeft;
 	}
 
 

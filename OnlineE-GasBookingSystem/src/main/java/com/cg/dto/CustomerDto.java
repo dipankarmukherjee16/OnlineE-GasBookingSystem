@@ -10,12 +10,11 @@ public class CustomerDto {
 	private String aadharCard;
 	private String adderss;
 	private String city;
-	private Integer noOfCylindersLeft;
 	private String connectionStatus;
 	private String cylinderType;
 	
 	public CustomerDto(Integer customerId, String userName, String mobileNumber, String email, String aadharCard,
-			String adderss, String city, Integer noOfCylindersLeft, String connectionStatus, String cylinderType) {
+			String adderss, String city,  String connectionStatus, String cylinderType) {
 		super();
 		this.customerId = customerId;
 		this.userName = userName;
@@ -24,7 +23,6 @@ public class CustomerDto {
 		this.aadharCard = aadharCard;
 		this.adderss = adderss;
 		this.city = city;
-		this.noOfCylindersLeft = noOfCylindersLeft;
 		this.connectionStatus = connectionStatus;
 		this.cylinderType = cylinderType;
 	}
@@ -89,14 +87,7 @@ public class CustomerDto {
 		this.city = city;
 	}
 
-	public Integer getNoOfCylindersLeft() {
-		return noOfCylindersLeft;
-	}
-
-	public void setNoOfCylindersLeft(Integer noOfCylindersLeft) {
-		this.noOfCylindersLeft = noOfCylindersLeft;
-	}
-
+	
 	public String getConnectionStatus() {
 		return connectionStatus;
 	}
