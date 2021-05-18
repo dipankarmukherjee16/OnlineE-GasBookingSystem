@@ -8,16 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.cg.dao.ICustomerDao;
 import com.cg.dao.ICylinderDao;
-import com.cg.dao.IGasBookingDao;
-import com.cg.dao.ISurrenderCylinderDao;
 import com.cg.dto.CustomerDto;
-import com.cg.dto.CylinderDto;
 import com.cg.entity.Customer;
 import com.cg.entity.Cylinder;
 import com.cg.exception.CustomerNotFoundException;
 import com.cg.exception.CylinderNotFoundException;
 import com.cg.exception.CylinderTypeMismatchException;
-import com.cg.service.ViewCustomerServiceImpl;
 
 public class CustomerServiceImpl implements ICustomerService{
 	
@@ -53,7 +49,7 @@ public class CustomerServiceImpl implements ICustomerService{
 	public boolean updateCustomer(CustomerDto customerdto)
 			throws CustomerNotFoundException, CylinderTypeMismatchException {
 		Optional<Customer> optcust= custDao.findById(customerdto.getCustomerId());
-		if(!optcust.isEmpty()) {
+		if(!optcust.isPresent()) {
 			throw new CustomerNotFoundException("No customer found");
 		}
 		Customer cust= new Customer();
