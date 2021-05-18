@@ -93,7 +93,7 @@ public class CustomerDto {
 	}
 
 	public void setConnectionStatus() {
-		this.connectionStatus = CgUtil.CONNECTIONSTATUS;
+		this.connectionStatus = CgUtil.CONNECTIONSTATUSACTIVE;
 	}
 
 	public String getCylinderType() {

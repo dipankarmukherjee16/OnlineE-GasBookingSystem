@@ -14,6 +14,7 @@ import com.cg.entity.Customer;
 import com.cg.entity.SurrenderCylinder;
 import com.cg.exception.CustomerNotFoundException;
 import com.cg.exception.SurrenderCylinderNotFoundException;
+import com.cg.util.CgUtil;
 
 @Service("surrendercylinderservice")
 @Transactional
@@ -36,7 +37,7 @@ public class SurrenderCylinderServiceImpl implements ISurrenderCylinderService{
 		customer=customerDao.findByCustomerId(surrenderCylinderDto.getCustomerId());
 		if(customer==null)
 			throw new CustomerNotFoundException("Customer not found");
-		customer.setConnectionStatus("inactive");
+		customer.setConnectionStatus(CgUtil.CONNECTIONSTATUSINACTIVE);
 		surrenderCylinder.setCustomer(customer);
 		SurrenderCylinder persistedSurrenderCylinder=surrenderCylinderDao.save(surrenderCylinder);
 		
