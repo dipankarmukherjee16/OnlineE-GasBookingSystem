@@ -1,5 +1,7 @@
 package com.cg.service;
 
+import java.util.Optional;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,8 +51,27 @@ public class CustomerServiceImpl implements ICustomerService{
 	@Override
 	public boolean updateCustomer(CustomerDto customerdto)
 			throws CustomerNotFoundException, CylinderTypeMismatchException {
-		// TODO Auto-generated method stub
-		return false;
+		Optional<Customer> optcust= custDao.findById(customerdto.getCustomerId());
+		if(!optcust.isEmpty()) {
+			throw new CustomerNotFoundException("No customer found");
+		}
+		Customer cust= new Customer();
+		cust.setUserName(customerdto.getUserName());
+		cust.setMobileNumber(customerdto.getMobileNumber());
+		cust.setEmail(customerdto.getEmail());
+		cust.setAadharCard(customerdto.getAadharCard());
+		cust.setAdderss(customerdto.getAdderss());
+		cust.setCity(customerdto.getCity());
+		cust.setConnectionStatus(customerdto.getConnectionStatus());
+		
+		Cylinder cylinder= null;
+		cylinder=cylinderDao.findByCylinderType(customerdto.getCylinderType());
+		if(cylinder== null) {
+			throw new CylinderTypeMismatchException("No cylinder found");
+		}
+		cust.setCylinder(cylinder);
+		Customer persistedCust= custDao.save(cust);
+		return true;
 	}
 
 	@Override
@@ -61,7 +82,7 @@ public class CustomerServiceImpl implements ICustomerService{
 
 	@Override
 	public boolean linkAadhar(int custId, int aadharNo) throws CustomerNotFoundException {
-		// TODO Auto-generated method stub
+		
 		return false;
 	}
 
