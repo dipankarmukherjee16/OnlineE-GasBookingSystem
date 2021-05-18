@@ -17,6 +17,7 @@ import com.cg.entity.Cylinder;
 import com.cg.exception.CustomerNotFoundException;
 import com.cg.exception.CylinderNotFoundException;
 import com.cg.exception.CylinderTypeMismatchException;
+import com.cg.service.ViewCustomerServiceImpl;
 
 public class CustomerServiceImpl implements ICustomerService{
 	
@@ -76,8 +77,8 @@ public class CustomerServiceImpl implements ICustomerService{
 
 	@Override
 	public boolean deleteCustomer(int custId) throws CustomerNotFoundException {
-		// TODO Auto-generated method stub
-		return false;
+		
+		return true;
 	}
 
 	@Override
