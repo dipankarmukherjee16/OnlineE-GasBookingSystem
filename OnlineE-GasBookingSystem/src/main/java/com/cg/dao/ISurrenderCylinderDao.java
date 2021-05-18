@@ -13,8 +13,7 @@ import com.cg.entity.SurrenderCylinder;
 public interface ISurrenderCylinderDao extends JpaRepository<SurrenderCylinder, Integer>{
 
 	
-	@Query("from SurrenderCylinder sc where sc.surrenderDate.getYear()=:year")
+	@Query("from SurrenderCylinder sc where extract(year from sc.surrenderDate)=:year")
 	public List<SurrenderCylinder> viewSurrenderedCustomerByYear(@Param("year") int year);
-	
 	
 }

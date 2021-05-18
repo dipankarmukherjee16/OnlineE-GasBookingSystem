@@ -113,9 +113,12 @@ public class GasBooking {
 	public void setCylinderId(Integer cylinderId) {
 		this.cylinderId = cylinderId;
 	}
-	
-	
 
+	@Override
+	public String toString() {
+		return gasBookingId+" "+bookingDate+" "+status+" "+bill+" "+dacNumber+" "+dispatchDate+" "+
+					cylinderId+" "+customer.getCustomerId()+" "+customer.getUserName();
+	}
 	
 	
 }
