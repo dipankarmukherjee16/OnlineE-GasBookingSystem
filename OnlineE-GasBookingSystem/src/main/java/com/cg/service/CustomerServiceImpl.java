@@ -15,6 +15,7 @@ import com.cg.exception.CustomerNotFoundException;
 import com.cg.exception.CylinderNotFoundException;
 import com.cg.exception.CylinderTypeMismatchException;
 
+@Transactional
 public class CustomerServiceImpl implements ICustomerService{
 	
 	@Autowired
@@ -46,13 +47,14 @@ public class CustomerServiceImpl implements ICustomerService{
 	}
 
 	@Override
+	@Transactional
 	public boolean updateCustomer(CustomerDto customerdto)
 			throws CustomerNotFoundException, CylinderTypeMismatchException {
 		Optional<Customer> optcust= custDao.findById(customerdto.getCustomerId());
 		if(!optcust.isPresent()) {
 			throw new CustomerNotFoundException("No customer found");
 		}
-		Customer cust= new Customer();
+		Customer cust= optcust.get();
 		cust.setUserName(customerdto.getUserName());
 		cust.setMobileNumber(customerdto.getMobileNumber());
 		cust.setEmail(customerdto.getEmail());
@@ -67,20 +69,34 @@ public class CustomerServiceImpl implements ICustomerService{
 			throw new CylinderTypeMismatchException("No cylinder found");
 		}
 		cust.setCylinder(cylinder);
-		Customer persistedCust= custDao.save(cust);
+		custDao.save(cust);
 		return true;
 	}
 
 	@Override
+	@Transactional
 	public boolean deleteCustomer(int custId) throws CustomerNotFoundException {
-		
+		Optional<Customer> optcust=custDao.findById(custId);
+		if(!optcust.isPresent()) {
+			throw new CustomerNotFoundException("No customer found for id "+custId);
+		}
+		Customer cust= optcust.get();
+		custDao.delete(cust);
 		return true;
 	}
 
 	@Override
-	public boolean linkAadhar(int custId, int aadharNo) throws CustomerNotFoundException {
+	@Transactional
+	public boolean linkAadhar(int custId, String aadharNo) throws CustomerNotFoundException {
+		Optional<Customer> optcust=custDao.findById(custId);
+		if(!optcust.isPresent()) {
+			throw new CustomerNotFoundException("No customer found for id "+custId);
+		}
 		
-		return false;
+		Customer cust= optcust.get();
+		cust.setAadharCard(aadharNo);
+		
+		return true;
 	}
 
 }

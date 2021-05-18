@@ -20,4 +20,5 @@ public interface ICustomerDao extends JpaRepository<Customer, Integer>{
 	
 	@Query("from Customer cs where cs.customerId=:id")
 	public Customer findByCustomerId(@Param("id") int customerId);
+	
 }
