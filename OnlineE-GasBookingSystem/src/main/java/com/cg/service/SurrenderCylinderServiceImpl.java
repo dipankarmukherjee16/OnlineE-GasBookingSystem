@@ -1,10 +1,7 @@
 package com.cg.service;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +47,8 @@ public class SurrenderCylinderServiceImpl implements ISurrenderCylinderService{
 		List<SurrenderCylinder> lst=surrenderCylinderDao.findAll();
 		if(lst.isEmpty())
 			throw new CustomerNotFoundException("No customer found");
-		List<Customer> list = new ArrayList<Customer>();
+		
+		List<Customer> list = new ArrayList<>();
 		for(SurrenderCylinder sc: lst)
 			list.add(sc.getCustomer());
 		
@@ -58,11 +56,17 @@ public class SurrenderCylinderServiceImpl implements ISurrenderCylinderService{
 	}
 
 	@Override
-	public List<Customer> viewSurrenderCustomer(LocalDate year) throws SurrenderCylinderNotFoundException {
+	public List<Customer> viewSurrenderCustomer(int year) throws CustomerNotFoundException {
 		
+		List<SurrenderCylinder> lst=surrenderCylinderDao.viewSurrenderedCustomerByYear(year);
+		if(lst.isEmpty())
+			throw new CustomerNotFoundException("No customer found");
 		
+		List<Customer> list = new ArrayList<>();
+		for(SurrenderCylinder sc: lst)
+			list.add(sc.getCustomer());
 		
-		return null;
+		return list;
 	}
 
 }
