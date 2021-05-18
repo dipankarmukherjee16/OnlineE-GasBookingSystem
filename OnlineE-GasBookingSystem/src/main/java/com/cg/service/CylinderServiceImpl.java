@@ -12,6 +12,7 @@ import com.cg.entity.Cylinder;
 import com.cg.exception.CylinderNotFoundException;
 import com.cg.exception.CylinderTypeMismatchException;
 
+@Transactional
 public class CylinderServiceImpl implements ICylinderService{
 	
 	@Autowired

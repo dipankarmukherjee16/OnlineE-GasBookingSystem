@@ -14,6 +14,7 @@ import com.cg.entity.SurrenderCylinder;
 import com.cg.exception.CustomerNotFoundException;
 import com.cg.exception.SurrenderCylinderNotFoundException;
 
+@Transactional
 public class SurrenderCylinderServiceImpl implements ISurrenderCylinderService{
 
 	@Autowired
