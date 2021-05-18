@@ -55,13 +55,16 @@ public class GasBookingServiceImpl implements IGasBookingService{
 
 	@Override
 	public GasBooking generateInvoice(int bookingId) throws GasBookingNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<GasBooking> opbook = bookDao.findById(bookingId);
+		if(!opbook.isPresent())
+			throw new GasBookingNotFoundException("Gas Booking not found");
+		GasBooking book = opbook.get();
+		return book;
 	}
 
 	@Override
 	public boolean updateDeliveryStatus(int dacNumber) throws GasBookingNotFoundException {
-		// TODO Auto-generated method stub
+		
 		return false;
 	}
 
