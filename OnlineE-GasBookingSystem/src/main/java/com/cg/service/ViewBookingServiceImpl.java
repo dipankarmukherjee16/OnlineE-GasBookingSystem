@@ -5,12 +5,14 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.cg.dao.IGasBookingDao;
 import com.cg.entity.GasBooking;
 import com.cg.exception.CustomerNotFoundException;
 import com.cg.exception.GasBookingNotFoundException;
 
+@Service("viewbookingservice")
 public class ViewBookingServiceImpl implements IViewBookingService {
 
 	@Autowired
@@ -39,8 +41,8 @@ public class ViewBookingServiceImpl implements IViewBookingService {
 	@Override
 	public Integer viewNoOfCylindersBooked(int year, int customerId) throws CustomerNotFoundException {
 		List<GasBooking> lst = bookDao.noOfCylindersBookedInAYear(year, customerId);
-		int count=lst.size();
-		return count;
+		int numOfBookings=lst.size();
+		return numOfBookings;
 	}
 
 }

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.cg.dao.ICustomerDao;
 import com.cg.dao.ICylinderDao;
@@ -14,6 +15,7 @@ import com.cg.exception.CityNotFoundException;
 import com.cg.exception.CustomerNotFoundException;
 import com.cg.exception.CylinderTypeMismatchException;
 
+@Service("customerviewser")
 public class ViewCustomerServiceImpl implements IViewCustomerService{
 
 	@Autowired

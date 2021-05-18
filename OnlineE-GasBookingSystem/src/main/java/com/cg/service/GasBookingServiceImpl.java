@@ -3,6 +3,7 @@ package com.cg.service;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cg.dao.ICustomerDao;
@@ -13,6 +14,7 @@ import com.cg.entity.GasBooking;
 import com.cg.exception.CustomerNotFoundException;
 import com.cg.exception.GasBookingNotFoundException;
 
+@Service("gasbookingservice")
 @Transactional
 public class GasBookingServiceImpl implements IGasBookingService{
 	

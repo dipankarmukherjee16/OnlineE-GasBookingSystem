@@ -5,6 +5,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.cg.dao.ICylinderDao;
 import com.cg.dto.CylinderDto;
@@ -12,6 +13,7 @@ import com.cg.entity.Cylinder;
 import com.cg.exception.CylinderNotFoundException;
 import com.cg.exception.CylinderTypeMismatchException;
 
+@Service("cylinderservice")
 @Transactional
 public class CylinderServiceImpl implements ICylinderService{
 	
