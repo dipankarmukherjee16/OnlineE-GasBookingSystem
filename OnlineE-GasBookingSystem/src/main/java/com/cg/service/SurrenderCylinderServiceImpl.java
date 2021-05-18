@@ -1,6 +1,7 @@
 package com.cg.service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -49,9 +50,11 @@ public class SurrenderCylinderServiceImpl implements ISurrenderCylinderService{
 		List<SurrenderCylinder> lst=surrenderCylinderDao.findAll();
 		if(lst.isEmpty())
 			throw new CustomerNotFoundException("No customer found");
-		lst.stream().map(e->)
+		List<Customer> list = new ArrayList<Customer>();
+		for(SurrenderCylinder sc: lst)
+			list.add(sc.getCustomer());
 		
-		return lst;
+		return list;
 	}
 
 	@Override

@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.cg.entity.Customer;
@@ -14,8 +15,8 @@ import com.cg.entity.SurrenderCylinder;
 public interface ISurrenderCylinderDao extends JpaRepository<SurrenderCylinder, Integer>{
 
 	
-	//@Query("from SurrenderCylinder sc ")
-	public List<SurrenderCylinder> viewSurrenderedCustomerByYear(LocalDate year);
+	@Query("from SurrenderCylinder sc where sc.surrenderDate.getYear()=:year.getYear()")
+	public List<SurrenderCylinder> viewSurrenderedCustomerByYear(@Param("year") LocalDate year);
 	
 	
 }
