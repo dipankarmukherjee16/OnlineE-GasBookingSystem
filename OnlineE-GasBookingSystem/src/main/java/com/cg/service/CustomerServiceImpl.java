@@ -15,6 +15,7 @@ import com.cg.entity.Cylinder;
 import com.cg.exception.CustomerNotFoundException;
 import com.cg.exception.CylinderNotFoundException;
 import com.cg.exception.CylinderTypeMismatchException;
+import com.cg.util.CgUtil;
 
 @Service("customerservice")
 @Transactional
@@ -41,7 +42,7 @@ public class CustomerServiceImpl implements ICustomerService{
 		Cylinder cylinder= null;
 		cylinder=cylinderDao.findByCylinderType(customerdto.getCylinderType());
 		if(cylinder== null) {
-			throw new CylinderNotFoundException("No cylinder found");
+			throw new CylinderNotFoundException(CgUtil.CYLINDERNOTFOUND);
 		}
 		cust.setCylinder(cylinder);
 		Customer persistedCust= custDao.save(cust);
@@ -54,7 +55,7 @@ public class CustomerServiceImpl implements ICustomerService{
 			throws CustomerNotFoundException, CylinderTypeMismatchException {
 		Optional<Customer> optcust= custDao.findById(customerdto.getCustomerId());
 		if(!optcust.isPresent()) {
-			throw new CustomerNotFoundException("No customer found");
+			throw new CustomerNotFoundException(CgUtil.CUSTOMERNOTFOUND);
 		}
 		Customer cust= optcust.get();
 		cust.setUserName(customerdto.getUserName());
@@ -68,7 +69,7 @@ public class CustomerServiceImpl implements ICustomerService{
 		Cylinder cylinder= null;
 		cylinder=cylinderDao.findByCylinderType(customerdto.getCylinderType());
 		if(cylinder== null) {
-			throw new CylinderTypeMismatchException("No cylinder found");
+			throw new CylinderTypeMismatchException(CgUtil.CYLINDERNOTFOUND);
 		}
 		cust.setCylinder(cylinder);
 		custDao.save(cust);
@@ -80,7 +81,7 @@ public class CustomerServiceImpl implements ICustomerService{
 	public boolean deleteCustomer(int custId) throws CustomerNotFoundException {
 		Optional<Customer> optcust=custDao.findById(custId);
 		if(!optcust.isPresent()) {
-			throw new CustomerNotFoundException("No customer found for id "+custId);
+			throw new CustomerNotFoundException(CgUtil.CUSTOMERNOTFOUND);
 		}
 		Customer cust= optcust.get();
 		custDao.delete(cust);
@@ -92,7 +93,7 @@ public class CustomerServiceImpl implements ICustomerService{
 	public boolean linkAadhar(int custId, String aadharNo) throws CustomerNotFoundException {
 		Optional<Customer> optcust=custDao.findById(custId);
 		if(!optcust.isPresent()) {
-			throw new CustomerNotFoundException("No customer found for id "+custId);
+			throw new CustomerNotFoundException(CgUtil.CUSTOMERNOTFOUND);
 		}
 		
 		Customer cust= optcust.get();
