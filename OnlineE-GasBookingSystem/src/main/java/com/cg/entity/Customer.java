@@ -11,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -44,7 +43,7 @@ public class Customer {
 	private String aadharCard;
 	
 	@Column(name = "address", nullable = false, length = 50)
-	private String adderss;
+	private String address;
 	
 	@Column(name = "city", nullable = false, length = 20)
 	private String city;
@@ -123,14 +122,14 @@ public class Customer {
 
 
 
-	public String getAdderss() {
-		return adderss;
+	public String getAddress() {
+		return address;
 	}
 
 
 
-	public void setAdderss(String adderss) {
-		this.adderss = adderss;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 

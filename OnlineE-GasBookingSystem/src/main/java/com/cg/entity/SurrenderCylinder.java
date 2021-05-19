@@ -13,7 +13,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="surrender_cylinder")
+@Table(name="egas_surrender_cylinder")
 public class SurrenderCylinder {
 	
 	@Id

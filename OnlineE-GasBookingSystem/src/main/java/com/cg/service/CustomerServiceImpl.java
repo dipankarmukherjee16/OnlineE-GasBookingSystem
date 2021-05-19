@@ -40,7 +40,7 @@ public class CustomerServiceImpl implements ICustomerService{
 		cust.setMobileNumber(customerdto.getMobileNumber());
 		cust.setEmail(customerdto.getEmail());
 		cust.setAadharCard(customerdto.getAadharCard());
-		cust.setAdderss(customerdto.getAdderss());
+		cust.setAddress(customerdto.getAddress());
 		cust.setCity(customerdto.getCity());
 		cust.setConnectionStatus(CgUtil.CONNECTION_ACTIVE);
 		
@@ -63,7 +63,7 @@ public class CustomerServiceImpl implements ICustomerService{
 		cust.setMobileNumber(customerdto.getMobileNumber());
 		cust.setEmail(customerdto.getEmail());
 		cust.setAadharCard(customerdto.getAadharCard());
-		cust.setAdderss(customerdto.getAdderss());
+		cust.setAddress(customerdto.getAddress());
 		cust.setCity(customerdto.getCity());
 		
 		Cylinder cylinder= null;

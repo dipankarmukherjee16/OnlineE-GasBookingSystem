@@ -19,7 +19,7 @@ public class CustomerDto {
 	@NotBlank(message = CgUtil.AADHAR_REQUIRED)
 	private String aadharCard;
 	@NotBlank(message = CgUtil.ADDRESS_REQUIRED)
-	private String adderss;
+	private String address;
 	@NotBlank(message = CgUtil.CITY_REQUIRED)
 	private String city;
 	@NotBlank(message = CgUtil.CYLINDERTYPE_REQUIRED)
@@ -66,12 +66,12 @@ public class CustomerDto {
 		this.aadharCard = aadharCard;
 	}
 
-	public String getAdderss() {
-		return adderss;
+	public String getAddress() {
+		return address;
 	}
 
-	public void setAdderss(String adderss) {
-		this.adderss = adderss;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	public String getCity() {

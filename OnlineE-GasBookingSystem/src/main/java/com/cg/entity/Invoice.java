@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
@@ -18,6 +19,7 @@ import org.hibernate.annotations.ManyToAny;
 @Entity
 @DynamicInsert
 @DynamicUpdate
+@Table(name = "egas_invoice")
 public class Invoice {
 	
 	@Id
