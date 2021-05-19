@@ -1,5 +1,6 @@
 package com.cg.service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import javax.transaction.Transactional;
@@ -9,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import com.cg.dao.ICustomerDao;
 import com.cg.dao.ISurrenderCylinderDao;
-import com.cg.dto.SurrenderCylinderDto;
 import com.cg.entity.Customer;
 import com.cg.entity.SurrenderCylinder;
 import com.cg.exception.CustomerNotFoundException;
@@ -28,15 +28,17 @@ public class SurrenderCylinderServiceImpl implements ISurrenderCylinderService{
 	
 	@Override
 	@Transactional
-	public Integer surrenderCylinder(SurrenderCylinderDto surrenderCylinderDto) throws CustomerNotFoundException {
+	public Integer surrenderCylinder(int customerId) throws CustomerNotFoundException {
 
-		SurrenderCylinder surrenderCylinder=new SurrenderCylinder();
-		surrenderCylinder.setSurrenderDate(surrenderCylinderDto.getSurrenderDate());
-		
 		Customer customer=null;
-		customer=customerDao.findByCustomerId(surrenderCylinderDto.getCustomerId());
+		customer=customerDao.findByCustomerId(customerId);
 		if(customer==null)
 			throw new CustomerNotFoundException(CgUtil.CUSTOMERNOTFOUND);
+		
+		SurrenderCylinder surrenderCylinder=new SurrenderCylinder();
+		surrenderCylinder.setSurrenderDate(LocalDate.now());
+		
+		
 		customer.setConnectionStatus(CgUtil.CONNECTIONSTATUSINACTIVE);
 		surrenderCylinder.setCustomer(customer);
 		SurrenderCylinder persistedSurrenderCylinder=surrenderCylinderDao.save(surrenderCylinder);
