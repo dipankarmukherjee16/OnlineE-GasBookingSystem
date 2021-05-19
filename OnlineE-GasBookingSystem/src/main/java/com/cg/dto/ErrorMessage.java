@@ -1,9 +1,25 @@
 package com.cg.dto;
 
+import java.util.List;
+
 public class ErrorMessage {
 	
 	private String status;
 	private String message;
+	private List<String> messages;
+	
+	public ErrorMessage(String status,  List<String> messages) {
+		super();
+		this.status = status;
+	
+		this.messages = messages;
+	}
+	public List<String> getMessages() {
+		return messages;
+	}
+	public void setMessages(List<String> messages) {
+		this.messages = messages;
+	}
 	public String getStatus() {
 		return status;
 	}

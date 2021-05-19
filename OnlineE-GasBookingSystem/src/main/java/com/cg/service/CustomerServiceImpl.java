@@ -31,19 +31,20 @@ public class CustomerServiceImpl implements ICustomerService{
 	@Transactional
 	public Integer insertCustomer(CustomerDto customerdto) throws CylinderTypeMismatchException, CylinderNotFoundException {
 		Customer cust= new Customer();
+		Cylinder cylinder= null;
+		cylinder=cylinderDao.findByCylinderType(customerdto.getCylinderType());
+		if(cylinder== null) {
+			throw new CylinderNotFoundException(CgUtil.CYLINDERNOTFOUND);
+		}
 		cust.setUserName(customerdto.getUserName());
 		cust.setMobileNumber(customerdto.getMobileNumber());
 		cust.setEmail(customerdto.getEmail());
 		cust.setAadharCard(customerdto.getAadharCard());
 		cust.setAdderss(customerdto.getAdderss());
 		cust.setCity(customerdto.getCity());
-		cust.setConnectionStatus(customerdto.getConnectionStatus());
+		cust.setConnectionStatus(CgUtil.CONNECTION_ACTIVE);
 		
-		Cylinder cylinder= null;
-		cylinder=cylinderDao.findByCylinderType(customerdto.getCylinderType());
-		if(cylinder== null) {
-			throw new CylinderNotFoundException(CgUtil.CYLINDERNOTFOUND);
-		}
+		
 		cust.setCylinder(cylinder);
 		Customer persistedCust= custDao.save(cust);
 		return persistedCust.getCustomerId();
@@ -51,9 +52,9 @@ public class CustomerServiceImpl implements ICustomerService{
 
 	@Override
 	@Transactional
-	public boolean updateCustomer(CustomerDto customerdto)
+	public boolean updateCustomer(CustomerDto customerdto, Integer customerId)
 			throws CustomerNotFoundException, CylinderTypeMismatchException {
-		Optional<Customer> optcust= custDao.findById(customerdto.getCustomerId());
+		Optional<Customer> optcust= custDao.findById(customerId);
 		if(!optcust.isPresent()) {
 			throw new CustomerNotFoundException(CgUtil.CUSTOMERNOTFOUND);
 		}
@@ -64,7 +65,6 @@ public class CustomerServiceImpl implements ICustomerService{
 		cust.setAadharCard(customerdto.getAadharCard());
 		cust.setAdderss(customerdto.getAdderss());
 		cust.setCity(customerdto.getCity());
-		cust.setConnectionStatus(customerdto.getConnectionStatus());
 		
 		Cylinder cylinder= null;
 		cylinder=cylinderDao.findByCylinderType(customerdto.getCylinderType());
@@ -98,6 +98,7 @@ public class CustomerServiceImpl implements ICustomerService{
 		
 		Customer cust= optcust.get();
 		cust.setAadharCard(aadharNo);
+		custDao.save(cust);
 		
 		return true;
 	}

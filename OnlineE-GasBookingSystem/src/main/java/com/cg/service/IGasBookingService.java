@@ -1,13 +1,18 @@
 package com.cg.service;
 
-import com.cg.dto.GasBookingDto;
+
+import java.util.List;
+
 import com.cg.entity.GasBooking;
+import com.cg.entity.Invoice;
 import com.cg.exception.CustomerNotFoundException;
 import com.cg.exception.GasBookingNotFoundException;
+import com.cg.exception.InvoiceException;
 
 public interface IGasBookingService {
-	public Integer bookCylinder(GasBookingDto gasBookingdto) throws CustomerNotFoundException;
+	public Integer bookCylinder(Integer customerId) throws CustomerNotFoundException;
 	public boolean cancelGasBooking(int bookingId) throws GasBookingNotFoundException;
-	public GasBooking generateInvoice(int bookingId) throws GasBookingNotFoundException;
-	public boolean updateDeliveryStatus(int dacNumber) throws GasBookingNotFoundException;
+	public Invoice generateInvoice(int bookingId, Double fare) throws GasBookingNotFoundException;
+	public List<Invoice> getInvoices()throws InvoiceException;
+	public boolean cylinderDelivered(Integer invoiceId)throws InvoiceException;
 }

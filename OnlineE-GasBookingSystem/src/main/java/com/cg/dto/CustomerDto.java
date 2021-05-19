@@ -1,43 +1,38 @@
 package com.cg.dto;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
 import com.cg.util.CgUtil;
 
 public class CustomerDto {
-	private Integer customerId;
+	@NotBlank(message = CgUtil.USERNAME_REQUIRED)
 	private String userName;
+	@NotBlank(message = CgUtil.MOBILE_REQUIRED)
+	@Pattern(regexp = "[0-9]{10}", message = CgUtil.MOBILE_PATTERN)
 	private String mobileNumber;
+	@NotBlank(message = CgUtil.EMAIL_REQUIRED)
+	@Email(message = CgUtil.INVALID_EMAIL)
 	private String email;
+	@NotBlank(message = CgUtil.AADHAR_REQUIRED)
 	private String aadharCard;
+	@NotBlank(message = CgUtil.ADDRESS_REQUIRED)
 	private String adderss;
+	@NotBlank(message = CgUtil.CITY_REQUIRED)
 	private String city;
-	private String connectionStatus;
+	@NotBlank(message = CgUtil.CYLINDERTYPE_REQUIRED)
+	@Pattern(regexp = "(Domestic|Industrial)", message = CgUtil.CYLINDEROPTION)
 	private String cylinderType;
 	
-	public CustomerDto(Integer customerId, String userName, String mobileNumber, String email, String aadharCard,
-			String adderss, String city,  String connectionStatus, String cylinderType) {
-		super();
-		this.customerId = customerId;
-		this.userName = userName;
-		this.mobileNumber = mobileNumber;
-		this.email = email;
-		this.aadharCard = aadharCard;
-		this.adderss = adderss;
-		this.city = city;
-		this.connectionStatus = connectionStatus;
-		this.cylinderType = cylinderType;
-	}
+	
 	
 	public CustomerDto() {
 		super();
 	}
 
-	public Integer getCustomerId() {
-		return customerId;
-	}
-
-	public void setCustomerId(Integer customerId) {
-		this.customerId = customerId;
-	}
+	
 
 	public String getUserName() {
 		return userName;
@@ -88,13 +83,7 @@ public class CustomerDto {
 	}
 
 	
-	public String getConnectionStatus() {
-		return connectionStatus;
-	}
-
-	public void setConnectionStatus() {
-		this.connectionStatus = CgUtil.CONNECTIONSTATUSACTIVE;
-	}
+	
 
 	public String getCylinderType() {
 		return cylinderType;

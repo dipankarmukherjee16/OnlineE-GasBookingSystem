@@ -34,17 +34,6 @@ public class GasBooking {
 	@Column(name = "status", length = 10)
 	private String status;
 	
-	@Column(name = "bill")
-	private Float bill;
-	
-	@Column(name = "dac_number")
-	private Integer dacNumber;
-	
-	@Column(name = "dispatch_date")
-	private LocalDate dispatchDate;
-	
-	@Column(name = "cylinder_id")
-	private Integer cylinderId;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "cust_id", referencedColumnName = "customer_id")
@@ -74,29 +63,7 @@ public class GasBooking {
 		this.status = status;
 	}
 
-	public Float getBill() {
-		return bill;
-	}
-
-	public void setBill(Float bill) {
-		this.bill = bill;
-	}
-
-	public Integer getDacNumber() {
-		return dacNumber;
-	}
-
-	public void setDacNumber(Integer dacNumber) {
-		this.dacNumber = dacNumber;
-	}
-
-	public LocalDate getDispatchDate() {
-		return dispatchDate;
-	}
-
-	public void setDispatchDate(LocalDate dispatchDate) {
-		this.dispatchDate = dispatchDate;
-	}
+	
 
 	public Customer getCustomer() {
 		return customer;
@@ -106,19 +73,6 @@ public class GasBooking {
 		this.customer = customer;
 	}
 
-	public Integer getCylinderId() {
-		return cylinderId;
-	}
-
-	public void setCylinderId(Integer cylinderId) {
-		this.cylinderId = cylinderId;
-	}
-
-	@Override
-	public String toString() {
-		return gasBookingId+" "+bookingDate+" "+status+" "+bill+" "+dacNumber+" "+dispatchDate+" "+
-					cylinderId+" "+customer.getCustomerId()+" "+customer.getUserName();
-	}
 	
 	
 }
