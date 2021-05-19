@@ -25,7 +25,7 @@ public class CustomerAdvice {
 	}
 	@ExceptionHandler(CylinderTypeMismatchException.class)
 	@ResponseStatus(code = HttpStatus.NOT_FOUND)
-	public ErrorMessage handleExceptionCylinderTypeNotFound(CylinderTypeMismatchException ex) {
+	public ErrorMessage handleExceptionCylinderTypeMismatch(CylinderTypeMismatchException ex) {
 		return new ErrorMessage(HttpStatus.NOT_FOUND.toString(), ex.getMessage());
 	}
 	
