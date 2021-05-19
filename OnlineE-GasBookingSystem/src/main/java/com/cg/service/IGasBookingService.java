@@ -3,7 +3,6 @@ package com.cg.service;
 
 import java.util.List;
 
-import com.cg.entity.GasBooking;
 import com.cg.entity.Invoice;
 import com.cg.exception.CustomerNotFoundException;
 import com.cg.exception.GasBookingNotFoundException;

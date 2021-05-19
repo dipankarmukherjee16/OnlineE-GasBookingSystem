@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.cg.dao.ICustomerDao;
 import com.cg.dao.IGasBookingDao;
-import com.cg.dao.InvoiceDao;
+import com.cg.dao.IInvoiceDao;
 
 import com.cg.entity.Customer;
 import com.cg.entity.GasBooking;
@@ -31,7 +31,7 @@ public class GasBookingServiceImpl implements IGasBookingService{
 	private ICustomerDao custDao;
 
 	@Autowired
-	private InvoiceDao invoiceDao;
+	private IInvoiceDao invoiceDao;
 	@Override
 	@Transactional
 	public Integer bookCylinder(Integer customerId) throws CustomerNotFoundException {
