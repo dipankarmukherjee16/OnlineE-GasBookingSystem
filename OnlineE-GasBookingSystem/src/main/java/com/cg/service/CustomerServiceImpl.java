@@ -34,7 +34,7 @@ public class CustomerServiceImpl implements ICustomerService{
 		Cylinder cylinder= null;
 		cylinder=cylinderDao.findByCylinderType(customerdto.getCylinderType());
 		if(cylinder== null) {
-			throw new CylinderNotFoundException(CgUtil.CYLINDERNOTFOUND);
+			throw new CylinderTypeMismatchException(CgUtil.CYLINDERTYPEMISMATCH);
 		}
 		cust.setUserName(customerdto.getUserName());
 		cust.setMobileNumber(customerdto.getMobileNumber());
@@ -69,7 +69,7 @@ public class CustomerServiceImpl implements ICustomerService{
 		Cylinder cylinder= null;
 		cylinder=cylinderDao.findByCylinderType(customerdto.getCylinderType());
 		if(cylinder== null) {
-			throw new CylinderTypeMismatchException(CgUtil.CYLINDERNOTFOUND);
+			throw new CylinderTypeMismatchException(CgUtil.CYLINDERTYPEMISMATCH);
 		}
 		cust.setCylinder(cylinder);
 		custDao.save(cust);
