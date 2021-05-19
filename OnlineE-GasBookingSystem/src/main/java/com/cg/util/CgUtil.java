@@ -31,5 +31,5 @@ public class CgUtil {
 	public static final String DELIVERED="DELIVERED";
 	public static final String CYLINDER_BOOKED="Cylinder is booked and booking id is ";
 	public static final String BOOKING_CANCELLED="Booking is cancelled ";
-
+	public static final String SURRENDER_CYLINDER="Cylinder is surrendered and id is ";
 }
