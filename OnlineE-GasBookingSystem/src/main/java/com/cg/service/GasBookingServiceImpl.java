@@ -52,7 +52,7 @@ public class GasBookingServiceImpl implements IGasBookingService{
 
 	@Override
 	@Transactional
-	public boolean cancelGasBooking(int bookingId) throws GasBookingNotFoundException {
+	public boolean cancelGasBooking(Integer bookingId) throws GasBookingNotFoundException {
 		Optional<GasBooking> opbook = bookDao.findById(bookingId);
 		if(!opbook.isPresent())
 			throw new GasBookingNotFoundException(CgUtil.BOOKINGNOTFOUND);
@@ -63,7 +63,7 @@ public class GasBookingServiceImpl implements IGasBookingService{
 
 	@Override
 	@Transactional
-	public Invoice generateInvoice(int bookingId, Double fare) throws GasBookingNotFoundException {
+	public Invoice generateInvoice(Integer bookingId, Double fare) throws GasBookingNotFoundException {
 		Optional<GasBooking> opbook = bookDao.findById(bookingId);
 		if(!opbook.isPresent())
 			throw new GasBookingNotFoundException(CgUtil.BOOKINGNOTFOUND);
@@ -80,6 +80,7 @@ public class GasBookingServiceImpl implements IGasBookingService{
 		return invoice;
 	}
 	
+	@Override
 	public List<Invoice> getInvoices()throws InvoiceException{
 		List<Invoice> invoices= invoiceDao.findByInvoiceStatus(CgUtil.INVOICE_GENERATED);
 		if(invoices.isEmpty()) {

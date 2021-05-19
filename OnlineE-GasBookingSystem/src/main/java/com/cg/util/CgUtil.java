@@ -26,9 +26,10 @@ public class CgUtil {
 	public static final String CUSTOMER_UPDATED="Customer updated ";
 	public static final String AADHAR_LINKED="Aadhar is linked ";
 	public static final String STATUS_BOOKED="BOOKED";
-	public static final String INVOICE_GENERATED="Invoice Generated";
+	public static final String INVOICE_GENERATED="Invoice Generated ";
 	public static final String INVOICE_EMPTY="Invoice empty";
 	public static final String DELIVERED="DELIVERED";
-	
+	public static final String CYLINDER_BOOKED="Cylinder is booked and booking id is ";
+	public static final String BOOKING_CANCELLED="Booking is cancelled ";
 
 }
