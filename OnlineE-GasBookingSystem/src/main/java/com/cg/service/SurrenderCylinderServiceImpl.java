@@ -36,7 +36,7 @@ public class SurrenderCylinderServiceImpl implements ISurrenderCylinderService{
 		Customer customer=null;
 		customer=customerDao.findByCustomerId(surrenderCylinderDto.getCustomerId());
 		if(customer==null)
-			throw new CustomerNotFoundException("Customer not found");
+			throw new CustomerNotFoundException(CgUtil.CUSTOMERNOTFOUND);
 		customer.setConnectionStatus(CgUtil.CONNECTIONSTATUSINACTIVE);
 		surrenderCylinder.setCustomer(customer);
 		SurrenderCylinder persistedSurrenderCylinder=surrenderCylinderDao.save(surrenderCylinder);
@@ -50,7 +50,7 @@ public class SurrenderCylinderServiceImpl implements ISurrenderCylinderService{
 		
 		List<SurrenderCylinder> lst=surrenderCylinderDao.findAll();
 		if(lst.isEmpty())
-			throw new CustomerNotFoundException("No customer found");
+			throw new CustomerNotFoundException(CgUtil.CUSTOMERNOTFOUND);
 		
 		List<Customer> list = new ArrayList<>();
 		for(SurrenderCylinder sc: lst)
@@ -64,7 +64,7 @@ public class SurrenderCylinderServiceImpl implements ISurrenderCylinderService{
 		
 		List<SurrenderCylinder> lst=surrenderCylinderDao.viewSurrenderedCustomerByYear(year);
 		if(lst.isEmpty())
-			throw new CustomerNotFoundException("No customer found");
+			throw new CustomerNotFoundException(CgUtil.CUSTOMERNOTFOUND);
 		
 		List<Customer> list = new ArrayList<>();
 		for(SurrenderCylinder sc: lst)

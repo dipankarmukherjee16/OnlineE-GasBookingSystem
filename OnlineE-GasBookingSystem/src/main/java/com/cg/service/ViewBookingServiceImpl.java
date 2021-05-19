@@ -11,6 +11,7 @@ import com.cg.dao.IGasBookingDao;
 import com.cg.entity.GasBooking;
 import com.cg.exception.CustomerNotFoundException;
 import com.cg.exception.GasBookingNotFoundException;
+import com.cg.util.CgUtil;
 
 @Service("viewbookingservice")
 public class ViewBookingServiceImpl implements IViewBookingService {
@@ -21,7 +22,7 @@ public class ViewBookingServiceImpl implements IViewBookingService {
 	public String viewStatus(int gasBookingId) throws GasBookingNotFoundException {
 		Optional<GasBooking> opbook = bookDao.findById(gasBookingId);
 		if(!opbook.isPresent())
-			throw new GasBookingNotFoundException("Gas Booking not found");
+			throw new GasBookingNotFoundException(CgUtil.BOOKINGNOTFOUND);
 	GasBooking book=opbook.get();
 	
 		return book.getStatus();
@@ -34,15 +35,15 @@ public class ViewBookingServiceImpl implements IViewBookingService {
 			throws GasBookingNotFoundException {
 		List<GasBooking> lst = bookDao.viewBookingDetailsByCustomerId(customerId);
 		if (lst.isEmpty())
-				throw new GasBookingNotFoundException("Gas booking not found");
+				throw new GasBookingNotFoundException(CgUtil.BOOKINGNOTFOUND);
 		return lst;
 	}
 
 	@Override
 	public Integer viewNoOfCylindersBooked(int year, int customerId) throws CustomerNotFoundException {
 		List<GasBooking> lst = bookDao.noOfCylindersBookedInAYear(year, customerId);
-		int numOfBookings=lst.size();
-		return numOfBookings;
+		int noOfBookings=lst.size();
+		return noOfBookings;
 	}
 
 }

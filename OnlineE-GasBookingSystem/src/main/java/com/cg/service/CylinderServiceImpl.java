@@ -12,6 +12,7 @@ import com.cg.dto.CylinderDto;
 import com.cg.entity.Cylinder;
 import com.cg.exception.CylinderNotFoundException;
 import com.cg.exception.CylinderTypeMismatchException;
+import com.cg.util.CgUtil;
 
 @Service("cylinderservice")
 @Transactional
@@ -39,7 +40,7 @@ public class CylinderServiceImpl implements ICylinderService{
 		
 		List<Cylinder> lst=cylinderDao.findAll();
 		if(lst.isEmpty())
-			throw new CylinderNotFoundException("No cylinder found");
+			throw new CylinderNotFoundException(CgUtil.CYLINDERNOTFOUND);
 		lst.sort((e1,e2)->e1.getCylinderType().compareTo(e2.getCylinderType()));
 		
 		return lst;

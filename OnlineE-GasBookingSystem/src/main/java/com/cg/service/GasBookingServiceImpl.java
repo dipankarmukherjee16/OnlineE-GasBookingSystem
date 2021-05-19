@@ -13,6 +13,7 @@ import com.cg.entity.Customer;
 import com.cg.entity.GasBooking;
 import com.cg.exception.CustomerNotFoundException;
 import com.cg.exception.GasBookingNotFoundException;
+import com.cg.util.CgUtil;
 
 @Service("gasbookingservice")
 @Transactional
@@ -37,7 +38,7 @@ public class GasBookingServiceImpl implements IGasBookingService{
 		
 		Optional<Customer> opcust = custDao.findById(gasBookingdto.getCustomerId());
 		if(!opcust.isPresent())
-			throw new CustomerNotFoundException("No Customer Found");
+			throw new CustomerNotFoundException(CgUtil.CUSTOMERNOTFOUND);
 		Customer cust = opcust.get();
 		book.setCustomer(cust);
 		GasBooking persistedBook = bookDao.save(book);
@@ -49,7 +50,7 @@ public class GasBookingServiceImpl implements IGasBookingService{
 	public boolean cancelGasBooking(int bookingId) throws GasBookingNotFoundException {
 		Optional<GasBooking> opbook = bookDao.findById(bookingId);
 		if(!opbook.isPresent())
-			throw new GasBookingNotFoundException("Gas Booking not found");
+			throw new GasBookingNotFoundException(CgUtil.BOOKINGNOTFOUND);
 		GasBooking book = opbook.get();
 		bookDao.delete(book);
 		return true;
@@ -60,7 +61,7 @@ public class GasBookingServiceImpl implements IGasBookingService{
 	public GasBooking generateInvoice(int bookingId) throws GasBookingNotFoundException {
 		Optional<GasBooking> opbook = bookDao.findById(bookingId);
 		if(!opbook.isPresent())
-			throw new GasBookingNotFoundException("Gas Booking not found");
+			throw new GasBookingNotFoundException(CgUtil.BOOKINGNOTFOUND);
 		GasBooking book = opbook.get();
 		return book;
 	}
