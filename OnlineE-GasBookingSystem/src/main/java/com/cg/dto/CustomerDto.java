@@ -8,6 +8,7 @@ import javax.validation.constraints.Pattern;
 import com.cg.util.CgUtil;
 
 public class CustomerDto {
+	
 	@NotBlank(message = CgUtil.USERNAME_REQUIRED)
 	private String userName;
 	@NotBlank(message = CgUtil.MOBILE_REQUIRED)

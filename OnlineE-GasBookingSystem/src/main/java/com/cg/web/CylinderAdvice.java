@@ -11,18 +11,14 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import com.cg.dto.ErrorMessage;
-import com.cg.exception.CustomerNotFoundException;
 import com.cg.exception.CylinderNotFoundException;
 import com.cg.exception.CylinderTypeMismatchException;
 import com.cg.exception.ValidateException;
 
 @RestControllerAdvice
-public class CustomerAdvice {
-	@ExceptionHandler(CustomerNotFoundException.class)
-	@ResponseStatus(code = HttpStatus.NOT_FOUND)
-	public ErrorMessage handleExceptionCustomerNotFound(CustomerNotFoundException ex) {
-		return new ErrorMessage(HttpStatus.NOT_FOUND.toString(), ex.getMessage());
-	}
+public class CylinderAdvice {
+	
+	
 	@ExceptionHandler(CylinderTypeMismatchException.class)
 	@ResponseStatus(code = HttpStatus.NOT_FOUND)
 	public ErrorMessage handleExceptionCylinderTypeMismatch(CylinderTypeMismatchException ex) {
@@ -59,6 +55,5 @@ public class CustomerAdvice {
            return new ErrorMessage(HttpStatus.BAD_REQUEST.toString(), "Invalid Date Pattern , follow yyyy-MM-dd");
         return new ErrorMessage(HttpStatus.BAD_REQUEST.toString(), "It must be Numeric");
     }
-
 
 }

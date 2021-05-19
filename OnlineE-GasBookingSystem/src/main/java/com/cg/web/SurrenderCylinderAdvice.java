@@ -14,24 +14,21 @@ import com.cg.dto.ErrorMessage;
 import com.cg.exception.CustomerNotFoundException;
 import com.cg.exception.CylinderNotFoundException;
 import com.cg.exception.CylinderTypeMismatchException;
+import com.cg.exception.SurrenderCylinderNotFoundException;
 import com.cg.exception.ValidateException;
 
 @RestControllerAdvice
-public class CustomerAdvice {
+public class SurrenderCylinderAdvice {
+
 	@ExceptionHandler(CustomerNotFoundException.class)
 	@ResponseStatus(code = HttpStatus.NOT_FOUND)
 	public ErrorMessage handleExceptionCustomerNotFound(CustomerNotFoundException ex) {
 		return new ErrorMessage(HttpStatus.NOT_FOUND.toString(), ex.getMessage());
 	}
-	@ExceptionHandler(CylinderTypeMismatchException.class)
-	@ResponseStatus(code = HttpStatus.NOT_FOUND)
-	public ErrorMessage handleExceptionCylinderTypeMismatch(CylinderTypeMismatchException ex) {
-		return new ErrorMessage(HttpStatus.NOT_FOUND.toString(), ex.getMessage());
-	}
 	
-	@ExceptionHandler(CylinderNotFoundException.class)
+	@ExceptionHandler(SurrenderCylinderNotFoundException.class)
 	@ResponseStatus(code = HttpStatus.NOT_FOUND)
-	public ErrorMessage handleExceptionCylinderNotFound(CylinderNotFoundException ex) {
+	public ErrorMessage handleExceptionSurrenderCylinderNotFound(SurrenderCylinderNotFoundException ex) {
 		return new ErrorMessage(HttpStatus.NOT_FOUND.toString(), ex.getMessage());
 	}
 	
@@ -59,6 +56,5 @@ public class CustomerAdvice {
            return new ErrorMessage(HttpStatus.BAD_REQUEST.toString(), "Invalid Date Pattern , follow yyyy-MM-dd");
         return new ErrorMessage(HttpStatus.BAD_REQUEST.toString(), "It must be Numeric");
     }
-
-
+	
 }

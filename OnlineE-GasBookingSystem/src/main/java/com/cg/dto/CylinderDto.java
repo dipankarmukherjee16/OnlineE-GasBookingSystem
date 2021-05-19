@@ -1,9 +1,18 @@
 package com.cg.dto;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+import com.cg.util.CgUtil;
+
 public class CylinderDto {
 
 	private Integer cylinderTypeId;
+	
+	@NotNull(message = CgUtil.WEIGHT_REQUIRED)
 	private Float weight;
+	
+	@NotBlank(message = CgUtil.CYLIDERTYPE_REQUIRED)
 	private String cylinderType;
 	
 	public CylinderDto()
