@@ -15,6 +15,6 @@ public interface IViewCustomerService {
 	public List<Customer> viewCustomerbyCylinderType(String cylinderType)
 			throws CustomerNotFoundException, CylinderTypeMismatchException;
 
-	public List<Customer> viewCustomerbyArea(String city) throws CustomerNotFoundException, CityNotFoundException;
+	public List<Customer> viewCustomerbyArea(String city) throws CityNotFoundException;
 
 }

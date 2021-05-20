@@ -39,7 +39,7 @@ public class ViewCustomerRestController {
 
 	@GetMapping("viewcustomerbyarea/{city}")
 	public List<Customer> viewCustomerbyArea(@PathVariable("city") String city)
-			throws CustomerNotFoundException, CityNotFoundException {
+			throws CityNotFoundException {
 		return customerService.viewCustomerbyArea(city);
 	}
 }

@@ -55,6 +55,7 @@ public class TestViewCustomerByCylinderType {
 	@DisplayName(value = "test view customer by cylinder type aaaa")
 	public void testViewCustomerByCylinderType2() throws CustomerNotFoundException, CylinderTypeMismatchException {
 
-		assertThrows(CustomerNotFoundException.class, ()->viewCustomerService.viewCustomerbyCylinderType(null));
+		assertThrows(CustomerNotFoundException.class, ()->viewCustomerService.viewCustomerbyCylinderType("aaaa"));
 	}
+	
 }

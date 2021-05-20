@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cg.dao.ICustomerDao;
+import com.cg.dao.ICylinderDao;
 import com.cg.entity.Customer;
+import com.cg.entity.Cylinder;
 import com.cg.exception.CityNotFoundException;
 import com.cg.exception.CustomerNotFoundException;
 import com.cg.exception.CylinderTypeMismatchException;
@@ -18,6 +20,9 @@ public class ViewCustomerServiceImpl implements IViewCustomerService {
 
 	@Autowired
 	private ICustomerDao custDao;
+	
+	@Autowired
+	private ICylinderDao cylinderDao;
 
 	@Override
 	public List<Customer> viewAllCustomers() throws CustomerNotFoundException {
@@ -41,6 +46,11 @@ public class ViewCustomerServiceImpl implements IViewCustomerService {
 	@Override
 	public List<Customer> viewCustomerbyCylinderType(String cylinderType)
 			throws CustomerNotFoundException, CylinderTypeMismatchException {
+		
+		Cylinder cylinder = cylinderDao.findByCylinderType(cylinderType); 
+		if(cylinder==null)
+			throw new CylinderTypeMismatchException(CgUtil.CYLINDERTYPEMISMATCH);
+		
 		List<Customer> lst = custDao.viewCustomerByType(cylinderType);
 		if (lst.isEmpty()) {
 			throw new CustomerNotFoundException(CgUtil.NOCUSTOMERFOUND);
@@ -50,10 +60,11 @@ public class ViewCustomerServiceImpl implements IViewCustomerService {
 	}
 
 	@Override
-	public List<Customer> viewCustomerbyArea(String city) throws CustomerNotFoundException, CityNotFoundException {
+	public List<Customer> viewCustomerbyArea(String city) throws CityNotFoundException {
+		
 		List<Customer> lst = custDao.viewCustomerByCity(city);
 		if (lst.isEmpty()) {
-			throw new CustomerNotFoundException(CgUtil.NOCUSTOMERFOUND);
+			throw new CityNotFoundException(CgUtil.CITYNOTFOUND);
 		}
 		lst.sort((e1, e2) -> e1.getUserName().compareTo(e2.getUserName()));
 		return lst;
