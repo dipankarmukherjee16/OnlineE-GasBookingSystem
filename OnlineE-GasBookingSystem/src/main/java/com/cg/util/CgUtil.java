@@ -12,11 +12,10 @@ public class CgUtil {
 	public static final String BOOKINGNOTFOUND="No gas booking found";
 	public static final String SURRENDEREDCYLINDERNOTFOUND="No surrendered cylinder found";
 	public static final String CUSTOMER_CREATED="Customer created and id is ";
-	public static final String USERNAME_REQUIRED="UserName is REquired";
+	public static final String USERNAME_REQUIRED="UserName is Required";
 	public static final String MOBILE_REQUIRED="Mobile required";
 	public static final String EMAIL_REQUIRED="Email is required";
 	public static final String INVALID_EMAIL="Invalid email";
-	public static final String AADHAR_REQUIRED="Aadhar required";
 	public static final String CITY_REQUIRED="City Required";
 	public static final String ADDRESS_REQUIRED="Address required";
 	public static final String MOBILE_PATTERN="Mobile no must contain 10 digits";

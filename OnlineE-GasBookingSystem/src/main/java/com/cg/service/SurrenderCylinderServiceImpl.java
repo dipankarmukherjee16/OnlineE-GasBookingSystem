@@ -3,6 +3,8 @@ package com.cg.service;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,16 +32,17 @@ public class SurrenderCylinderServiceImpl implements ISurrenderCylinderService {
 	@Transactional
 	public Integer surrenderCylinder(int customerId) throws CustomerNotFoundException {
 
-		Customer customer = null;
-		customer = customerDao.findByCustomerId(customerId);
-		if (customer == null)
+		Optional<Customer> customer = null;
+		customer = customerDao.findById(customerId);
+		if (customer.isEmpty())
 			throw new CustomerNotFoundException(CgUtil.CUSTOMERNOTFOUND);
 
+		Customer cust=customer.get();
 		SurrenderCylinder surrenderCylinder = new SurrenderCylinder();
 		surrenderCylinder.setSurrenderDate(LocalDate.now());
 
-		customer.setConnectionStatus(CgUtil.CONNECTIONSTATUSINACTIVE);
-		surrenderCylinder.setCustomer(customer);
+		cust.setConnectionStatus(CgUtil.CONNECTIONSTATUSINACTIVE);
+		surrenderCylinder.setCustomer(cust);
 		SurrenderCylinder persistedSurrenderCylinder = surrenderCylinderDao.save(surrenderCylinder);
 
 		return persistedSurrenderCylinder.getSurrenderId();

@@ -1,13 +1,5 @@
 package com.cg;
 
-import static org.hamcrest.CoreMatchers.any;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.when;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,10 +7,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.cg.dao.ICustomerDao;
 import com.cg.dao.ICylinderDao;
 import com.cg.dao.IGasBookingDao;
-import com.cg.dto.CustomerDto;
-import com.cg.entity.Customer;
-import com.cg.entity.Cylinder;
-import com.cg.exception.CylinderTypeMismatchException;
 import com.cg.service.CustomerServiceImpl;
 import com.cg.service.ICustomerService;
 

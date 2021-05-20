@@ -93,11 +93,9 @@ public class CustomerServiceImpl implements ICustomerService {
 		if (!optcust.isPresent()) {
 			throw new CustomerNotFoundException(CgUtil.CUSTOMERNOTFOUND);
 		}
-
 		Customer cust = optcust.get();
 		cust.setAadharCard(aadharNo);
 		custDao.save(cust);
-
 		return true;
 	}
 

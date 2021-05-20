@@ -16,14 +16,13 @@ public class CustomerDto {
 	@NotBlank(message = CgUtil.EMAIL_REQUIRED)
 	@Email(message = CgUtil.INVALID_EMAIL)
 	private String email;
-	@NotBlank(message = CgUtil.AADHAR_REQUIRED)
 	private String aadharCard;
 	@NotBlank(message = CgUtil.ADDRESS_REQUIRED)
 	private String address;
 	@NotBlank(message = CgUtil.CITY_REQUIRED)
 	private String city;
 	@NotBlank(message = CgUtil.CYLINDERTYPE_REQUIRED)
-	@Pattern(regexp = "(Domestic|Industrial)", message = CgUtil.CYLINDEROPTION)
+	@Pattern(regexp = "(domestic|industrial)", message = CgUtil.CYLINDEROPTION)
 	private String cylinderType;
 
 	public CustomerDto() {
