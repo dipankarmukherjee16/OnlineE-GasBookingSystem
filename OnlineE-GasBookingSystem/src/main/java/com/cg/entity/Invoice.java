@@ -14,29 +14,28 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
-import org.hibernate.annotations.ManyToAny;
 
 @Entity
 @DynamicInsert
 @DynamicUpdate
 @Table(name = "egas_invoice")
 public class Invoice {
-	
+
 	@Id
-	@Column(name="invoice_id")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "seq5")
-	@SequenceGenerator(name = "seq5", sequenceName = "invoice_seq1", allocationSize = 1 )
+	@Column(name = "invoice_id")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq5")
+	@SequenceGenerator(name = "seq5", sequenceName = "invoice_seq1", allocationSize = 1)
 	private Integer invoiceId;
 
 	@Column(name = "invoice_date")
 	private LocalDate invoiceDate;
-	
+
 	@Column(name = "bill_amount")
 	private Double billAmount;
-	
+
 	@Column(name = "invoice_status")
 	private String invoiceStatus;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "gas_booking_id", referencedColumnName = "gas_booking_id")
 	private GasBooking booking;
@@ -80,6 +79,5 @@ public class Invoice {
 	public void setInvoiceStatus(String invoiceStatus) {
 		this.invoiceStatus = invoiceStatus;
 	}
-	
-	
+
 }

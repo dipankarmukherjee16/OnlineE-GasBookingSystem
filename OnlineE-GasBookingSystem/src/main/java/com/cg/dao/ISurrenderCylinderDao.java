@@ -10,10 +10,9 @@ import org.springframework.stereotype.Repository;
 import com.cg.entity.SurrenderCylinder;
 
 @Repository
-public interface ISurrenderCylinderDao extends JpaRepository<SurrenderCylinder, Integer>{
+public interface ISurrenderCylinderDao extends JpaRepository<SurrenderCylinder, Integer> {
 
-	
 	@Query("from SurrenderCylinder sc where extract(year from sc.surrenderDate)=:year")
 	public List<SurrenderCylinder> viewSurrenderedCustomerByYear(@Param("year") int year);
-	
+
 }

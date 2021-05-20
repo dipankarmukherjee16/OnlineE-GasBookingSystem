@@ -22,25 +22,26 @@ import com.cg.util.CgUtil;
 
 @RestController
 public class CylinderRestController {
-	
+
 	@Autowired
 	private ICylinderService cylinderService;
-	
+
 	@PostMapping("addcylinder")
-	public SuccessMessage addCylinder(@Valid @RequestBody CylinderDto cylinderDto, BindingResult br) throws CylinderTypeMismatchException, ValidateException{
-		
-		if(br.hasErrors()) {
+	public SuccessMessage addCylinder(@Valid @RequestBody CylinderDto cylinderDto, BindingResult br)
+			throws CylinderTypeMismatchException, ValidateException {
+
+		if (br.hasErrors()) {
 			throw new ValidateException(br.getFieldErrors());
 		}
-		
-		int cylinderId=cylinderService.addCylinder(cylinderDto);
-		
-		return new SuccessMessage(CgUtil.CYLINDER_CREATED+cylinderId);
-		
+
+		int cylinderId = cylinderService.addCylinder(cylinderDto);
+
+		return new SuccessMessage(CgUtil.CYLINDER_CREATED + cylinderId);
+
 	}
-	
+
 	@GetMapping("viewallcylinder")
-	public List<Cylinder> viewAllCylinder()throws CylinderNotFoundException{
+	public List<Cylinder> viewAllCylinder() throws CylinderNotFoundException {
 		return cylinderService.viewAllCylinder();
 	}
 

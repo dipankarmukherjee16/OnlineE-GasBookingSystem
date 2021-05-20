@@ -9,15 +9,13 @@ import org.springframework.stereotype.Repository;
 
 import com.cg.entity.GasBooking;
 
-
-
 @Repository
-public interface IGasBookingDao extends JpaRepository<GasBooking, Integer>{
-	
+public interface IGasBookingDao extends JpaRepository<GasBooking, Integer> {
+
 	@Query("from GasBooking gb inner join fetch gb.customer cs where cs.customerId=:custId")
 	public List<GasBooking> viewBookingDetailsByCustomerId(@Param("custId") int customerId);
 
 	@Query("from GasBooking gb inner join fetch gb.customer cs where cs.customerId=:custId and extract(year from gb.bookingDate)=:year")
-	public List<GasBooking> noOfCylindersBookedInAYear(@Param("year") int year,@Param("custId") int customerId);
-		
+	public List<GasBooking> noOfCylindersBookedInAYear(@Param("year") int year, @Param("custId") int customerId);
+
 }

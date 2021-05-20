@@ -19,40 +19,37 @@ import com.cg.util.CgUtil;
 
 @RestController
 public class BookingRestController {
-	
+
 	@Autowired
 	private IGasBookingService gasBookingService;
-	
+
 	@PostMapping("bookcylinder/{customerid}")
-	public SuccessMessage bookCylinder(@PathVariable("customerid") int customerId) throws CustomerNotFoundException
-	{
-		int gasBookingId=gasBookingService.bookCylinder(customerId);
-		return new SuccessMessage(CgUtil.CYLINDER_BOOKED+gasBookingId);
+	public SuccessMessage bookCylinder(@PathVariable("customerid") int customerId) throws CustomerNotFoundException {
+		int gasBookingId = gasBookingService.bookCylinder(customerId);
+		return new SuccessMessage(CgUtil.CYLINDER_BOOKED + gasBookingId);
 	}
-	
+
 	@PutMapping("cancelbooking/{bookingid}")
-	public SuccessMessage cancelGasBooking(@PathVariable("bookingid") int bookingId) throws GasBookingNotFoundException
-	{
+	public SuccessMessage cancelGasBooking(@PathVariable("bookingid") int bookingId)
+			throws GasBookingNotFoundException {
 		gasBookingService.cancelGasBooking(bookingId);
 		return new SuccessMessage(CgUtil.BOOKING_CANCELLED);
 	}
-	
+
 	@PostMapping("generateinvoice/{bookingid}/{fare}")
-	public SuccessMessage generateInvoice(@PathVariable("bookingid") int bookingId, @PathVariable("fare") double fare) throws GasBookingNotFoundException
-	{
-		Invoice invoice= gasBookingService.generateInvoice(bookingId, fare);
+	public SuccessMessage generateInvoice(@PathVariable("bookingid") int bookingId, @PathVariable("fare") double fare)
+			throws GasBookingNotFoundException {
+		gasBookingService.generateInvoice(bookingId, fare);
 		return new SuccessMessage(CgUtil.INVOICE_GENERATED);
 	}
-	
+
 	@GetMapping("viewallinvoices")
-	public List<Invoice> getInvoices()throws InvoiceException
-	{
+	public List<Invoice> getInvoices() throws InvoiceException {
 		return gasBookingService.getInvoices();
 	}
-	
+
 	@PutMapping("cylinderdelivered/{invoiceid}")
-	public SuccessMessage cylinderDelivered(@PathVariable("invoiceid") int invoiceId) throws InvoiceException
-	{
+	public SuccessMessage cylinderDelivered(@PathVariable("invoiceid") int invoiceId) throws InvoiceException {
 		gasBookingService.cylinderDelivered(invoiceId);
 		return new SuccessMessage(CgUtil.DELIVERED);
 	}

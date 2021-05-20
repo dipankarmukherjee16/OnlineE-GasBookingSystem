@@ -13,18 +13,18 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="egas_surrender_cylinder")
+@Table(name = "egas_surrender_cylinder")
 public class SurrenderCylinder {
-	
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "seq4")
-	@SequenceGenerator(name = "seq4", sequenceName = "egas_seq4", allocationSize = 1 )
-	@Column(name="surrender_id")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq4")
+	@SequenceGenerator(name = "seq4", sequenceName = "egas_seq4", allocationSize = 1)
+	@Column(name = "surrender_id")
 	private Integer surrenderId;
-	
-	@Column(name="surrender_date")
+
+	@Column(name = "surrender_date")
 	private LocalDate surrenderDate;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "customer_id", referencedColumnName = "customer_id")
 	private Customer customer;
@@ -52,7 +52,5 @@ public class SurrenderCylinder {
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
-	
-	
 
 }

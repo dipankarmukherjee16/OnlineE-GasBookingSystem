@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.dto.CustomerDto;
 import com.cg.dto.SuccessMessage;
-import com.cg.entity.Customer;
 import com.cg.exception.CustomerNotFoundException;
 import com.cg.exception.CylinderNotFoundException;
 import com.cg.exception.CylinderTypeMismatchException;
@@ -22,30 +21,35 @@ import com.cg.util.CgUtil;
 
 @RestController
 public class CustomerRestController {
-	
+
 	@Autowired
 	private ICustomerService customerService;
-	
+
 	@PostMapping("addcustomer")
-	public SuccessMessage addCustomer(@Valid @RequestBody CustomerDto customerDto, BindingResult br) throws ValidateException, CylinderTypeMismatchException, CylinderNotFoundException {
-		if(br.hasErrors()) {
+	public SuccessMessage addCustomer(@Valid @RequestBody CustomerDto customerDto, BindingResult br)
+			throws ValidateException, CylinderTypeMismatchException, CylinderNotFoundException {
+		if (br.hasErrors()) {
 			throw new ValidateException(br.getFieldErrors());
 		}
-		int custId=customerService.insertCustomer(customerDto);
-		return new SuccessMessage(CgUtil.CUSTOMER_CREATED+custId);
-		
+		int custId = customerService.insertCustomer(customerDto);
+		return new SuccessMessage(CgUtil.CUSTOMER_CREATED + custId);
+
 	}
-	
+
 	@PutMapping("editcustomer/{customerid}")
-	public SuccessMessage editCustomer(@Valid @RequestBody CustomerDto customerDto,@PathVariable("customerid") int customerId, BindingResult br) throws ValidateException, CustomerNotFoundException, CylinderTypeMismatchException {
-		if(br.hasErrors()) {
+	public SuccessMessage editCustomer(@Valid @RequestBody CustomerDto customerDto,
+			@PathVariable("customerid") int customerId, BindingResult br)
+			throws ValidateException, CustomerNotFoundException, CylinderTypeMismatchException {
+		if (br.hasErrors()) {
 			throw new ValidateException(br.getFieldErrors());
 		}
 		customerService.updateCustomer(customerDto, customerId);
 		return new SuccessMessage(CgUtil.CUSTOMER_UPDATED);
 	}
+
 	@PutMapping("linkaadhar/{customerid}/{aadharno}")
-	public SuccessMessage linkAadhar(@PathVariable("customerid") int customerId, @PathVariable("aadharno") String aadharno) throws CustomerNotFoundException {
+	public SuccessMessage linkAadhar(@PathVariable("customerid") int customerId,
+			@PathVariable("aadharno") String aadharno) throws CustomerNotFoundException {
 		customerService.linkAadhar(customerId, aadharno);
 		return new SuccessMessage(CgUtil.AADHAR_LINKED);
 	}

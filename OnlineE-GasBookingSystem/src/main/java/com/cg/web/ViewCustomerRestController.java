@@ -15,30 +15,31 @@ import com.cg.service.IViewCustomerService;
 
 @RestController
 public class ViewCustomerRestController {
-	
-	
+
 	@Autowired
 	private IViewCustomerService customerService;
-	
+
 	@GetMapping("viewallcustomer")
-	public List<Customer> viewAllCustomers()throws CustomerNotFoundException{
-		
+	public List<Customer> viewAllCustomers() throws CustomerNotFoundException {
+
 		return customerService.viewAllCustomers();
-		
+
 	}
-	
+
 	@GetMapping("viewcustomerbyid/{customerid}")
-	public Customer viewCustomerbyId(@PathVariable("customerid") int customerId)throws CustomerNotFoundException{
+	public Customer viewCustomerbyId(@PathVariable("customerid") int customerId) throws CustomerNotFoundException {
 		return customerService.viewCustomerbyId(customerId);
 	}
-	
+
 	@GetMapping("viewcustomerbycylindertype/{type}")
-	public List<Customer> viewCustomerbyCylinderType(@PathVariable("type") String cylinderType)throws CustomerNotFoundException, CylinderTypeMismatchException{
+	public List<Customer> viewCustomerbyCylinderType(@PathVariable("type") String cylinderType)
+			throws CustomerNotFoundException, CylinderTypeMismatchException {
 		return customerService.viewCustomerbyCylinderType(cylinderType);
 	}
-	
+
 	@GetMapping("viewcustomerbyarea/{city}")
-	public List<Customer> viewCustomerbyArea(@PathVariable("city") String city)throws CustomerNotFoundException,CityNotFoundException{
+	public List<Customer> viewCustomerbyArea(@PathVariable("city") String city)
+			throws CustomerNotFoundException, CityNotFoundException {
 		return customerService.viewCustomerbyArea(city);
 	}
 }

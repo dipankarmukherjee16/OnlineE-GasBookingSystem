@@ -6,10 +6,14 @@ import com.cg.exception.CylinderNotFoundException;
 import com.cg.exception.CylinderTypeMismatchException;
 
 public interface ICustomerService {
-	public Integer insertCustomer(CustomerDto customerdto)throws CylinderTypeMismatchException,CylinderNotFoundException;
-	public boolean updateCustomer(CustomerDto customerdto, Integer customerId)throws CustomerNotFoundException, CylinderTypeMismatchException;
-	public boolean deleteCustomer(int custId)throws CustomerNotFoundException;
-	public boolean linkAadhar(int custId, String aadharNo)throws CustomerNotFoundException; 
-	
-	
+	public Integer insertCustomer(CustomerDto customerdto)
+			throws CylinderTypeMismatchException, CylinderNotFoundException;
+
+	public boolean updateCustomer(CustomerDto customerdto, Integer customerId)
+			throws CustomerNotFoundException, CylinderTypeMismatchException;
+
+	public boolean deleteCustomer(int custId) throws CustomerNotFoundException;
+
+	public boolean linkAadhar(int custId, String aadharNo) throws CustomerNotFoundException;
+
 }

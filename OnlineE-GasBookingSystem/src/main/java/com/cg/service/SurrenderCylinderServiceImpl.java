@@ -18,60 +18,59 @@ import com.cg.util.CgUtil;
 
 @Service("surrendercylinderservice")
 @Transactional
-public class SurrenderCylinderServiceImpl implements ISurrenderCylinderService{
+public class SurrenderCylinderServiceImpl implements ISurrenderCylinderService {
 
 	@Autowired
 	private ISurrenderCylinderDao surrenderCylinderDao;
-	
+
 	@Autowired
 	private ICustomerDao customerDao;
-	
+
 	@Override
 	@Transactional
 	public Integer surrenderCylinder(int customerId) throws CustomerNotFoundException {
 
-		Customer customer=null;
-		customer=customerDao.findByCustomerId(customerId);
-		if(customer==null)
+		Customer customer = null;
+		customer = customerDao.findByCustomerId(customerId);
+		if (customer == null)
 			throw new CustomerNotFoundException(CgUtil.CUSTOMERNOTFOUND);
-		
-		SurrenderCylinder surrenderCylinder=new SurrenderCylinder();
+
+		SurrenderCylinder surrenderCylinder = new SurrenderCylinder();
 		surrenderCylinder.setSurrenderDate(LocalDate.now());
-		
-		
+
 		customer.setConnectionStatus(CgUtil.CONNECTIONSTATUSINACTIVE);
 		surrenderCylinder.setCustomer(customer);
-		SurrenderCylinder persistedSurrenderCylinder=surrenderCylinderDao.save(surrenderCylinder);
-		
+		SurrenderCylinder persistedSurrenderCylinder = surrenderCylinderDao.save(surrenderCylinder);
+
 		return persistedSurrenderCylinder.getSurrenderId();
 	}
 
 	@Override
 	public List<Customer> viewAllSurrenderedCustomer()
 			throws CustomerNotFoundException, SurrenderCylinderNotFoundException {
-		
-		List<SurrenderCylinder> lst=surrenderCylinderDao.findAll();
-		if(lst.isEmpty())
+
+		List<SurrenderCylinder> lst = surrenderCylinderDao.findAll();
+		if (lst.isEmpty())
 			throw new CustomerNotFoundException(CgUtil.CUSTOMERNOTFOUND);
-		
+
 		List<Customer> list = new ArrayList<>();
-		for(SurrenderCylinder sc: lst)
+		for (SurrenderCylinder sc : lst)
 			list.add(sc.getCustomer());
-		
+
 		return list;
 	}
 
 	@Override
 	public List<Customer> viewSurrenderCustomer(int year) throws CustomerNotFoundException {
-		
-		List<SurrenderCylinder> lst=surrenderCylinderDao.viewSurrenderedCustomerByYear(year);
-		if(lst.isEmpty())
+
+		List<SurrenderCylinder> lst = surrenderCylinderDao.viewSurrenderedCustomerByYear(year);
+		if (lst.isEmpty())
 			throw new CustomerNotFoundException(CgUtil.CUSTOMERNOTFOUND);
-		
+
 		List<Customer> list = new ArrayList<>();
-		for(SurrenderCylinder sc: lst)
+		for (SurrenderCylinder sc : lst)
 			list.add(sc.getCustomer());
-		
+
 		return list;
 	}
 

@@ -16,28 +16,26 @@ import javax.persistence.Table;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
-
 @Entity
 @DynamicUpdate
 @DynamicInsert
 @Table(name = "egas_booking")
 public class GasBooking {
 	@Id
-	@Column(name="gas_booking_id")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "seq3")
-	@SequenceGenerator(name = "seq3", sequenceName = "egas_seq3", allocationSize = 1 )
+	@Column(name = "gas_booking_id")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq3")
+	@SequenceGenerator(name = "seq3", sequenceName = "egas_seq3", allocationSize = 1)
 	private Integer gasBookingId;
-	
+
 	@Column(name = "booking_date")
 	private LocalDate bookingDate;
-	
+
 	@Column(name = "status", length = 30)
 	private String status;
-	
-	
+
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "cust_id", referencedColumnName = "customer_id")
-	private Customer customer= new Customer();
+	private Customer customer = new Customer();
 
 	public Integer getGasBookingId() {
 		return gasBookingId;
@@ -63,8 +61,6 @@ public class GasBooking {
 		this.status = status;
 	}
 
-	
-
 	public Customer getCustomer() {
 		return customer;
 	}
@@ -73,6 +69,4 @@ public class GasBooking {
 		this.customer = customer;
 	}
 
-	
-	
 }

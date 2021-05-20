@@ -2,13 +2,12 @@ package com.cg.dto;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import com.cg.util.CgUtil;
 
 public class CustomerDto {
-	
+
 	@NotBlank(message = CgUtil.USERNAME_REQUIRED)
 	private String userName;
 	@NotBlank(message = CgUtil.MOBILE_REQUIRED)
@@ -26,14 +25,10 @@ public class CustomerDto {
 	@NotBlank(message = CgUtil.CYLINDERTYPE_REQUIRED)
 	@Pattern(regexp = "(Domestic|Industrial)", message = CgUtil.CYLINDEROPTION)
 	private String cylinderType;
-	
-	
-	
+
 	public CustomerDto() {
 		super();
 	}
-
-	
 
 	public String getUserName() {
 		return userName;
@@ -82,9 +77,6 @@ public class CustomerDto {
 	public void setCity(String city) {
 		this.city = city;
 	}
-
-	
-	
 
 	public String getCylinderType() {
 		return cylinderType;

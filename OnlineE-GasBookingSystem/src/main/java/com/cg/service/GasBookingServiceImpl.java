@@ -22,28 +22,28 @@ import com.cg.util.CgUtil;
 
 @Service("gasbookingservice")
 @Transactional
-public class GasBookingServiceImpl implements IGasBookingService{
-	
+public class GasBookingServiceImpl implements IGasBookingService {
+
 	@Autowired
 	private IGasBookingDao bookDao;
-	
+
 	@Autowired
 	private ICustomerDao custDao;
 
 	@Autowired
 	private IInvoiceDao invoiceDao;
+
 	@Override
 	@Transactional
 	public Integer bookCylinder(Integer customerId) throws CustomerNotFoundException {
 		Optional<Customer> opcust = custDao.findById(customerId);
-		if(!opcust.isPresent())
+		if (!opcust.isPresent())
 			throw new CustomerNotFoundException(CgUtil.CUSTOMERNOTFOUND);
 		GasBooking book = new GasBooking();
-		
+
 		book.setBookingDate(LocalDate.now());
 		book.setStatus(CgUtil.STATUS_BOOKED);
-		
-		
+
 		Customer cust = opcust.get();
 		book.setCustomer(cust);
 		GasBooking persistedBook = bookDao.save(book);
@@ -54,7 +54,7 @@ public class GasBookingServiceImpl implements IGasBookingService{
 	@Transactional
 	public boolean cancelGasBooking(Integer bookingId) throws GasBookingNotFoundException {
 		Optional<GasBooking> opbook = bookDao.findById(bookingId);
-		if(!opbook.isPresent())
+		if (!opbook.isPresent())
 			throw new GasBookingNotFoundException(CgUtil.BOOKINGNOTFOUND);
 		GasBooking book = opbook.get();
 		bookDao.delete(book);
@@ -65,11 +65,11 @@ public class GasBookingServiceImpl implements IGasBookingService{
 	@Transactional
 	public Invoice generateInvoice(Integer bookingId, Double fare) throws GasBookingNotFoundException {
 		Optional<GasBooking> opbook = bookDao.findById(bookingId);
-		if(!opbook.isPresent())
+		if (!opbook.isPresent())
 			throw new GasBookingNotFoundException(CgUtil.BOOKINGNOTFOUND);
 		GasBooking book = opbook.get();
-		
-		Invoice invoice=new Invoice();
+
+		Invoice invoice = new Invoice();
 		invoice.setInvoiceDate(LocalDate.now());
 		invoice.setBillAmount(fare);
 		invoice.setBooking(book);
@@ -79,27 +79,27 @@ public class GasBookingServiceImpl implements IGasBookingService{
 		invoiceDao.save(invoice);
 		return invoice;
 	}
-	
+
 	@Override
-	public List<Invoice> getInvoices()throws InvoiceException{
-		List<Invoice> invoices= invoiceDao.findByInvoiceStatus(CgUtil.INVOICE_GENERATED);
-		if(invoices.isEmpty()) {
+	public List<Invoice> getInvoices() throws InvoiceException {
+		List<Invoice> invoices = invoiceDao.findByInvoiceStatus(CgUtil.INVOICE_GENERATED);
+		if (invoices.isEmpty()) {
 			throw new InvoiceException(CgUtil.INVOICE_EMPTY);
 		}
-		invoices.sort((e1,e2)->e1.getInvoiceDate().compareTo(e2.getInvoiceDate()));
+		invoices.sort((e1, e2) -> e1.getInvoiceDate().compareTo(e2.getInvoiceDate()));
 		return invoices;
 	}
 
 	@Override
 	public boolean cylinderDelivered(Integer invoiceId) throws InvoiceException {
-		Optional<Invoice> optinvoice=invoiceDao.findById(invoiceId);
-		if(!optinvoice.isPresent()) {
+		Optional<Invoice> optinvoice = invoiceDao.findById(invoiceId);
+		if (!optinvoice.isPresent()) {
 			throw new InvoiceException(CgUtil.INVOICE_EMPTY);
 		}
-		Invoice invoice= optinvoice.get();
+		Invoice invoice = optinvoice.get();
 		invoice.setInvoiceStatus(CgUtil.DELIVERED);
 		invoiceDao.save(invoice);
-		GasBooking booking= invoice.getBooking();
+		GasBooking booking = invoice.getBooking();
 		booking.setStatus(CgUtil.DELIVERED);
 		bookDao.save(booking);
 		return true;

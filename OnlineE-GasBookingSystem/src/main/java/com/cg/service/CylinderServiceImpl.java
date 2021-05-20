@@ -16,33 +16,33 @@ import com.cg.util.CgUtil;
 
 @Service("cylinderservice")
 @Transactional
-public class CylinderServiceImpl implements ICylinderService{
-	
+public class CylinderServiceImpl implements ICylinderService {
+
 	@Autowired
 	private ICylinderDao cylinderDao;
 
 	@Override
 	@Transactional
 	public Integer addCylinder(CylinderDto cylinderDto) throws CylinderTypeMismatchException {
-		
-		Cylinder cylinder=new Cylinder();
-		
+
+		Cylinder cylinder = new Cylinder();
+
 		cylinder.setCylinderType(cylinderDto.getCylinderType());
 		cylinder.setWeight(cylinderDto.getWeight());
-		
-		Cylinder persistedCylinder=cylinderDao.save(cylinder);
-		
+
+		Cylinder persistedCylinder = cylinderDao.save(cylinder);
+
 		return persistedCylinder.getCylinderTypeId();
 	}
 
 	@Override
 	public List<Cylinder> viewAllCylinder() throws CylinderNotFoundException {
-		
-		List<Cylinder> lst=cylinderDao.findAll();
-		if(lst.isEmpty())
+
+		List<Cylinder> lst = cylinderDao.findAll();
+		if (lst.isEmpty())
 			throw new CylinderNotFoundException(CgUtil.CYLINDERNOTFOUND);
-		lst.sort((e1,e2)->e1.getCylinderType().compareTo(e2.getCylinderType()));
-		
+		lst.sort((e1, e2) -> e1.getCylinderType().compareTo(e2.getCylinderType()));
+
 		return lst;
 	}
 

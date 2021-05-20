@@ -15,7 +15,5 @@ public class SuccessMessage {
 		super();
 		this.message = message;
 	}
-	
-	
 
 }

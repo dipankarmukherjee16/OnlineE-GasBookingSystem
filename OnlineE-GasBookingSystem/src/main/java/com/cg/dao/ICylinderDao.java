@@ -6,8 +6,8 @@ import org.springframework.stereotype.Repository;
 import com.cg.entity.Cylinder;
 
 @Repository
-public interface ICylinderDao extends JpaRepository<Cylinder, Integer>{
-	
+public interface ICylinderDao extends JpaRepository<Cylinder, Integer> {
+
 	public Cylinder findByCylinderType(String cylinderType);
 
 }

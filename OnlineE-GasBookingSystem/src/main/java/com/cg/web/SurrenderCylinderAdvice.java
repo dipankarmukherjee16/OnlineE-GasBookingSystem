@@ -12,8 +12,6 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 
 import com.cg.dto.ErrorMessage;
 import com.cg.exception.CustomerNotFoundException;
-import com.cg.exception.CylinderNotFoundException;
-import com.cg.exception.CylinderTypeMismatchException;
 import com.cg.exception.SurrenderCylinderNotFoundException;
 import com.cg.exception.ValidateException;
 
@@ -25,36 +23,35 @@ public class SurrenderCylinderAdvice {
 	public ErrorMessage handleExceptionCustomerNotFound(CustomerNotFoundException ex) {
 		return new ErrorMessage(HttpStatus.NOT_FOUND.toString(), ex.getMessage());
 	}
-	
+
 	@ExceptionHandler(SurrenderCylinderNotFoundException.class)
 	@ResponseStatus(code = HttpStatus.NOT_FOUND)
 	public ErrorMessage handleExceptionSurrenderCylinderNotFound(SurrenderCylinderNotFoundException ex) {
 		return new ErrorMessage(HttpStatus.NOT_FOUND.toString(), ex.getMessage());
 	}
-	
+
 	@ExceptionHandler(MethodArgumentTypeMismatchException.class)
 	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
-	public ErrorMessage handleExceptionForDate(MethodArgumentTypeMismatchException ex)	{
-		if(ex.getMessage().contains("Localdate"))
-		return new ErrorMessage(HttpStatus.BAD_REQUEST.toString(), "Invalid Date Pattern");
-	   return new ErrorMessage(HttpStatus.BAD_REQUEST.toString(), "It must be numeric");
-	   
+	public ErrorMessage handleExceptionForDate(MethodArgumentTypeMismatchException ex) {
+		if (ex.getMessage().contains("Localdate"))
+			return new ErrorMessage(HttpStatus.BAD_REQUEST.toString(), "Invalid Date Pattern");
+		return new ErrorMessage(HttpStatus.BAD_REQUEST.toString(), "It must be numeric");
+
 	}
+
 	@ExceptionHandler(ValidateException.class)
-    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
-    public ErrorMessage handleException2(ValidateException ex) {
-        List<String> errors = ex.getErrors().stream()
-                .map(err->err.getDefaultMessage()).collect(Collectors.toList());
-        return new ErrorMessage(HttpStatus.BAD_REQUEST.toString(), errors);
-    }
-	
-	
+	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
+	public ErrorMessage handleException2(ValidateException ex) {
+		List<String> errors = ex.getErrors().stream().map(err -> err.getDefaultMessage()).collect(Collectors.toList());
+		return new ErrorMessage(HttpStatus.BAD_REQUEST.toString(), errors);
+	}
+
 	@ExceptionHandler(HttpMessageConversionException.class)
-    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
-    public ErrorMessage handleException3(HttpMessageConversionException ex) {
-        if(ex.getMessage().contains("LocalDate"))
-           return new ErrorMessage(HttpStatus.BAD_REQUEST.toString(), "Invalid Date Pattern , follow yyyy-MM-dd");
-        return new ErrorMessage(HttpStatus.BAD_REQUEST.toString(), "It must be Numeric");
-    }
-	
+	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
+	public ErrorMessage handleException3(HttpMessageConversionException ex) {
+		if (ex.getMessage().contains("LocalDate"))
+			return new ErrorMessage(HttpStatus.BAD_REQUEST.toString(), "Invalid Date Pattern , follow yyyy-MM-dd");
+		return new ErrorMessage(HttpStatus.BAD_REQUEST.toString(), "It must be Numeric");
+	}
+
 }
