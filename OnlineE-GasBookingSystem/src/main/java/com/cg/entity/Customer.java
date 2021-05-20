@@ -139,4 +139,22 @@ public class Customer {
 		this.gasBookings = gasBookings;
 	}
 
+	public Customer(Integer customerId, String userName, String mobileNumber, String email, String aadharCard,
+			String address, String city, String connectionStatus) {
+		super();
+		this.customerId = customerId;
+		this.userName = userName;
+		this.mobileNumber = mobileNumber;
+		this.email = email;
+		this.aadharCard = aadharCard;
+		this.address = address;
+		this.city = city;
+		this.connectionStatus = connectionStatus;
+
+	}
+
+	public Customer() {
+		super();
+	}
+
 }

@@ -13,7 +13,6 @@ import com.cg.dto.CustomerDto;
 import com.cg.entity.Customer;
 import com.cg.entity.Cylinder;
 import com.cg.exception.CustomerNotFoundException;
-import com.cg.exception.CylinderNotFoundException;
 import com.cg.exception.CylinderTypeMismatchException;
 import com.cg.util.CgUtil;
 
@@ -29,8 +28,7 @@ public class CustomerServiceImpl implements ICustomerService {
 
 	@Override
 	@Transactional
-	public Integer insertCustomer(CustomerDto customerdto)
-			throws CylinderTypeMismatchException, CylinderNotFoundException {
+	public Integer insertCustomer(CustomerDto customerdto) throws CylinderTypeMismatchException {
 		Customer cust = new Customer();
 		Cylinder cylinder = null;
 		cylinder = cylinderDao.findByCylinderType(customerdto.getCylinderType());

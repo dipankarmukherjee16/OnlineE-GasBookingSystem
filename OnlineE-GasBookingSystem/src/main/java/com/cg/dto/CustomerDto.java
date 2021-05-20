@@ -30,6 +30,22 @@ public class CustomerDto {
 		super();
 	}
 
+	public CustomerDto(@NotBlank(message = "UserName is REquired") String userName,
+			@NotBlank(message = "Mobile required") @Pattern(regexp = "[0-9]{10}", message = "Mobile no must contain 10 digits") String mobileNumber,
+			@NotBlank(message = "Email is required") @Email(message = "Invalid email") String email,
+			@NotBlank(message = "Aadhar required") String aadharCard,
+			@NotBlank(message = "Address required") String address, @NotBlank(message = "City Required") String city,
+			@NotBlank(message = "Cylinder type required") @Pattern(regexp = "(Domestic|Industrial)", message = "Option must be Domestic or Industrial") String cylinderType) {
+		super();
+		this.userName = userName;
+		this.mobileNumber = mobileNumber;
+		this.email = email;
+		this.aadharCard = aadharCard;
+		this.address = address;
+		this.city = city;
+		this.cylinderType = cylinderType;
+	}
+
 	public String getUserName() {
 		return userName;
 	}

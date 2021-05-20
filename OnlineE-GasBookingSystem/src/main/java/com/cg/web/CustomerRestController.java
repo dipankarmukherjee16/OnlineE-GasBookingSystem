@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cg.dto.CustomerDto;
 import com.cg.dto.SuccessMessage;
 import com.cg.exception.CustomerNotFoundException;
-import com.cg.exception.CylinderNotFoundException;
 import com.cg.exception.CylinderTypeMismatchException;
 import com.cg.exception.ValidateException;
 import com.cg.service.ICustomerService;
@@ -27,7 +26,7 @@ public class CustomerRestController {
 
 	@PostMapping("addcustomer")
 	public SuccessMessage addCustomer(@Valid @RequestBody CustomerDto customerDto, BindingResult br)
-			throws ValidateException, CylinderTypeMismatchException, CylinderNotFoundException {
+			throws ValidateException, CylinderTypeMismatchException {
 		if (br.hasErrors()) {
 			throw new ValidateException(br.getFieldErrors());
 		}
