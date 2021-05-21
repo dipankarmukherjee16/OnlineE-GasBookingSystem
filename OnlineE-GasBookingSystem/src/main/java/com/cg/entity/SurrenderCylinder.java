@@ -52,5 +52,18 @@ public class SurrenderCylinder {
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
+	
+	public SurrenderCylinder()
+	{
+		super();
+	}
 
+	public SurrenderCylinder(Integer surrenderId, LocalDate surrenderDate) {
+		super();
+		this.surrenderId = surrenderId;
+		this.surrenderDate = surrenderDate;
+	}
+
+	
+	
 }

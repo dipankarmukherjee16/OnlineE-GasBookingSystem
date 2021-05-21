@@ -15,11 +15,8 @@ import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.cg.dao.ICustomerDao;
-import com.cg.dao.ICylinderDao;
 import com.cg.entity.Customer;
 import com.cg.exception.CityNotFoundException;
-import com.cg.exception.CustomerNotFoundException;
-import com.cg.exception.CylinderTypeMismatchException;
 import com.cg.service.IViewCustomerService;
 import com.cg.service.ViewCustomerServiceImpl;
 
