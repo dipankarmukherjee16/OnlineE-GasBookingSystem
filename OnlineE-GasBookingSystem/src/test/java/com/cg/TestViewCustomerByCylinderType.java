@@ -15,6 +15,7 @@ import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.cg.dao.ICustomerDao;
+import com.cg.dao.ICylinderDao;
 import com.cg.entity.Customer;
 import com.cg.exception.CustomerNotFoundException;
 import com.cg.exception.CylinderTypeMismatchException;
@@ -28,6 +29,9 @@ public class TestViewCustomerByCylinderType {
 
 	@Mock
 	private ICustomerDao customerDao;
+	
+	@Mock
+	private ICylinderDao cylinderDao;
 
 	@InjectMocks
 	private IViewCustomerService viewCustomerService = new ViewCustomerServiceImpl();
@@ -55,7 +59,7 @@ public class TestViewCustomerByCylinderType {
 	@DisplayName(value = "test view customer by cylinder type aaaa")
 	public void testViewCustomerByCylinderType2() throws CustomerNotFoundException, CylinderTypeMismatchException {
 
-		assertThrows(CustomerNotFoundException.class, ()->viewCustomerService.viewCustomerbyCylinderType("aaaa"));
+		assertThrows(CylinderTypeMismatchException.class, ()->viewCustomerService.viewCustomerbyCylinderType("aaaa"));
 	}
 	
 }

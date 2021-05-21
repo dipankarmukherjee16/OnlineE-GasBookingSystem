@@ -11,6 +11,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import com.cg.dao.ICustomerDao;
 import com.cg.entity.Customer;
@@ -18,6 +19,7 @@ import com.cg.exception.CustomerNotFoundException;
 import com.cg.service.IViewCustomerService;
 import com.cg.service.ViewCustomerServiceImpl;
 
+@SpringBootTest
 public class TestViewCustomerByID {
 
 	@Mock
