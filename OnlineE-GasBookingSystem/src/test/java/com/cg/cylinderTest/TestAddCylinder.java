@@ -25,8 +25,10 @@ public class TestAddCylinder {
 	@BeforeEach
 	public void beforeEach() {
 		
-		Cylinder cylinder=new Cylinder(1,"domestic",14.5f);
-		when(cylinderDao.save(any(Cylinder.class))).
+		/*
+		 * Cylinder cylinder=new Cylinder(1,"domestic",14.5f);
+		 * when(cylinderDao.save(any(Cylinder.class))).
+		 */
 		
 	}
 }
