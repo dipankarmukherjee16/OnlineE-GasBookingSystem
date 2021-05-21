@@ -11,13 +11,14 @@ import com.cg.dto.ErrorMessage;
 import com.cg.exception.CustomerNotFoundException;
 import com.cg.exception.GasBookingNotFoundException;
 import com.cg.exception.InvoiceException;
+import com.cg.exception.NoGasBookingDoneException;
 
 @RestControllerAdvice
 public class GasBookingAdvice {
 
-	@ExceptionHandler(CustomerNotFoundException.class)
+	@ExceptionHandler(NoGasBookingDoneException.class)
 	@ResponseStatus(code = HttpStatus.NOT_FOUND)
-	public ErrorMessage handleExceptionCustomerNotFound(CustomerNotFoundException ex) {
+	public ErrorMessage handleExceptionNoGasBookingDone(NoGasBookingDoneException ex) {
 		return new ErrorMessage(HttpStatus.NOT_FOUND.toString(), ex.getMessage());
 	}
 

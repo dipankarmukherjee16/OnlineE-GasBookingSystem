@@ -10,6 +10,7 @@ import com.cg.dao.IGasBookingDao;
 import com.cg.entity.GasBooking;
 import com.cg.exception.CustomerNotFoundException;
 import com.cg.exception.GasBookingNotFoundException;
+import com.cg.exception.NoGasBookingDoneException;
 import com.cg.util.CgUtil;
 
 @Service("viewbookingservice")
@@ -38,8 +39,10 @@ public class ViewBookingServiceImpl implements IViewBookingService {
 	}
 
 	@Override
-	public Integer viewNoOfCylindersBooked(int year, int customerId) throws CustomerNotFoundException {
+	public Integer viewNoOfCylindersBooked(int year, int customerId) throws NoGasBookingDoneException {
 		List<GasBooking> lst = bookDao.noOfCylindersBookedInAYear(year, customerId);
+		if(lst.isEmpty())
+			throw new NoGasBookingDoneException(CgUtil.NOBOOKINGDONE);
 		return lst.size();
 	}
 

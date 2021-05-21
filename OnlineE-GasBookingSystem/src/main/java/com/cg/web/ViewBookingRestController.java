@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cg.entity.GasBooking;
 import com.cg.exception.CustomerNotFoundException;
 import com.cg.exception.GasBookingNotFoundException;
+import com.cg.exception.NoGasBookingDoneException;
 import com.cg.service.IViewBookingService;
 
 @RestController
@@ -33,7 +34,7 @@ public class ViewBookingRestController {
 
 	@GetMapping("viewnoofcylindersbooked/{year}/{customerid}")
 	public Integer viewNoOfCylindersBooked(@PathVariable("year") int year, @PathVariable("customerid") int customerId)
-			throws CustomerNotFoundException {
+			throws NoGasBookingDoneException {
 		return bookingService.viewNoOfCylindersBooked(year, customerId);
 
 	}

@@ -69,4 +69,16 @@ public class GasBooking {
 		this.customer = customer;
 	}
 
+	public GasBooking() {
+		super();
+		
+	}
+
+	public GasBooking(Integer gasBookingId, LocalDate bookingDate, String status) {
+		super();
+		this.gasBookingId = gasBookingId;
+		this.bookingDate = bookingDate;
+		this.status = status;
+	}
+
 }
