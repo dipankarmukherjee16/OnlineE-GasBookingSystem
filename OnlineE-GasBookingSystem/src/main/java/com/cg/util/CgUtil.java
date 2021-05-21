@@ -20,7 +20,7 @@ public class CgUtil {
 	public static final String ADDRESS_REQUIRED="Address required";
 	public static final String MOBILE_PATTERN="Mobile no must contain 10 digits";
 	public static final String CYLINDERTYPE_REQUIRED="Cylinder type required";
-	public static final String CYLINDEROPTION="Option must be Domestic or Industrial";
+	public static final String CYLINDEROPTION="Option must be domestic or industrial";
 	public static final String CONNECTION_ACTIVE="ACTIVE";
 	public static final String CUSTOMER_UPDATED="Customer updated ";
 	public static final String AADHAR_LINKED="Aadhar is linked ";
