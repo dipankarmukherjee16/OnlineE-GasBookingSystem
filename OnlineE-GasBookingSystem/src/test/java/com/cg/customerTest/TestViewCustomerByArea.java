@@ -1,4 +1,4 @@
-package com.cg;
+package com.cg.customerTest;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -17,22 +17,17 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.cg.dao.ICustomerDao;
 import com.cg.dao.ICylinderDao;
 import com.cg.entity.Customer;
+import com.cg.exception.CityNotFoundException;
 import com.cg.exception.CustomerNotFoundException;
 import com.cg.exception.CylinderTypeMismatchException;
-import com.cg.service.CustomerServiceImpl;
-import com.cg.service.ICustomerService;
 import com.cg.service.IViewCustomerService;
 import com.cg.service.ViewCustomerServiceImpl;
 
 @SpringBootTest
-public class TestViewCustomerByCylinderType {
-
+public class TestViewCustomerByArea {
 	@Mock
 	private ICustomerDao customerDao;
 	
-	@Mock
-	private ICylinderDao cylinderDao;
-
 	@InjectMocks
 	private IViewCustomerService viewCustomerService = new ViewCustomerServiceImpl();
 
@@ -44,22 +39,22 @@ public class TestViewCustomerByCylinderType {
 		lst.add(new Customer(1002, "ram", "5414123674", "ram74@gmail.com", "9518743699", "9 gopal lal road, odissa",
 				"puri", "active"));
 		List<Customer> lst2 = new ArrayList<>();
-		when(customerDao.viewCustomerByType("domestic")).thenReturn(lst);
-		when(customerDao.viewCustomerByType("aaaa")).thenReturn(lst2);
+		when(customerDao.viewCustomerByCity("kolkata")).thenReturn(lst);
+		when(customerDao.viewCustomerByCity("bbbb")).thenReturn(lst2);
 	}
 
 	@Test
-	@DisplayName(value = "test view customer by cylinder type domestic")
-	public void testViewCustomerByCylinderType1() throws CustomerNotFoundException, CylinderTypeMismatchException {
+	@DisplayName(value = "test view customer area kolkata")
+	public void testViewCustomerByArea1() throws CityNotFoundException {
 
-		assertTrue(viewCustomerService.viewCustomerbyCylinderType("domestic").size()>0);
+		assertTrue(viewCustomerService.viewCustomerbyArea("kolkata").size()>0);
 	}
 
 	@Test
-	@DisplayName(value = "test view customer by cylinder type aaaa")
-	public void testViewCustomerByCylinderType2() throws CustomerNotFoundException, CylinderTypeMismatchException {
+	@DisplayName(value = "test view customer area bbbb")
+	public void testViewCustomerByCylinderType2() throws CityNotFoundException{
 
-		assertThrows(CylinderTypeMismatchException.class, ()->viewCustomerService.viewCustomerbyCylinderType("aaaa"));
+		assertThrows(CityNotFoundException.class, ()->viewCustomerService.viewCustomerbyArea("bbbb"));
 	}
-	
+
 }

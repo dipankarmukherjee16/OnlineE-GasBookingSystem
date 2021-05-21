@@ -1,4 +1,4 @@
-package com.cg;
+package com.cg.customerTest;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
