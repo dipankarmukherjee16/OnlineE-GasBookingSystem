@@ -20,11 +20,33 @@ import com.cg.exception.ValidateException;
 import com.cg.service.ICylinderService;
 import com.cg.util.CgUtil;
 
+
+/*********************************************************************************************
+ *          @author: Debabrata Deb         
+ *          Description: It is a controller class that provides the services for adding 
+                         a new cylinder type and viewing all the available cylinder types                            
+ *          Version: 1.0         
+ *          Created Date: 20-MAY-2021
+ **********************************************************************************************/
+
+
+
 @RestController
 public class CylinderRestController {
 
 	@Autowired
 	private ICylinderService cylinderService;
+	
+	/************************************************************************************
+	 * 	Method: addCylinder
+     * 	Description: To add a new cylinder type along with its details
+	 * 	@returns SuccessMessage  - cylinder id, if added otherwise throws ValidateException
+	 * 	@throws ValidateException - It is raised due to invalid data supplied  
+     *	Created By - Debabrata Deb
+     *	Created Date - 20-MAY-2021                           
+	
+	 ************************************************************************************/
+
 
 	@PostMapping("addcylinder")
 	public SuccessMessage addCylinder(@Valid @RequestBody CylinderDto cylinderDto, BindingResult br)
@@ -39,6 +61,18 @@ public class CylinderRestController {
 		return new SuccessMessage(CgUtil.CYLINDER_CREATED + cylinderId);
 
 	}
+	
+	
+	/************************************************************************************
+	 * 	Method: viewAllCylinder
+     * 	Description: To view all cylinder types along with their details
+	 * 	@returns List<Cylinder>  - all available cylinder types  
+     *	Created By - Debabrata Deb
+     *	Created Date - 20-MAY-2021                           
+	
+	 ************************************************************************************/
+
+	
 
 	@GetMapping("viewallcylinder")
 	public List<Cylinder> viewAllCylinder() throws CylinderNotFoundException {

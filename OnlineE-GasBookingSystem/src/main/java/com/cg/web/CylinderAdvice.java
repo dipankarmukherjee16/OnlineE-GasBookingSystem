@@ -15,20 +15,66 @@ import com.cg.exception.CylinderNotFoundException;
 import com.cg.exception.CylinderTypeMismatchException;
 import com.cg.exception.ValidateException;
 
+
+/*********************************************************************************************
+ *          @author          Debabrata Deb          
+ *          Description      It is a global exception handler class that provides the exceptions 
+           				     for adding a new cylinder type and viewing all the available
+           				     cylinder types
+ *         Version           1.0
+ *         Created Date      20-MAY-2021
+ **********************************************************************************************/
+
+
+
 @RestControllerAdvice
 public class CylinderAdvice {
 
+	
+	/************************************************************************************
+	 * 	Method: handleExceptionCylinderTypeMismatch
+     * 	Description: To handle CylinderTypeMismatch exception 
+	 * 	@returns ErrorMessage    
+     *	Created By - Debabrata Deb
+     *	Created Date - 20-MAY-2021                           
+	
+	 ************************************************************************************/
+
+	
+	
 	@ExceptionHandler(CylinderTypeMismatchException.class)
 	@ResponseStatus(code = HttpStatus.NOT_FOUND)
 	public ErrorMessage handleExceptionCylinderTypeMismatch(CylinderTypeMismatchException ex) {
 		return new ErrorMessage(HttpStatus.NOT_FOUND.toString(), ex.getMessage());
 	}
+	
+	/************************************************************************************
+	 * 	Method: handleExceptionCylinderNotFound
+     * 	Description: To handle CylinderNotFound exception 
+	 * 	@returns ErrorMessage    
+     *	Created By - Debabrata Deb
+     *	Created Date - 20-MAY-2021                           
+	
+	 ************************************************************************************/
+
 
 	@ExceptionHandler(CylinderNotFoundException.class)
 	@ResponseStatus(code = HttpStatus.NOT_FOUND)
 	public ErrorMessage handleExceptionCylinderNotFound(CylinderNotFoundException ex) {
 		return new ErrorMessage(HttpStatus.NOT_FOUND.toString(), ex.getMessage());
 	}
+	
+	
+	/************************************************************************************
+	 * 	Method: handleExceptionForDate
+     * 	Description: To handle invalid date pattern 
+	 * 	@returns ErrorMessage    
+     *	Created By - Debabrata Deb
+     *	Created Date - 20-MAY-2021                           
+	
+	 ************************************************************************************/
+
+	
 
 	@ExceptionHandler(MethodArgumentTypeMismatchException.class)
 	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
@@ -39,6 +85,18 @@ public class CylinderAdvice {
 
 	}
 
+	
+	/************************************************************************************
+	 * 	Method: handleException2
+     * 	Description: To handle validation exception 
+	 * 	@returns ErrorMessage    
+     *	Created By - Debabrata Deb
+     *	Created Date - 20-MAY-2021                           
+	
+	 ************************************************************************************/
+
+	
+	
 	@ExceptionHandler(ValidateException.class)
 	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
 	public ErrorMessage handleException2(ValidateException ex) {
@@ -46,6 +104,18 @@ public class CylinderAdvice {
 		return new ErrorMessage(HttpStatus.BAD_REQUEST.toString(), errors);
 	}
 
+	
+	/************************************************************************************
+	 * 	Method: handleException3
+     * 	Description: To handle HttpMessageConversion exception 
+	 * 	@returns ErrorMessage    
+     *	Created By - Debabrata Deb
+     *	Created Date - 20-MAY-2021                           
+	
+	 ************************************************************************************/
+
+	
+	
 	@ExceptionHandler(HttpMessageConversionException.class)
 	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
 	public ErrorMessage handleException3(HttpMessageConversionException ex) {

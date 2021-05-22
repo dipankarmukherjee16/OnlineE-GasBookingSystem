@@ -42,7 +42,7 @@ public class CustomerServiceImpl implements ICustomerService {
 		cust.setAddress(customerdto.getAddress());
 		cust.setCity(customerdto.getCity());
 		cust.setConnectionStatus(CgUtil.CONNECTION_ACTIVE);
-
+		
 		cust.setCylinder(cylinder);
 		Customer persistedCust = custDao.save(cust);
 		return persistedCust.getCustomerId();

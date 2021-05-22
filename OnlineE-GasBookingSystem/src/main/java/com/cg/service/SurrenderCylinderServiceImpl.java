@@ -18,6 +18,18 @@ import com.cg.exception.CustomerNotFoundException;
 import com.cg.exception.SurrenderCylinderNotFoundException;
 import com.cg.util.CgUtil;
 
+
+/*********************************************************************************************
+ *          @author          Debabrata Deb
+ *          Description      It is a service class that provides the services for surrendering 
+                             a connection, fetching all the surrendered customer details and 
+                             viewing surrendered customer details for a given year           
+ *         Version           1.0     
+ *         Created Date      19-MAY-2021
+ **********************************************************************************************/
+
+
+
 @Service("surrendercylinderservice")
 @Transactional
 public class SurrenderCylinderServiceImpl implements ISurrenderCylinderService {
@@ -28,6 +40,20 @@ public class SurrenderCylinderServiceImpl implements ISurrenderCylinderService {
 	@Autowired
 	private ICustomerDao customerDao;
 
+	
+	/************************************************************************************
+	 * 	Method: surrenderCylinder
+     * 	Description: To surrender a connection
+     * 	Parameter customerId - Customers ID
+	 * 	@returns Integer  - surrender cylinder id, if customer found otherwise throws CustomerNotFoundException
+	 * 	@throws CustomerNotFoundException - when supplied customer id is not present
+     *	Created By - Debabrata Deb
+     *	Created Date - 19-MAY-2021                           
+	
+	 ************************************************************************************/
+
+	
+	
 	@Override
 	@Transactional
 	public Integer surrenderCylinder(int customerId) throws CustomerNotFoundException {
@@ -48,6 +74,19 @@ public class SurrenderCylinderServiceImpl implements ISurrenderCylinderService {
 		return persistedSurrenderCylinder.getSurrenderId();
 	}
 
+	
+	/************************************************************************************
+	 * 	Method: viewAllSurrenderedCustomer
+     * 	Description: To view all surrendered customers
+	 * 	@returns List<Customer>  - all surrendered customers 
+	 * 	@throws CustomerNotFoundException - when no surrendered customer is present  
+     *	Created By - Debabrata Deb
+     *	Created Date - 19-MAY-2021                           
+	
+	 ************************************************************************************/
+
+	
+	
 	@Override
 	public List<Customer> viewAllSurrenderedCustomer()
 			throws CustomerNotFoundException, SurrenderCylinderNotFoundException {
@@ -63,6 +102,20 @@ public class SurrenderCylinderServiceImpl implements ISurrenderCylinderService {
 		return list;
 	}
 
+	
+	/************************************************************************************
+	 * 	Method: viewSurrenderedCustomer
+     * 	Description: To view surrendered customers for a given year
+     * 	Parameter year - a particular year
+	 * 	@returns List<Customer>  - all surrendered customers for the given year  
+	 * 	@throws CustomerNotFoundException - when no surrendered customer is present for given year
+     *	Created By - Debabrata Deb
+     *	Created Date - 19-MAY-2021                           
+	
+	 ************************************************************************************/
+	
+	
+	
 	@Override
 	public List<Customer> viewSurrenderCustomer(int year) throws CustomerNotFoundException {
 

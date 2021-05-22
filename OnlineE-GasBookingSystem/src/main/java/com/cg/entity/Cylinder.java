@@ -52,4 +52,18 @@ public class Cylinder {
 		this.weight = weight;
 	}
 
+	
+	public Cylinder() {
+		super();
+	}
+
+	public Cylinder(Integer cylinderTypeId, String cylinderType, Float weight) {
+		super();
+		this.cylinderTypeId = cylinderTypeId;
+		this.cylinderType = cylinderType;
+		this.weight = weight;
+	}
+	
+	
+
 }
