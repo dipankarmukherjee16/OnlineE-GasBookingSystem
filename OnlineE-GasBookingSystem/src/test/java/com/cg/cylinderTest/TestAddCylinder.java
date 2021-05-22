@@ -14,6 +14,7 @@ import com.cg.dao.ICylinderDao;
 import com.cg.dto.CylinderDto;
 import com.cg.entity.Cylinder;
 import com.cg.exception.CylinderTypeMismatchException;
+import com.cg.exception.ValidateException;
 import com.cg.service.CylinderServiceImpl;
 import com.cg.service.ICylinderService;
 
@@ -35,9 +36,17 @@ public class TestAddCylinder {
 	}
 	
 	@Test
-	@DisplayName(value = "test add cylinder of domestic type")
-	public void testAddCylinder1() throws CylinderTypeMismatchException{
+	@DisplayName(value = "test add cylinder of domestic type with valid weight")
+	public void testAddCylinder1() throws ValidateException{
 		CylinderDto cylinderDto= new CylinderDto(1,14.2f, "domestic");
 		assertNotNull(cylinderService.addCylinder(cylinderDto));
 	}
+
+	@Test
+	@DisplayName(value = "test add cylinder of domestic type with invalid weight")
+	public void testAddCylinder2() throws ValidateException{
+		CylinderDto cylinderDto= new CylinderDto(1,null, "domestic");
+		assertThrows(ValidateException.class, ()->cylinderService.addCylinder(cylinderDto) );
+	}
+
 }
