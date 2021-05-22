@@ -79,6 +79,6 @@ public class GasBooking {
 		this.gasBookingId = gasBookingId;
 		this.bookingDate = bookingDate;
 		this.status = status;
-	}
+	} 
 
 }

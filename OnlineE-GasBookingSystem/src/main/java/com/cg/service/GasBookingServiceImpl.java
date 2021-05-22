@@ -55,7 +55,7 @@ public class GasBookingServiceImpl implements IGasBookingService {
 	public Invoice generateInvoice(Integer bookingId, Double fare) throws GasBookingNotFoundException {
 		Optional<GasBooking> opbook = bookDao.findById(bookingId);
 		if (!opbook.isPresent())
-			throw new GasBookingNotFoundException(CgUtil.BOOKINGNOTFOUND);
+			throw new GasBookingNotFoundException(CgUtil.BOOKINGNOTFOUND); 
 		GasBooking book = opbook.get();
 
 		Invoice invoice = new Invoice();

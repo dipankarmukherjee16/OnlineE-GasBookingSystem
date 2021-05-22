@@ -44,6 +44,6 @@ public class BookingRestController {
 	@PutMapping("cylinderdelivered/{invoiceid}")
 	public SuccessMessage cylinderDelivered(@PathVariable("invoiceid") int invoiceId) throws InvoiceException {
 		gasBookingService.cylinderDelivered(invoiceId);
-		return new SuccessMessage(CgUtil.DELIVERED);
+		return new SuccessMessage(CgUtil.DELIVERED); 
 	}
 }

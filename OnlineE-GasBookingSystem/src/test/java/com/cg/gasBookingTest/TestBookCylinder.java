@@ -30,7 +30,7 @@ public class TestBookCylinder {
 	private IGasBookingDao gasBookingDao;
 
 	@Mock
-	private ICustomerDao custDao;
+	private ICustomerDao custDao; 
 
 	
 	@InjectMocks

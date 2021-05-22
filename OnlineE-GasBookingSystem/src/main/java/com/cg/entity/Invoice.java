@@ -91,6 +91,6 @@ public class Invoice {
 		this.invoiceDate = invoiceDate;
 		this.billAmount = billAmount;
 		this.invoiceStatus = invoiceStatus;
-	}
+	} 
 
 }

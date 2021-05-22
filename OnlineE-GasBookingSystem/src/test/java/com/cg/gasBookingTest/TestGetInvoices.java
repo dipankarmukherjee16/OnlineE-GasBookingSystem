@@ -29,7 +29,7 @@ import com.cg.service.IGasBookingService;
 public class TestGetInvoices {
 
 	@Mock
-	private IInvoiceDao invoiceDao;
+	private IInvoiceDao invoiceDao; 
 	
 	@InjectMocks
 	IGasBookingService gasBookingService = new GasBookingServiceImpl();
@@ -48,7 +48,7 @@ public class TestGetInvoices {
 	public void testGetInvoices1() throws InvoiceException
 	{
 		List<Invoice> lst = new ArrayList<>();
-		lst.add(new Invoice(2003,LocalDate.of(2020, 05, 19),855.5,"Invoice Generated"));
+		lst.add(new Invoice(2003,LocalDate.of(2020, 05, 19),855.5,"Invoice Generated")); 
 		List<Invoice> list = new ArrayList<>(gasBookingService.getInvoices());
 		list=lst.stream().collect(Collectors.toList());
 		assertTrue(list.size()>0);

@@ -34,7 +34,7 @@ public class TestCylinderDelivered {
 	private ICustomerDao custDao;
 
 	@Mock
-	private IInvoiceDao invoiceDao;
+	private IInvoiceDao invoiceDao; 
 	
 	@InjectMocks
 	IGasBookingService gasBookingService = new GasBookingServiceImpl();

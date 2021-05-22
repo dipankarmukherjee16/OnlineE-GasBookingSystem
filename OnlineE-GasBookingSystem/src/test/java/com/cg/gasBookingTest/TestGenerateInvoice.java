@@ -30,7 +30,7 @@ public class TestGenerateInvoice {
 	private IGasBookingDao gasBookingDao;
 
 	@Mock
-	private IInvoiceDao invoiceDao;
+	private IInvoiceDao invoiceDao; 
 	
 	@InjectMocks
 	IGasBookingService gasBookingService = new GasBookingServiceImpl();
