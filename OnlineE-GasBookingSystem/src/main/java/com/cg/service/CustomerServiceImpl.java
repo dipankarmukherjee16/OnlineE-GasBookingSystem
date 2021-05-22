@@ -14,7 +14,18 @@ import com.cg.entity.Customer;
 import com.cg.entity.Cylinder;
 import com.cg.exception.CustomerNotFoundException;
 import com.cg.exception.CylinderTypeMismatchException;
+import com.cg.exception.ValidateException;
 import com.cg.util.CgUtil;
+
+/*********************************************************************************************
+ *          @author: Dipankar Mukherjee        
+ *          @version: 1.0   
+ *          Description: It is a service class that provides the services for adding 
+                         a new customer, update an existing customer, delete an existing
+                         customer and link aadhar of an existing customer                                   
+ *          Created at: 18-MAY-2021
+ **********************************************************************************************/
+
 
 @Service("customerservice")
 @Transactional
@@ -26,6 +37,16 @@ public class CustomerServiceImpl implements ICustomerService {
 	@Autowired
 	private ICylinderDao cylinderDao;
 
+	/*********************************************************************************************
+	 *          @author: Dipankar Mukherjee        
+	 *          @version: 1.0   
+	 *          @return: customerId
+	 *          @throws: CylinderTypeMismatchException, if cylinder type does not match
+	 *          Description: Insert new customer with details into the database                             
+	 *          Created at: 18-MAY-2021
+	 **********************************************************************************************/
+
+	
 	@Override
 	@Transactional
 	public Integer insertCustomer(CustomerDto customerdto) throws CylinderTypeMismatchException {
@@ -47,6 +68,17 @@ public class CustomerServiceImpl implements ICustomerService {
 		Customer persistedCust = custDao.save(cust);
 		return persistedCust.getCustomerId();
 	}
+
+
+	/*********************************************************************************************
+	 *          @author: Dipankar Mukherjee        
+	 *          @version: 1.0   
+	 *          @return: true
+	 *          @throws: CylinderTypeMismatchException, if cylinder type does not match
+	 *          		 CustomerNotFoundException, if customer id is wrong 
+	 *          Description: Insert new customer with details into the database                            
+	 *          Created at: 18-MAY-2021
+	 **********************************************************************************************/
 
 	@Override
 	@Transactional
@@ -74,6 +106,16 @@ public class CustomerServiceImpl implements ICustomerService {
 		return true;
 	}
 
+	/*********************************************************************************************
+	 *          @author: Dipankar Mukherjee        
+	 *          @version: 1.0   
+	 *          @return: true
+	 *          @throws: CustomerNotFoundException, if customer id is wrong    
+	 *          Description: Delete details of an existing customer                         
+	 *          Created at: 18-MAY-2021
+	 **********************************************************************************************/
+
+	
 	@Override
 	@Transactional
 	public boolean deleteCustomer(int custId) throws CustomerNotFoundException {
@@ -86,12 +128,26 @@ public class CustomerServiceImpl implements ICustomerService {
 		return true;
 	}
 
+	/*********************************************************************************************
+	 *          @author: Dipankar Mukherjee        
+	 *          @version: 1.0   
+	 *          @return: true
+	 * @throws ValidateException 
+	 *          @throws: CustomerNotFoundException, if customer id is wrong          
+	 *          Description: Link aadhar number to an existing customer details                   
+	 *          Created at: 18-MAY-2021
+	 **********************************************************************************************/
+
+	
 	@Override
 	@Transactional
-	public boolean linkAadhar(int custId, String aadharNo) throws CustomerNotFoundException {
+	public boolean linkAadhar(int custId, String aadharNo) throws CustomerNotFoundException, ValidateException {
 		Optional<Customer> optcust = custDao.findById(custId);
 		if (!optcust.isPresent()) {
 			throw new CustomerNotFoundException(CgUtil.CUSTOMERNOTFOUND);
+		}
+		if(aadharNo==null || !aadharNo.matches("[0-9]{12}")) {
+			throw new ValidateException(CgUtil.AADHAR_PATTERN);
 		}
 		Customer cust = optcust.get();
 		cust.setAadharCard(aadharNo);

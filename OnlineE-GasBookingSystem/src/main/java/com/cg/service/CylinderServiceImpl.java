@@ -12,7 +12,6 @@ import com.cg.dto.CylinderDto;
 import com.cg.entity.Cylinder;
 import com.cg.exception.CylinderNotFoundException;
 import com.cg.exception.CylinderTypeMismatchException;
-import com.cg.exception.ValidateException;
 import com.cg.util.CgUtil;
 
 

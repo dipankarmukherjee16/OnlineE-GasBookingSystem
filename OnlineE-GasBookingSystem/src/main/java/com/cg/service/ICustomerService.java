@@ -3,6 +3,7 @@ package com.cg.service;
 import com.cg.dto.CustomerDto;
 import com.cg.exception.CustomerNotFoundException;
 import com.cg.exception.CylinderTypeMismatchException;
+import com.cg.exception.ValidateException;
 
 public interface ICustomerService {
 	public Integer insertCustomer(CustomerDto customerdto) throws CylinderTypeMismatchException;
@@ -12,6 +13,6 @@ public interface ICustomerService {
 
 	public boolean deleteCustomer(int custId) throws CustomerNotFoundException;
 
-	public boolean linkAadhar(int custId, String aadharNo) throws CustomerNotFoundException;
+	public boolean linkAadhar(int custId, String aadharNo) throws CustomerNotFoundException, ValidateException;
 
 }

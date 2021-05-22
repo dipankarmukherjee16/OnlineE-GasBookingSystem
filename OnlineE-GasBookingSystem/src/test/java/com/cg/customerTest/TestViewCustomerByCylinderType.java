@@ -17,6 +17,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.cg.dao.ICustomerDao;
 import com.cg.dao.ICylinderDao;
 import com.cg.entity.Customer;
+import com.cg.entity.Cylinder;
 import com.cg.exception.CustomerNotFoundException;
 import com.cg.exception.CylinderTypeMismatchException;
 import com.cg.service.IViewCustomerService;
@@ -49,7 +50,7 @@ public class TestViewCustomerByCylinderType {
 	@Test
 	@DisplayName(value = "test view customer by cylinder type domestic")
 	public void testViewCustomerByCylinderType1() throws CustomerNotFoundException, CylinderTypeMismatchException {
-
+		when(cylinderDao.findByCylinderType("domestic")).thenReturn(new Cylinder());
 		assertTrue(viewCustomerService.viewCustomerbyCylinderType("domestic").size()>0);
 	}
 

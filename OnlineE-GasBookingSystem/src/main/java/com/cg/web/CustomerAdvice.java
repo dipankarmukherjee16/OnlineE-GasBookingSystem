@@ -16,19 +16,54 @@ import com.cg.exception.CylinderNotFoundException;
 import com.cg.exception.CylinderTypeMismatchException;
 import com.cg.exception.ValidateException;
 
+
+/*********************************************************************************************
+ *          @author: Dipankar Mukherjee        
+ *          @version: 1.0   
+ *          Description: It is a controller advice class that provides the global exception
+ *          			 for handling exception for CustomerRestController and 
+ *          			 ViewCustomerRestController                                  
+ *          Created at: 20-MAY-2021
+ **********************************************************************************************/
+
 @RestControllerAdvice
 public class CustomerAdvice {
+	
+	/************************************************************************************
+	 * @author: Dipankar Mukherjee
+	 * @version: 1.0
+	 * @returns ErrorMessage 
+	 * Description: To handle CustomerNotFoundException
+	 * Created Date - 20-MAY-2021
+	 ************************************************************************************/
+
 	@ExceptionHandler(CustomerNotFoundException.class)
 	@ResponseStatus(code = HttpStatus.NOT_FOUND)
 	public ErrorMessage handleExceptionCustomerNotFound(CustomerNotFoundException ex) {
 		return new ErrorMessage(HttpStatus.NOT_FOUND.toString(), ex.getMessage());
 	}
+	
+	/************************************************************************************
+	 * @author: Dipankar Mukherjee
+	 * @version: 1.0
+	 * @returns ErrorMessage 
+	 * Description: To handle CylinderTypeMismatchException 
+	 * Created Date - 20-MAY-2021
+	 ************************************************************************************/
 
 	@ExceptionHandler(CylinderTypeMismatchException.class)
 	@ResponseStatus(code = HttpStatus.NOT_FOUND)
 	public ErrorMessage handleExceptionCylinderTypeMismatch(CylinderTypeMismatchException ex) {
 		return new ErrorMessage(HttpStatus.NOT_FOUND.toString(), ex.getMessage());
 	}
+	
+	/************************************************************************************
+	 * @author: Dipankar Mukherjee
+	 * @version: 1.0
+	 * @returns ErrorMessage 
+	 * Description: To handle CylinderNotFoundException 
+	 * Created Date - 20-MAY-2021
+	 ************************************************************************************/
 
 	@ExceptionHandler(CylinderNotFoundException.class)
 	@ResponseStatus(code = HttpStatus.NOT_FOUND)
@@ -36,14 +71,30 @@ public class CustomerAdvice {
 		return new ErrorMessage(HttpStatus.NOT_FOUND.toString(), ex.getMessage());
 	}
 
+	/************************************************************************************
+	 * @author: Dipankar Mukherjee
+	 * @version: 1.0
+	 * @returns ErrorMessage 
+	 * Description: To handle invalid date pattern 
+	 * Created Date - 20-MAY-2021
+	 ************************************************************************************/
+	
 	@ExceptionHandler(MethodArgumentTypeMismatchException.class)
 	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
 	public ErrorMessage handleExceptionForDate(MethodArgumentTypeMismatchException ex) {
-		if (ex.getMessage().contains("Localdate"))
+		if (ex!=null && ex.getMessage().contains("Localdate"))
 			return new ErrorMessage(HttpStatus.BAD_REQUEST.toString(), "Invalid Date Pattern");
 		return new ErrorMessage(HttpStatus.BAD_REQUEST.toString(), "It must be numeric");
 
 	}
+	
+	/************************************************************************************
+	 * @author: Dipankar Mukherjee
+	 * @version: 1.0 
+	 * @returns ErrorMessage 
+	 * Description: To handle validation exception
+	 * Created Date - 20-MAY-2021
+	 ************************************************************************************/
 
 	@ExceptionHandler(ValidateException.class)
 	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
@@ -52,10 +103,19 @@ public class CustomerAdvice {
 		return new ErrorMessage(HttpStatus.BAD_REQUEST.toString(), errors);
 	}
 
+	/************************************************************************************
+	 * @author: Dipankar Mukherjee
+	 * @version: 1.0
+	 * @returns ErrorMessage 
+	 * Description: To handle HttpMessageConversion exception
+	 * Created Date - 20-MAY-2021
+	 ************************************************************************************/
+
 	@ExceptionHandler(HttpMessageConversionException.class)
 	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
 	public ErrorMessage handleException3(HttpMessageConversionException ex) {
-		if (ex.getMessage().contains("LocalDate"))
+		if (ex.getMessage()!=null &&  ex.getMessage().contains("LocalDate"))
+		
 			return new ErrorMessage(HttpStatus.BAD_REQUEST.toString(), "Invalid Date Pattern , follow yyyy-MM-dd");
 		return new ErrorMessage(HttpStatus.BAD_REQUEST.toString(), "It must be Numeric");
 	}
