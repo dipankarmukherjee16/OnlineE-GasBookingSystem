@@ -12,6 +12,7 @@ import com.cg.dto.CylinderDto;
 import com.cg.entity.Cylinder;
 import com.cg.exception.CylinderNotFoundException;
 import com.cg.exception.CylinderTypeMismatchException;
+import com.cg.exception.ValidateException;
 import com.cg.util.CgUtil;
 
 
@@ -47,10 +48,13 @@ public class CylinderServiceImpl implements ICylinderService {
 	
 	@Override
 	@Transactional
-	public Integer addCylinder(CylinderDto cylinderDto) throws CylinderTypeMismatchException {
+	public Integer addCylinder(CylinderDto cylinderDto) throws ValidateException {
 
 		Cylinder cylinder = new Cylinder();
 
+		if(cylinderDto.getWeight()==null)
+			throw new ValidateException();
+		
 		cylinder.setCylinderType(cylinderDto.getCylinderType());
 		cylinder.setWeight(cylinderDto.getWeight());
 

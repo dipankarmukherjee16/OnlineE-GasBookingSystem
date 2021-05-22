@@ -50,7 +50,7 @@ public class CylinderRestController {
 
 	@PostMapping("addcylinder")
 	public SuccessMessage addCylinder(@Valid @RequestBody CylinderDto cylinderDto, BindingResult br)
-			throws CylinderTypeMismatchException, ValidateException {
+			throws ValidateException {
 
 		if (br.hasErrors()) {
 			throw new ValidateException(br.getFieldErrors());
