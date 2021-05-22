@@ -1,9 +1,10 @@
 package com.cg.customerTest;
 
-import static org.hamcrest.CoreMatchers.any;
+
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -42,34 +43,29 @@ public class TestInsertCustomer {
 	Customer customer;
 	
 	
-	
-	/*
-	 * @BeforeEach public void beforeEach() {
-	 * when(cylinderDao.findByCylinderType("domestic")).thenReturn(new Cylinder());
-	 * when(cylinderDao.findByCylinderType("aaaa")).thenReturn(null);
-	 * 
-	 * customerDto= new CustomerDto(); customer= new Customer();
-	 * 
-	 * customerDto.setUserName("rahim"); customerDto.setMobileNumber("8574123690");
-	 * customerDto.setEmail("rahim64@gmail.com");
-	 * customerDto.setAadharCard("741258743699");
-	 * customerDto.setAddress("17 s k road, kolkata");
-	 * customerDto.setCity("kolkata"); customerDto.setCylinderType("domestic");
-	 * 
-	 * customer.setCustomerId(1); customer.setUserName(customerDto.getUserName());
-	 * customer.setMobileNumber(customerDto.getMobileNumber());
-	 * customer.setEmail(customerDto.getEmail());
-	 * customer.setAadharCard(customerDto.getAadharCard());
-	 * customer.setAddress(customerDto.getAddress());
-	 * customer.setCity(customerDto.getCity());
-	 * customer.setConnectionStatus(CgUtil.CONNECTION_ACTIVE);
-	 * 
-	 * when(customerDao.save(any(Customer.class))).the
-	 * 
-	 * }
-	 */
-	 
-	 
+	  @BeforeEach public void beforeEach() {
+	  when(cylinderDao.findByCylinderType("domestic")).thenReturn(new Cylinder());
+	  when(cylinderDao.findByCylinderType("aaaa")).thenReturn(null);
+	  
+	  customerDto= new CustomerDto(); customer= new Customer();
+	  
+	  customerDto.setUserName("rahim"); customerDto.setMobileNumber("8574123690");
+	  customerDto.setEmail("rahim64@gmail.com");
+	  customerDto.setAadharCard("741258743699");
+	  customerDto.setAddress("17 s k road, kolkata");
+	  customerDto.setCity("kolkata"); customerDto.setCylinderType("domestic");
+	  
+	  customer.setCustomerId(1); customer.setUserName(customerDto.getUserName());
+	  customer.setMobileNumber(customerDto.getMobileNumber());
+	  customer.setEmail(customerDto.getEmail());
+	  customer.setAadharCard(customerDto.getAadharCard());
+	  customer.setAddress(customerDto.getAddress());
+	  customer.setCity(customerDto.getCity());
+	  customer.setConnectionStatus(CgUtil.CONNECTION_ACTIVE);
+	  
+	  when(customerDao.save(any(Customer.class))).thenReturn(customer);
+	  
+	  } 
 
 	@Test
 	@DisplayName(value = "test insert customer for domestic")

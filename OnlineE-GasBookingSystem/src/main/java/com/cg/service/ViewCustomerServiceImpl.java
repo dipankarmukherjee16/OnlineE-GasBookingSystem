@@ -15,6 +15,16 @@ import com.cg.exception.CustomerNotFoundException;
 import com.cg.exception.CylinderTypeMismatchException;
 import com.cg.util.CgUtil;
 
+/*********************************************************************************************
+ *          @author: Dipankar Mukherjee        
+ *          @version: 1.0   
+ *          Description: It is a service class that provides the services for viewing 
+ *          			 details of all the customers, view details of a customer by id, 
+ *          			 view details of customers by cylinder type and view details of 
+ *          			 the customers by area                   
+ *          Created at: 17-MAY-2021
+ **********************************************************************************************/
+
 @Service("customerviewser")
 public class ViewCustomerServiceImpl implements IViewCustomerService {
 
@@ -23,6 +33,15 @@ public class ViewCustomerServiceImpl implements IViewCustomerService {
 	
 	@Autowired
 	private ICylinderDao cylinderDao;
+
+	/*********************************************************************************************
+	 *          @author: Dipankar Mukherjee        
+	 *          @version: 1.0   
+	 *          @return: List<Customer>
+	 *          @throws: CustomerNotFoundException, if no customer details added to the database
+	 *          Description: View the details of all the customers in the database                           
+	 *          Created at: 17-MAY-2021
+	 **********************************************************************************************/
 
 	@Override
 	public List<Customer> viewAllCustomers() throws CustomerNotFoundException {
@@ -33,6 +52,16 @@ public class ViewCustomerServiceImpl implements IViewCustomerService {
 		lst.sort((e1, e2) -> e1.getUserName().compareTo(e2.getUserName()));
 		return lst;
 	}
+	
+	/*********************************************************************************************
+	 *          @author: Dipankar Mukherjee        
+	 *          @version: 1.0   
+	 *          @return: Customer instance
+	 *          @throws: CustomerNotFoundException, if customer id is wrong 
+	 *          Description: View the details of a customer by ID                          
+	 *          Created at: 17-MAY-2021
+	 **********************************************************************************************/
+
 
 	@Override
 	public Customer viewCustomerbyId(int customerId) throws CustomerNotFoundException {
@@ -42,6 +71,17 @@ public class ViewCustomerServiceImpl implements IViewCustomerService {
 		}
 		return optcust.get();
 	}
+
+	/*********************************************************************************************
+	 *          @author: Dipankar Mukherjee        
+	 *          @version: 1.0   
+	 *          @return: List<Customer>
+	 *          @throws: CylinderTypeMismatchException, if cylinder type does not match
+	 *          		 CustomerNotFoundException, if customer id is wrong 
+	 *          Description: View the details of customers by cylinder type                          
+	 *          Created at: 17-MAY-2021
+	 **********************************************************************************************/
+
 
 	@Override
 	public List<Customer> viewCustomerbyCylinderType(String cylinderType)
@@ -59,6 +99,15 @@ public class ViewCustomerServiceImpl implements IViewCustomerService {
 		return lst;
 	}
 
+	/*********************************************************************************************
+	 *          @author: Dipankar Mukherjee        
+	 *          @version: 1.0   
+	 *          @return: List<Customer>
+	 *          @throws: CityNotFoundException, if city name entered wrong
+	 *          Description: View the details of customers by area                         
+	 *          Created at: 17-MAY-2021
+	 **********************************************************************************************/
+	
 	@Override
 	public List<Customer> viewCustomerbyArea(String city) throws CityNotFoundException {
 		
