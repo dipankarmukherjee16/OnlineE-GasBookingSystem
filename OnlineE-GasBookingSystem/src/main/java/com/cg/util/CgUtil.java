@@ -37,6 +37,8 @@ public class CgUtil {
 	public static final String NOBOOKINGDONE = "No booking done by customer";
 	public static final String AADHAR_PATTERN="Aadhar number cannot be empty and cointains 12 digits";
 
+
+
 	private CgUtil() {
 		
 		super();
