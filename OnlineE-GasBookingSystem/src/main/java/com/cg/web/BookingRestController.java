@@ -29,13 +29,6 @@ public class BookingRestController {
 		return new SuccessMessage(CgUtil.CYLINDER_BOOKED + gasBookingId);
 	}
 
-	@PutMapping("cancelbooking/{bookingid}")
-	public SuccessMessage cancelGasBooking(@PathVariable("bookingid") int bookingId)
-			throws GasBookingNotFoundException {
-		gasBookingService.cancelGasBooking(bookingId);
-		return new SuccessMessage(CgUtil.BOOKING_CANCELLED);
-	}
-
 	@PostMapping("generateinvoice/{bookingid}/{fare}")
 	public SuccessMessage generateInvoice(@PathVariable("bookingid") int bookingId, @PathVariable("fare") double fare)
 			throws GasBookingNotFoundException {

@@ -80,4 +80,17 @@ public class Invoice {
 		this.invoiceStatus = invoiceStatus;
 	}
 
+	public Invoice() {
+		super();
+	
+	}
+
+	public Invoice(Integer invoiceId, LocalDate invoiceDate, Double billAmount, String invoiceStatus) {
+		super();
+		this.invoiceId = invoiceId;
+		this.invoiceDate = invoiceDate;
+		this.billAmount = billAmount;
+		this.invoiceStatus = invoiceStatus;
+	}
+
 }

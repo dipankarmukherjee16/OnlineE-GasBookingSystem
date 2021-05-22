@@ -52,17 +52,6 @@ public class GasBookingServiceImpl implements IGasBookingService {
 
 	@Override
 	@Transactional
-	public boolean cancelGasBooking(Integer bookingId) throws GasBookingNotFoundException {
-		Optional<GasBooking> opbook = bookDao.findById(bookingId);
-		if (!opbook.isPresent())
-			throw new GasBookingNotFoundException(CgUtil.BOOKINGNOTFOUND);
-		GasBooking book = opbook.get();
-		bookDao.delete(book);
-		return true;
-	}
-
-	@Override
-	@Transactional
 	public Invoice generateInvoice(Integer bookingId, Double fare) throws GasBookingNotFoundException {
 		Optional<GasBooking> opbook = bookDao.findById(bookingId);
 		if (!opbook.isPresent())

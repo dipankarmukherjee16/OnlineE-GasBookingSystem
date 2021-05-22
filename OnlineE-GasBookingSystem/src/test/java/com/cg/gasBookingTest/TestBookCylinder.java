@@ -1,7 +1,7 @@
 package com.cg.gasBookingTest;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -17,7 +17,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.cg.dao.ICustomerDao;
 import com.cg.dao.IGasBookingDao;
-import com.cg.dao.IInvoiceDao;
 import com.cg.entity.Customer;
 import com.cg.entity.GasBooking;
 import com.cg.exception.CustomerNotFoundException;
@@ -33,8 +32,6 @@ public class TestBookCylinder {
 	@Mock
 	private ICustomerDao custDao;
 
-	@Mock
-	private IInvoiceDao invoiceDao;
 	
 	@InjectMocks
 	IGasBookingService gasBookingService = new GasBookingServiceImpl();
@@ -52,14 +49,14 @@ public class TestBookCylinder {
 	}
 	
 	@Test
-	@DisplayName(value="Book cylinder for customer id 1")
+	@DisplayName(value="testBookCylinder for customer id 1")
 	public void testBookCylinder1() throws CustomerNotFoundException
 	{
-		assertNotNull(gasBookingService.bookCylinder(1));
+		assertTrue(gasBookingService.bookCylinder(1)>0);
 	}
 	
 	@Test
-	@DisplayName(value="Book cylinder for customer id 2")
+	@DisplayName(value="testBookCylinder for customer id 2")
 	public void testBookCylinder2() throws CustomerNotFoundException
 	{
 		assertThrows(CustomerNotFoundException.class, () -> gasBookingService.bookCylinder(2));

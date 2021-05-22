@@ -33,13 +33,6 @@ public class TestViewStatus {
 	@BeforeEach
 	public void beforeEach()
 	{
-		/*
-		 * List<GasBooking> lst = new ArrayList<>(); 
-		 * lst.add(
-		 * new 
-		 * GasBooking(1004,
-		 * LocalDate.of(2020, 05, 13), "DELIVERED"));
-		 */
 		
 		  Optional<GasBooking> optcust1 = Optional.of(new GasBooking(1004,LocalDate.of(2020, 05, 13), "DELIVERED"));
 		  Optional<GasBooking> optcust2 = Optional.empty();
