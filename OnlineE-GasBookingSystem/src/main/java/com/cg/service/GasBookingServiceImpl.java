@@ -75,7 +75,7 @@ public class GasBookingServiceImpl implements IGasBookingService {
 		invoice.setBooking(book);
 		invoice.setInvoiceStatus(CgUtil.INVOICE_GENERATED);
 		book.setStatus(CgUtil.INVOICE_GENERATED);
-		bookDao.save(book);
+		bookDao.save(book); 
 		invoiceDao.save(invoice);
 		return invoice;
 	}
