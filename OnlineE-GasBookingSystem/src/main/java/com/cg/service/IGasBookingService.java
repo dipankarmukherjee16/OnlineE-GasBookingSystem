@@ -14,5 +14,5 @@ public interface IGasBookingService {
 
 	public List<Invoice> getInvoices() throws InvoiceException;
 
-	public boolean cylinderDelivered(Integer invoiceId) throws InvoiceException;
+	public boolean cylinderDelivered(Integer invoiceId) throws InvoiceException; 
 }
