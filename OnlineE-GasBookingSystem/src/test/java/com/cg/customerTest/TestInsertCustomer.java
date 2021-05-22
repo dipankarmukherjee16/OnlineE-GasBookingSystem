@@ -46,7 +46,8 @@ public class TestInsertCustomer {
 	  when(cylinderDao.findByCylinderType("domestic")).thenReturn(new Cylinder());
 	  when(cylinderDao.findByCylinderType("aaaa")).thenReturn(null);
 	  
-	  customerDto= new CustomerDto(); customer= new Customer();
+	  customerDto= new CustomerDto(); 
+	  customer= new Customer();
 	  
 	  customerDto.setUserName("rahim"); customerDto.setMobileNumber("8574123690");
 	  customerDto.setEmail("rahim64@gmail.com");
