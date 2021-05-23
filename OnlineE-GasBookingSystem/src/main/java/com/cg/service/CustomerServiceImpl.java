@@ -4,6 +4,8 @@ import java.util.Optional;
 
 import javax.transaction.Transactional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,6 +38,8 @@ public class CustomerServiceImpl implements ICustomerService {
 
 	@Autowired
 	private ICylinderDao cylinderDao;
+	
+	Logger logger= LoggerFactory.getLogger(CustomerServiceImpl.class);
 
 	/*********************************************************************************************
 	 *          @author: Dipankar Mukherjee        
@@ -66,6 +70,7 @@ public class CustomerServiceImpl implements ICustomerService {
 		
 		cust.setCylinder(cylinder);
 		Customer persistedCust = custDao.save(cust);
+		logger.info(CgUtil.CUSTOMER_CREATED);
 		return persistedCust.getCustomerId();
 	}
 
@@ -103,6 +108,7 @@ public class CustomerServiceImpl implements ICustomerService {
 		}
 		cust.setCylinder(cylinder);
 		custDao.save(cust);
+		logger.info(CgUtil.CUSTOMER_UPDATED);
 		return true;
 	}
 
@@ -152,6 +158,7 @@ public class CustomerServiceImpl implements ICustomerService {
 		Customer cust = optcust.get();
 		cust.setAadharCard(aadharNo);
 		custDao.save(cust);
+		logger.info(CgUtil.AADHAR_LINKED);
 		return true;
 	}
 

@@ -32,7 +32,7 @@ public class ViewCustomerRestController {
 
 
 	/*********************************************************************************************
-	 *          @author: Dipankar Mukherjee        
+	 *          @author: Enakshi Das        
 	 *          @version: 1.0   
 	 *          @return: List<Customer>
 	 *          @throws: CustomerNotFoundException, if no customer details added to the database
@@ -48,7 +48,7 @@ public class ViewCustomerRestController {
 	}
 	
 	/*********************************************************************************************
-	 *          @author: Dipankar Mukherjee        
+	 *          @author: Enakshi Das       
 	 *          @version: 1.0   
 	 *          @return: Customer instance
 	 *          @throws: CustomerNotFoundException, if customer id is wrong 
