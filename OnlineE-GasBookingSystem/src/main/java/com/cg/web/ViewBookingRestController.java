@@ -27,20 +27,6 @@ public class ViewBookingRestController {
 	@Autowired
 	private IViewBookingService bookingService;
 	
-	/*********************************************************************************************
-	 *          @author: Enakshi Das        
-	 *          @version: 1.0   
-	 *          @return: String status
-	 *          @throws: GasBookingNotFoundException, if booking not found for given booking id
-	 *          Description: View status of a booking by booking id                          
-	 *          Created at: 20-MAY-2021
-	 **********************************************************************************************/
-
-	@GetMapping("viewstatus/{gasbookingid}")
-	public String viewStatus(@PathVariable("gasbookingid") int gasBookingId) throws GasBookingNotFoundException {
-		return bookingService.viewStatus(gasBookingId);
-
-	}
 	
 	/*********************************************************************************************
 	 *          @author: Moinak Majumder       
@@ -55,6 +41,21 @@ public class ViewBookingRestController {
 	public List<GasBooking> viewBookingDetails(@PathVariable("customerid") int customerId)
 			throws GasBookingNotFoundException {
 		return bookingService.viewBookingDetails(customerId);
+
+	}
+	
+	/*********************************************************************************************
+	 *          @author: Enakshi Das        
+	 *          @version: 1.0   
+	 *          @return: String status
+	 *          @throws: GasBookingNotFoundException, if booking not found for given booking id
+	 *          Description: View status of a booking by booking id                          
+	 *          Created at: 20-MAY-2021
+	 **********************************************************************************************/
+
+	@GetMapping("viewstatus/{gasbookingid}")
+	public String viewStatus(@PathVariable("gasbookingid") int gasBookingId) throws GasBookingNotFoundException {
+		return bookingService.viewStatus(gasBookingId);
 
 	}
 	

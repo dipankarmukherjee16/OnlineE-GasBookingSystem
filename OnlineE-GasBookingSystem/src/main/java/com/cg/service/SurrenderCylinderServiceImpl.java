@@ -58,7 +58,7 @@ public class SurrenderCylinderServiceImpl implements ISurrenderCylinderService {
 	@Transactional
 	public Integer surrenderCylinder(int customerId) throws CustomerNotFoundException {
 
-		Optional<Customer> customer = null;
+		Optional<Customer> customer = Optional.empty();
 		customer = customerDao.findById(customerId);
 		if (!customer.isPresent())
 			throw new CustomerNotFoundException(CgUtil.CUSTOMERNOTFOUND);

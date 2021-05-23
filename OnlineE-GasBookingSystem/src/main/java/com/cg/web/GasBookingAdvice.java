@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import com.cg.dto.ErrorMessage;
-import com.cg.exception.CustomerNotFoundException;
 import com.cg.exception.GasBookingNotFoundException;
 import com.cg.exception.InvoiceException;
 import com.cg.exception.NoGasBookingDoneException;

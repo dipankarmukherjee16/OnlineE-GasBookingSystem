@@ -26,6 +26,23 @@ public class ViewBookingServiceImpl implements IViewBookingService {
 
 	@Autowired
 	private IGasBookingDao bookDao;
+
+	/*********************************************************************************************
+	 *          @author: Moinak Majumder       
+	 *          @version: 1.0   
+	 *          @return: List of GasBooking instance
+	 *          @throws: GasBookingNotFoundException, if no booking detals for given customer id
+	 *          Description: View gas booking details for given customer id                             
+	 *          Created at: 19-MAY-2021
+	 **********************************************************************************************/
+
+	@Override
+	public List<GasBooking> viewBookingDetails(int customerId) throws GasBookingNotFoundException {
+		List<GasBooking> lst = bookDao.viewBookingDetailsByCustomerId(customerId);
+		if (lst.isEmpty())
+			throw new GasBookingNotFoundException(CgUtil.BOOKINGNOTFOUND);
+		return lst;
+	}
 	
 	/*********************************************************************************************
 	 *          @author: Enakshi Das       
@@ -45,24 +62,6 @@ public class ViewBookingServiceImpl implements IViewBookingService {
 
 		return book.getStatus();
 
-	}
-	
-
-	/*********************************************************************************************
-	 *          @author: Moinak Majumder       
-	 *          @version: 1.0   
-	 *          @return: List of GasBooking instance
-	 *          @throws: GasBookingNotFoundException, if no booking detals for given customer id
-	 *          Description: View gas booking details for given customer id                             
-	 *          Created at: 19-MAY-2021
-	 **********************************************************************************************/
-
-	@Override
-	public List<GasBooking> viewBookingDetails(int customerId) throws GasBookingNotFoundException {
-		List<GasBooking> lst = bookDao.viewBookingDetailsByCustomerId(customerId);
-		if (lst.isEmpty())
-			throw new GasBookingNotFoundException(CgUtil.BOOKINGNOTFOUND);
-		return lst;
 	}
 	
 

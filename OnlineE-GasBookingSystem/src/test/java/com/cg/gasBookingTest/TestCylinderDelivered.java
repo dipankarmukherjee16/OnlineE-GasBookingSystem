@@ -1,5 +1,6 @@
 package com.cg.gasBookingTest;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
@@ -61,7 +62,7 @@ public class TestCylinderDelivered {
 	  @DisplayName(value="testCylinderDelivered for invoice id 2003")
 	  public void testCylinderDelivered1() throws InvoiceException
 	  {
-		  assertTrue(gasBookingService.cylinderDelivered(2003)==true);
+		  assertEquals(true,gasBookingService.cylinderDelivered(2003));
 	  }
 	  
 	  @Test

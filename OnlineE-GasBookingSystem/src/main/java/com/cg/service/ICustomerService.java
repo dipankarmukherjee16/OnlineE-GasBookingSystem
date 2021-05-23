@@ -11,8 +11,6 @@ public interface ICustomerService {
 	public boolean updateCustomer(CustomerDto customerdto, Integer customerId)
 			throws CustomerNotFoundException, CylinderTypeMismatchException;
 
-	public boolean deleteCustomer(int custId) throws CustomerNotFoundException;
-
 	public boolean linkAadhar(int custId, String aadharNo) throws CustomerNotFoundException, ValidateException;
 
 }

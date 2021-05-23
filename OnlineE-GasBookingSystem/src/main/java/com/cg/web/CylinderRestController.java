@@ -15,7 +15,6 @@ import com.cg.dto.CylinderDto;
 import com.cg.dto.SuccessMessage;
 import com.cg.entity.Cylinder;
 import com.cg.exception.CylinderNotFoundException;
-import com.cg.exception.CylinderTypeMismatchException;
 import com.cg.exception.ValidateException;
 import com.cg.service.ICylinderService;
 import com.cg.util.CgUtil;

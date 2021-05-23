@@ -81,7 +81,7 @@ public class CustomerServiceImpl implements ICustomerService {
 	 *          @return: true
 	 *          @throws: CylinderTypeMismatchException, if cylinder type does not match
 	 *          		 CustomerNotFoundException, if customer id is wrong 
-	 *          Description: Insert new customer with details into the database                            
+	 *          Description: Update new customer with details into the database                            
 	 *          Created at: 18-MAY-2021
 	 **********************************************************************************************/
 
@@ -112,27 +112,6 @@ public class CustomerServiceImpl implements ICustomerService {
 		return true;
 	}
 
-	/*********************************************************************************************
-	 *          @author: Dipankar Mukherjee        
-	 *          @version: 1.0   
-	 *          @return: true
-	 *          @throws: CustomerNotFoundException, if customer id is wrong    
-	 *          Description: Delete details of an existing customer                         
-	 *          Created at: 18-MAY-2021
-	 **********************************************************************************************/
-
-	
-	@Override
-	@Transactional
-	public boolean deleteCustomer(int custId) throws CustomerNotFoundException {
-		Optional<Customer> optcust = custDao.findById(custId);
-		if (!optcust.isPresent()) {
-			throw new CustomerNotFoundException(CgUtil.CUSTOMERNOTFOUND);
-		}
-		Customer cust = optcust.get();
-		custDao.delete(cust);
-		return true;
-	}
 
 	/*********************************************************************************************
 	 *          @author: Dipankar Mukherjee        

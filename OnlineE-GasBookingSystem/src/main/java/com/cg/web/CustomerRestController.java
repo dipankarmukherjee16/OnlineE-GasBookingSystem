@@ -64,7 +64,7 @@ public class CustomerRestController {
 	 *          @throws: CylinderTypeMismatchException, if cylinder type does not match
 	 *          		 CustomerNotFoundException, if customer id is wrong 
 	 *          		 ValidateException, if invalid details entered
-	 *          Description: Insert new customer with details into the database                            
+	 *          Description: Update new customer with details into the database                            
 	 *          Created at: 19-MAY-2021
 	 **********************************************************************************************/
 

@@ -12,7 +12,6 @@ import com.cg.dto.SuccessMessage;
 import com.cg.entity.Customer;
 import com.cg.exception.CustomerNotFoundException;
 import com.cg.exception.SurrenderCylinderNotFoundException;
-import com.cg.exception.ValidateException;
 import com.cg.service.ISurrenderCylinderService;
 import com.cg.util.CgUtil;
 
