@@ -20,6 +20,16 @@ import com.cg.exception.GasBookingNotFoundException;
 import com.cg.exception.InvoiceException;
 import com.cg.util.CgUtil;
 
+
+/*********************************************************************************************
+ *          @author: Moinak Majumder        
+ *          @version: 1.0   
+ *          Description: It is a service class that provides the services for booking a cylinder,
+ *          			  generate invoice, update status of gas booking and get all invoices                            
+ *          Created at: 19-MAY-2021
+ **********************************************************************************************/
+
+
 @Service("gasbookingservice")
 @Transactional
 public class GasBookingServiceImpl implements IGasBookingService {
@@ -32,6 +42,15 @@ public class GasBookingServiceImpl implements IGasBookingService {
 
 	@Autowired
 	private IInvoiceDao invoiceDao;
+	
+	/*********************************************************************************************
+	 *          @author: Moinak Majumder        
+	 *          @version: 1.0   
+	 *          @return: gasBookingId
+	 *          @throws: CustomerNotFoundException, if customer not found for given customer id
+	 *          Description: Insert new gas booking details into the database                             
+	 *          Created at: 18-MAY-2021
+	 **********************************************************************************************/
 
 	@Override
 	@Transactional
@@ -49,6 +68,15 @@ public class GasBookingServiceImpl implements IGasBookingService {
 		GasBooking persistedBook = bookDao.save(book);
 		return persistedBook.getGasBookingId();
 	}
+	
+	/*********************************************************************************************
+	 *          @author: Moinak Majumder        
+	 *          @version: 1.0   
+	 *          @return: Invoice instance
+	 *          @throws: GasBookingNotFoundException, if booking not found for given booking id
+	 *          Description: Insert new invoice into the database                              
+	 *          Created at: 18-MAY-2021
+	 **********************************************************************************************/
 
 	@Override
 	@Transactional
@@ -68,6 +96,15 @@ public class GasBookingServiceImpl implements IGasBookingService {
 		invoiceDao.save(invoice);
 		return invoice;
 	}
+	
+	/*********************************************************************************************
+	 *          @author: Moinak Majumder        
+	 *          @version: 1.0   
+	 *          @return: List of Invoice instance
+	 *          @throws: InvoiceException, if invoice not found for given invoice status
+	 *          Description: Display list of invoices for given status                              
+	 *          Created at: 18-MAY-2021
+	 **********************************************************************************************/
 
 	@Override
 	public List<Invoice> getInvoices() throws InvoiceException {
@@ -78,6 +115,15 @@ public class GasBookingServiceImpl implements IGasBookingService {
 		invoices.sort((e1, e2) -> e1.getInvoiceDate().compareTo(e2.getInvoiceDate()));
 		return invoices;
 	}
+	
+	/*********************************************************************************************
+	 *          @author: Moinak Majumder        
+	 *          @version: 1.0   
+	 *          @return: true
+	 *          @throws: InvoiceException, if invoice not found for given invoice id
+	 *          Description: Update invoice status and gas booking status                              
+	 *          Created at: 18-MAY-2021
+	 **********************************************************************************************/
 
 	@Override
 	public boolean cylinderDelivered(Integer invoiceId) throws InvoiceException {
