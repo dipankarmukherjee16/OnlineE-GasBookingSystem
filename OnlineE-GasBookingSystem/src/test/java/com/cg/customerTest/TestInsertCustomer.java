@@ -18,6 +18,7 @@ import com.cg.dao.IGasBookingDao;
 import com.cg.dto.CustomerDto;
 import com.cg.entity.Customer;
 import com.cg.entity.Cylinder;
+import com.cg.exception.CustomerAlreadyExistException;
 import com.cg.exception.CylinderTypeMismatchException;
 import com.cg.service.CustomerServiceImpl;
 import com.cg.service.ICustomerService;
@@ -72,7 +73,7 @@ public class TestInsertCustomer {
 
 	@Test
 	@DisplayName(value = "test insert customer for domestic")
-	public void testInsertCustomer1() throws CylinderTypeMismatchException {
+	public void testInsertCustomer1() throws CylinderTypeMismatchException, CustomerAlreadyExistException {
 		CustomerDto customerDto = new CustomerDto("rahim", "8574123690", "rahim64@gmail.com", "741258743699",
 				"17 s k road, kolkata", "kolkata", "domestic");
 		assertNotNull(customerService.insertCustomer(customerDto));

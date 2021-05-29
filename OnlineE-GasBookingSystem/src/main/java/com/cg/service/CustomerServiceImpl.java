@@ -14,6 +14,7 @@ import com.cg.dao.ICylinderDao;
 import com.cg.dto.CustomerDto;
 import com.cg.entity.Customer;
 import com.cg.entity.Cylinder;
+import com.cg.exception.CustomerAlreadyExistException;
 import com.cg.exception.CustomerNotFoundException;
 import com.cg.exception.CylinderTypeMismatchException;
 import com.cg.exception.ValidateException;
@@ -45,6 +46,7 @@ public class CustomerServiceImpl implements ICustomerService {
 	 *          @author: Dipankar Mukherjee        
 	 *          @version: 1.0   
 	 *          @return: customerId
+	 *		    @throws CustomerAlreadyExistException 
 	 *          @throws: CylinderTypeMismatchException, if cylinder type does not match
 	 *          Description: Insert new customer with details into the database                             
 	 *          Created at: 18-MAY-2021
@@ -53,13 +55,19 @@ public class CustomerServiceImpl implements ICustomerService {
 	
 	@Override
 	@Transactional
-	public Integer insertCustomer(CustomerDto customerdto) throws CylinderTypeMismatchException {
-		Customer cust = new Customer();
+	public Integer insertCustomer(CustomerDto customerdto) throws CylinderTypeMismatchException, CustomerAlreadyExistException {
 		Cylinder cylinder = null;
 		cylinder = cylinderDao.findByCylinderType(customerdto.getCylinderType());
 		if (cylinder == null) {
 			throw new CylinderTypeMismatchException(CgUtil.CYLINDERTYPEMISMATCH);
 		}
+		if(custDao.findByMobileNumber(customerdto.getMobileNumber())!=null)
+			throw new CustomerAlreadyExistException(CgUtil.CUSTOMER_EXIST);
+		if(custDao.findByEmail(customerdto.getEmail())!=null)
+			throw new CustomerAlreadyExistException(CgUtil.CUSTOMER_EXIST);
+		if(custDao.findByAadharCard(customerdto.getAadharCard())!=null)
+			throw new CustomerAlreadyExistException(CgUtil.CUSTOMER_EXIST);
+		Customer cust = new Customer();
 		cust.setUserName(customerdto.getUserName());
 		cust.setMobileNumber(customerdto.getMobileNumber());
 		cust.setEmail(customerdto.getEmail());

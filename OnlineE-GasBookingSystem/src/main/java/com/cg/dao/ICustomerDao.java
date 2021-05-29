@@ -17,5 +17,9 @@ public interface ICustomerDao extends JpaRepository<Customer, Integer> {
 	@Query("from Customer cs where cs.city=:cust_city")
 	public List<Customer> viewCustomerByCity(@Param("cust_city") String city);
 
+	public Customer findByMobileNumber(String mobileNumber);
 	
+	public Customer findByEmail(String email);
+	
+	public Customer findByAadharCard(String aadharCard);
 }

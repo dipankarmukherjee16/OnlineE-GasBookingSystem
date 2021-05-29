@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.dto.CustomerDto;
 import com.cg.dto.SuccessMessage;
+import com.cg.exception.CustomerAlreadyExistException;
 import com.cg.exception.CustomerNotFoundException;
 import com.cg.exception.CylinderTypeMismatchException;
 import com.cg.exception.ValidateException;
@@ -39,6 +40,7 @@ public class CustomerRestController {
 	 *          @author: Dipankar Mukherjee        
 	 *          @version: 1.0   
 	 *          @return: SuccessMessage
+	 * @throws CustomerAlreadyExistException 
 	 *          @throws: CylinderTypeMismatchException, if cylinder type does not match
 	 *          		 ValidateException, if invalid details entered
 	 *          Description: Insert new customer with details into the database                             
@@ -47,7 +49,7 @@ public class CustomerRestController {
 
 	@PostMapping("addcustomer")
 	public SuccessMessage addCustomer(@Valid @RequestBody CustomerDto customerDto, BindingResult br)
-			throws ValidateException, CylinderTypeMismatchException {
+			throws ValidateException, CylinderTypeMismatchException, CustomerAlreadyExistException {
 		if (br.hasErrors()) {
 			throw new ValidateException(br.getFieldErrors());
 		}

@@ -30,7 +30,7 @@ public class Customer {
 	@SequenceGenerator(name = "seq1", sequenceName = "egas_seq1", allocationSize = 1)
 	private Integer customerId;
 
-	@Column(name = "user_name", length = 25, nullable = false, unique = true)
+	@Column(name = "user_name", length = 25, nullable = false)
 	private String userName;
 
 	@Column(name = "mob_number", length = 10, nullable = false, unique = true)
@@ -55,10 +55,7 @@ public class Customer {
 	@JoinColumn(name = "cylinder_type_id", referencedColumnName = "cylinder_type_id")
 	private Cylinder cylinder = new Cylinder();
 
-	@OneToMany(mappedBy = "customer")
-	@JsonIgnore
-	private Set<GasBooking> gasBookings;
-
+	
 	public Integer getCustomerId() {
 		return customerId;
 	}
@@ -130,6 +127,10 @@ public class Customer {
 	public void setCylinder(Cylinder cylinder) {
 		this.cylinder = cylinder;
 	}
+	
+	@OneToMany(mappedBy = "customer")
+	@JsonIgnore
+	private Set<GasBooking> gasBookings;
 
 	public Set<GasBooking> getGasBookings() {
 		return gasBookings;
