@@ -19,6 +19,7 @@ import com.cg.dao.ICustomerDao;
 import com.cg.dao.IGasBookingDao;
 import com.cg.entity.Customer;
 import com.cg.entity.GasBooking;
+import com.cg.exception.BookingLimitReachedException;
 import com.cg.exception.CustomerNotFoundException;
 import com.cg.service.GasBookingServiceImpl;
 import com.cg.service.IGasBookingService;
@@ -50,7 +51,7 @@ public class TestBookCylinder {
 	
 	@Test
 	@DisplayName(value="testBookCylinder for customer id 1")
-	public void testBookCylinder1() throws CustomerNotFoundException
+	public void testBookCylinder1() throws CustomerNotFoundException, BookingLimitReachedException
 	{
 		assertTrue(gasBookingService.bookCylinder(1)>0);
 	}

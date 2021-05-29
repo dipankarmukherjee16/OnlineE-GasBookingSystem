@@ -17,5 +17,7 @@ public interface IGasBookingDao extends JpaRepository<GasBooking, Integer> {
 
 	@Query("from GasBooking gb inner join fetch gb.customer cs where cs.customerId=:custId and extract(year from gb.bookingDate)=:year")
 	public List<GasBooking> noOfCylindersBookedInAYear(@Param("year") int year, @Param("custId") int customerId);
-
+	
+	@Query("select gb from GasBooking gb inner join gb.customer cs where cs.customerId=:custId and extract(year from gb.bookingDate)=extract(year from sysdate)")
+	public List<GasBooking> checkBookingLimit(@Param("custId") int customerId);
 }
