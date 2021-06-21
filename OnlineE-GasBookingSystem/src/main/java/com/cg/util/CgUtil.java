@@ -38,7 +38,7 @@ public class CgUtil {
 	public static final String AADHAR_PATTERN="Aadhar number cannot be empty and cointains 12 digits";
 	public static final String CUSTOMER_EXIST="Customer already exist";
 	public static final String BOOKING_LIMIT_REACHED="Booking limit reached";
-
+	public static final String CUSTOMER_INACTIVE="Customer is inactive";
 
 	private CgUtil() {
 		

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cg.dto.SuccessMessage;
 import com.cg.entity.Invoice;
 import com.cg.exception.BookingLimitReachedException;
+import com.cg.exception.CustomerInactiveException;
 import com.cg.exception.CustomerNotFoundException;
 import com.cg.exception.GasBookingNotFoundException;
 import com.cg.exception.InvoiceException;
@@ -38,6 +39,7 @@ public class BookingRestController {
 	 *          @version: 1.0   
 	 *          @return: SuccessMessage
 	 * @throws BookingLimitReachedException 
+	 * @throws CustomerInactiveException 
 	 *          @throws: CustomerNotFoundException, if customer not found for given customer id
 	 *          Description: Insert new customer with details into the database                             
 	 *          Created at: 20-MAY-2021
@@ -45,7 +47,7 @@ public class BookingRestController {
 
 
 	@PostMapping("bookcylinder/{customerid}")
-	public SuccessMessage bookCylinder(@PathVariable("customerid") int customerId) throws CustomerNotFoundException, BookingLimitReachedException {
+	public SuccessMessage bookCylinder(@PathVariable("customerid") int customerId) throws CustomerNotFoundException, BookingLimitReachedException, CustomerInactiveException {
 		int gasBookingId = gasBookingService.bookCylinder(customerId);
 		return new SuccessMessage(CgUtil.CYLINDER_BOOKED + gasBookingId);
 	}

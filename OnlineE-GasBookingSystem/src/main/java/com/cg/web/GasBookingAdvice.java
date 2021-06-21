@@ -9,6 +9,8 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 
 import com.cg.dto.ErrorMessage;
 import com.cg.exception.BookingLimitReachedException;
+import com.cg.exception.CustomerInactiveException;
+import com.cg.exception.CustomerNotFoundException;
 import com.cg.exception.GasBookingNotFoundException;
 import com.cg.exception.InvoiceException;
 import com.cg.exception.NoGasBookingDoneException;
@@ -19,6 +21,18 @@ public class GasBookingAdvice {
 	@ExceptionHandler(NoGasBookingDoneException.class)
 	@ResponseStatus(code = HttpStatus.NOT_FOUND)
 	public ErrorMessage handleExceptionNoGasBookingDone(NoGasBookingDoneException ex) {
+		return new ErrorMessage(HttpStatus.NOT_FOUND.toString(), ex.getMessage());
+	}
+	
+	@ExceptionHandler(CustomerNotFoundException.class)
+	@ResponseStatus(code = HttpStatus.NOT_FOUND)
+	public ErrorMessage handleExceptionCustomerNotFound(CustomerNotFoundException ex) {
+		return new ErrorMessage(HttpStatus.NOT_FOUND.toString(), ex.getMessage());
+	}
+	
+	@ExceptionHandler(CustomerInactiveException.class)
+	@ResponseStatus(code = HttpStatus.NOT_FOUND)
+	public ErrorMessage handleExceptionCustomerInactive(CustomerInactiveException ex) {
 		return new ErrorMessage(HttpStatus.NOT_FOUND.toString(), ex.getMessage());
 	}
 

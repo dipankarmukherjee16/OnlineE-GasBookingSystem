@@ -16,6 +16,7 @@ import com.cg.entity.Customer;
 import com.cg.entity.GasBooking;
 import com.cg.entity.Invoice;
 import com.cg.exception.BookingLimitReachedException;
+import com.cg.exception.CustomerInactiveException;
 import com.cg.exception.CustomerNotFoundException;
 import com.cg.exception.GasBookingNotFoundException;
 import com.cg.exception.InvoiceException;
@@ -48,7 +49,8 @@ public class GasBookingServiceImpl implements IGasBookingService {
 	 *          @author: Moinak Majumder        
 	 *          @version: 1.0   
 	 *          @return: gasBookingId
-	 * @throws BookingLimitReachedException 
+	 * 			@throws BookingLimitReachedException 
+	 * 			@throws CustomerInactiveException 
 	 *          @throws: CustomerNotFoundException, if customer not found for given customer id
 	 *          Description: Insert new gas booking details into the database                             
 	 *          Created at: 18-MAY-2021
@@ -56,10 +58,12 @@ public class GasBookingServiceImpl implements IGasBookingService {
 
 	@Override
 	@Transactional
-	public Integer bookCylinder(Integer customerId) throws CustomerNotFoundException, BookingLimitReachedException {
+	public Integer bookCylinder(Integer customerId) throws CustomerNotFoundException, BookingLimitReachedException, CustomerInactiveException{
 		Optional<Customer> opcust = custDao.findById(customerId);
 		if (!opcust.isPresent())
 			throw new CustomerNotFoundException(CgUtil.CUSTOMERNOTFOUND);
+		if(custDao.checkConnectionStatus(customerId)!=null)
+			throw new CustomerInactiveException(CgUtil.CUSTOMER_INACTIVE);
 		List<GasBooking> lst = bookDao.checkBookingLimit(customerId);
 		if(lst.size()==12)
 			throw new BookingLimitReachedException(CgUtil.BOOKING_LIMIT_REACHED);

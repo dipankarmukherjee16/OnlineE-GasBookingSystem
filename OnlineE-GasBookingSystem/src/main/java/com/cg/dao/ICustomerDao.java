@@ -22,4 +22,7 @@ public interface ICustomerDao extends JpaRepository<Customer, Integer> {
 	public Customer findByEmail(String email);
 	
 	public Customer findByAadharCard(String aadharCard);
+	
+	@Query("select cs from Customer cs where cs.customerId=:custId and cs.connectionStatus='inactive'")
+	public Customer checkConnectionStatus(@Param("custId") int customerId);
 }
