@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.cg.dao.ICustomerDao;
 import com.cg.dao.ICylinderDao;
@@ -81,7 +82,6 @@ public class ViewCustomerServiceImpl implements IViewCustomerService {
 	 *          Description: View the details of customers by cylinder type                          
 	 *          Created at: 17-MAY-2021
 	 **********************************************************************************************/
-
 
 	@Override
 	public List<Customer> viewCustomerbyCylinderType(String cylinderType)

@@ -19,6 +19,7 @@ import com.cg.dao.ICustomerDao;
 import com.cg.dao.ISurrenderCylinderDao;
 import com.cg.entity.Customer;
 import com.cg.entity.SurrenderCylinder;
+import com.cg.exception.CustomerInactiveException;
 import com.cg.exception.CustomerNotFoundException;
 import com.cg.service.ISurrenderCylinderService;
 import com.cg.service.SurrenderCylinderServiceImpl;
@@ -51,7 +52,7 @@ public class TestAddSurrenderCylinder {
 	
 	@Test
 	@DisplayName(value="Test surrender cylinder with valid customer Id")
-	public void testAddSurrenderCylinder1() throws CustomerNotFoundException
+	public void testAddSurrenderCylinder1() throws CustomerNotFoundException, CustomerInactiveException
 	{
 		assertNotNull(surrenderCylinderService.surrenderCylinder(1));
 	}

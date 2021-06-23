@@ -14,6 +14,7 @@ import com.cg.dao.ICustomerDao;
 import com.cg.dao.ISurrenderCylinderDao;
 import com.cg.entity.Customer;
 import com.cg.entity.SurrenderCylinder;
+import com.cg.exception.CustomerInactiveException;
 import com.cg.exception.CustomerNotFoundException;
 import com.cg.exception.SurrenderCylinderNotFoundException;
 import com.cg.util.CgUtil;
@@ -47,8 +48,10 @@ public class SurrenderCylinderServiceImpl implements ISurrenderCylinderService {
      * 	Parameter customerId - Customers ID
 	 * 	@returns Integer  - surrender cylinder id, if customer found otherwise throws CustomerNotFoundException
 	 * 	@throws CustomerNotFoundException - when supplied customer id is not present
+	 *  @throws CustomerInactiveException
      *	Created By - Debabrata Deb
      *	Created Date - 19-MAY-2021                           
+	  
 	
 	 ************************************************************************************/
 
@@ -56,13 +59,15 @@ public class SurrenderCylinderServiceImpl implements ISurrenderCylinderService {
 	
 	@Override
 	@Transactional
-	public Integer surrenderCylinder(int customerId) throws CustomerNotFoundException {
+	public Integer surrenderCylinder(int customerId) throws CustomerNotFoundException, CustomerInactiveException {
 
 		Optional<Customer> customer = Optional.empty();
 		customer = customerDao.findById(customerId);
 		if (!customer.isPresent())
 			throw new CustomerNotFoundException(CgUtil.CUSTOMERNOTFOUND);
-
+		if (customerDao.checkConnectionStatus(customerId)!=null)
+			throw new CustomerInactiveException(CgUtil.CUSTOMER_INACTIVE);
+		
 		Customer cust=customer.get();
 		SurrenderCylinder surrenderCylinder = new SurrenderCylinder();
 		surrenderCylinder.setSurrenderDate(LocalDate.now());

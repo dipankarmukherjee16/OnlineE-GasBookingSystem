@@ -3,6 +3,7 @@ package com.cg.web;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -40,6 +41,7 @@ public class ViewCustomerRestController {
 	 *          Created at: 19-MAY-2021
 	 **********************************************************************************************/
 
+	@CrossOrigin
 	@GetMapping("viewallcustomer")
 	public List<Customer> viewAllCustomers() throws CustomerNotFoundException {
 
@@ -56,6 +58,7 @@ public class ViewCustomerRestController {
 	 *          Created at: 19-MAY-2021
 	 **********************************************************************************************/
 
+	@CrossOrigin
 	@GetMapping("viewcustomerbyid/{customerid}")
 	public Customer viewCustomerbyId(@PathVariable("customerid") int customerId) throws CustomerNotFoundException {
 		return customerService.viewCustomerbyId(customerId);
@@ -71,6 +74,7 @@ public class ViewCustomerRestController {
 	 *          Created at: 19-MAY-2021
 	 **********************************************************************************************/
 
+	@CrossOrigin
 	@GetMapping("viewcustomerbycylindertype/{type}")
 	public List<Customer> viewCustomerbyCylinderType(@PathVariable("type") String cylinderType)
 			throws CustomerNotFoundException, CylinderTypeMismatchException {
@@ -87,6 +91,7 @@ public class ViewCustomerRestController {
 	 *          Created at: 19-MAY-2021
 	 **********************************************************************************************/
 	
+	@CrossOrigin
 	@GetMapping("viewcustomerbyarea/{city}")
 	public List<Customer> viewCustomerbyArea(@PathVariable("city") String city)
 			throws CityNotFoundException {

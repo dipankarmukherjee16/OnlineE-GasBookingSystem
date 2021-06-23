@@ -3,6 +3,7 @@ package com.cg.web;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.dto.SuccessMessage;
 import com.cg.entity.Customer;
+import com.cg.exception.CustomerInactiveException;
 import com.cg.exception.CustomerNotFoundException;
 import com.cg.exception.SurrenderCylinderNotFoundException;
 import com.cg.service.ISurrenderCylinderService;
@@ -36,6 +38,7 @@ public class SurrenderCylinderRestController {
 	/************************************************************************************
 	 * 	Method: surrenderCylinder
      * 	Description: To surrender a connection
+	 * @throws CustomerInactiveException 
      * 	@PathVariable customerid - Customers ID
 	 * 	@returns SuccessMessage  - surrender cylinder id, if customer found  
      *	Created By - Debabrata Deb
@@ -44,9 +47,10 @@ public class SurrenderCylinderRestController {
 	 ************************************************************************************/
 
 
+	@CrossOrigin(origins = {"http://localhost:4200"})
 	@PostMapping("surrendercylinder/{customerid}")
 	public SuccessMessage surrenderCylinder(@PathVariable("customerid") int customerId)
-			throws CustomerNotFoundException {
+			throws CustomerNotFoundException, CustomerInactiveException {
 		int surrenderId = surrenderCylinderService.surrenderCylinder(customerId);
 		return new SuccessMessage(CgUtil.SURRENDER_CYLINDER + surrenderId);
 	}
@@ -63,6 +67,7 @@ public class SurrenderCylinderRestController {
 
 	
 
+	@CrossOrigin(origins = {"http://localhost:4200"})
 	@GetMapping("viewallsurrenderedcustomer")
 	public List<Customer> viewAllSurrenderedCustomer()
 			throws CustomerNotFoundException, SurrenderCylinderNotFoundException {
@@ -79,7 +84,7 @@ public class SurrenderCylinderRestController {
 	
 	 ************************************************************************************/
 	
-	
+	@CrossOrigin(origins = {"http://localhost:4200"})
 	@GetMapping("viewsurrendercustomer/{year}")
 	public List<Customer> viewSurrenderCustomer(@PathVariable("year") int year) throws CustomerNotFoundException {
 		return surrenderCylinderService.viewSurrenderCustomer(year);
