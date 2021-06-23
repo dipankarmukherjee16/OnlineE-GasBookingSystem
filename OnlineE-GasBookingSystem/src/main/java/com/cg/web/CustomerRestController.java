@@ -4,6 +4,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -47,6 +48,7 @@ public class CustomerRestController {
 	 *          Created at: 19-MAY-2021
 	 **********************************************************************************************/
 
+	@CrossOrigin(origins = {"http://localhost:4200"})
 	@PostMapping("addcustomer")
 	public SuccessMessage addCustomer(@Valid @RequestBody CustomerDto customerDto, BindingResult br)
 			throws ValidateException, CylinderTypeMismatchException, CustomerAlreadyExistException {
@@ -70,6 +72,7 @@ public class CustomerRestController {
 	 *          Created at: 19-MAY-2021
 	 **********************************************************************************************/
 
+	@CrossOrigin(origins = {"http://localhost:4200"})
 	@PutMapping("editcustomer/{customerid}")
 	public SuccessMessage editCustomer(@Valid @RequestBody CustomerDto customerDto,
 			@PathVariable("customerid") int customerId, BindingResult br)
@@ -92,7 +95,7 @@ public class CustomerRestController {
 	 **********************************************************************************************/
 
 
-
+	@CrossOrigin(origins = {"http://localhost:4200"})
 	@PutMapping("linkaadhar/{customerid}/{aadharno}")
 	public SuccessMessage linkAadhar(@PathVariable("customerid") int customerId,
 			@PathVariable("aadharno") String aadharno) throws CustomerNotFoundException, ValidateException {

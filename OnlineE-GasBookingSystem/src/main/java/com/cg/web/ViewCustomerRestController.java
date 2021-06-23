@@ -41,7 +41,7 @@ public class ViewCustomerRestController {
 	 *          Created at: 19-MAY-2021
 	 **********************************************************************************************/
 
-	@CrossOrigin
+	@CrossOrigin(origins = {"http://localhost:4200"})
 	@GetMapping("viewallcustomer")
 	public List<Customer> viewAllCustomers() throws CustomerNotFoundException {
 
@@ -58,7 +58,7 @@ public class ViewCustomerRestController {
 	 *          Created at: 19-MAY-2021
 	 **********************************************************************************************/
 
-	@CrossOrigin
+	@CrossOrigin(origins = {"http://localhost:4200"})
 	@GetMapping("viewcustomerbyid/{customerid}")
 	public Customer viewCustomerbyId(@PathVariable("customerid") int customerId) throws CustomerNotFoundException {
 		return customerService.viewCustomerbyId(customerId);
@@ -74,7 +74,7 @@ public class ViewCustomerRestController {
 	 *          Created at: 19-MAY-2021
 	 **********************************************************************************************/
 
-	@CrossOrigin
+	@CrossOrigin(origins = {"http://localhost:4200"})
 	@GetMapping("viewcustomerbycylindertype/{type}")
 	public List<Customer> viewCustomerbyCylinderType(@PathVariable("type") String cylinderType)
 			throws CustomerNotFoundException, CylinderTypeMismatchException {
@@ -91,7 +91,7 @@ public class ViewCustomerRestController {
 	 *          Created at: 19-MAY-2021
 	 **********************************************************************************************/
 	
-	@CrossOrigin
+	@CrossOrigin(origins = {"http://localhost:4200"})
 	@GetMapping("viewcustomerbyarea/{city}")
 	public List<Customer> viewCustomerbyArea(@PathVariable("city") String city)
 			throws CityNotFoundException {
