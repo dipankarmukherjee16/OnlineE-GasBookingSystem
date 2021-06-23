@@ -25,4 +25,7 @@ public interface ICustomerDao extends JpaRepository<Customer, Integer> {
 	
 	@Query("select cs from Customer cs where cs.customerId=:custId and cs.connectionStatus='inactive'")
 	public Customer checkConnectionStatus(@Param("custId") int customerId);
+	
+	@Query("select cs.connectionStatus from Customer cs where cs.customerId=:custId")
+	public String checkStatus(@Param("custId") int customerId);
 }

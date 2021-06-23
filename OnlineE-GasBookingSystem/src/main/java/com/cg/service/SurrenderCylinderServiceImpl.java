@@ -65,7 +65,7 @@ public class SurrenderCylinderServiceImpl implements ISurrenderCylinderService {
 		customer = customerDao.findById(customerId);
 		if (!customer.isPresent())
 			throw new CustomerNotFoundException(CgUtil.CUSTOMERNOTFOUND);
-		if (customerDao.checkConnectionStatus(customerId)!=null)
+		if (customerDao.checkStatus(customerId).equalsIgnoreCase(CgUtil.CONNECTIONSTATUSINACTIVE))
 			throw new CustomerInactiveException(CgUtil.CUSTOMER_INACTIVE);
 		
 		Customer cust=customer.get();
