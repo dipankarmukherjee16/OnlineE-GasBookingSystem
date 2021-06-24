@@ -54,13 +54,13 @@ public class ViewBookingServiceImpl implements IViewBookingService {
 	 **********************************************************************************************/
 	
 	@Override
-	public String viewStatus(int gasBookingId) throws GasBookingNotFoundException {
+	public GasBooking viewStatus(int gasBookingId) throws GasBookingNotFoundException {
 		Optional<GasBooking> opbook = bookDao.findById(gasBookingId);
 		if (!opbook.isPresent())
 			throw new GasBookingNotFoundException(CgUtil.BOOKINGNOTFOUND);
 		GasBooking book = opbook.get();
 
-		return book.getStatus();
+		return book;
 
 	}
 	

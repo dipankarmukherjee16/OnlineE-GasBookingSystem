@@ -54,7 +54,7 @@ public class ViewBookingRestController {
 	 **********************************************************************************************/
 
 	@GetMapping("viewstatus/{gasbookingid}")
-	public String viewStatus(@PathVariable("gasbookingid") int gasBookingId) throws GasBookingNotFoundException {
+	public GasBooking viewStatus(@PathVariable("gasbookingid") int gasBookingId) throws GasBookingNotFoundException {
 		return bookingService.viewStatus(gasBookingId);
 
 	}

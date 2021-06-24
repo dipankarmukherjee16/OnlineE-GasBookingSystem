@@ -7,7 +7,7 @@ import com.cg.exception.GasBookingNotFoundException;
 import com.cg.exception.NoGasBookingDoneException;
 
 public interface IViewBookingService {
-	public String viewStatus(int gasBookingId) throws GasBookingNotFoundException;
+	public GasBooking viewStatus(int gasBookingId) throws GasBookingNotFoundException;
 
 	public List<GasBooking> viewBookingDetails(int customerId) throws GasBookingNotFoundException;
 
