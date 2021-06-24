@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import com.cg.dto.ErrorMessage;
+import com.cg.exception.CityNotFoundException;
 import com.cg.exception.CustomerAlreadyExistException;
 import com.cg.exception.CustomerNotFoundException;
 import com.cg.exception.CylinderNotFoundException;
@@ -48,6 +49,12 @@ public class CustomerAdvice {
 	@ExceptionHandler(CustomerAlreadyExistException.class)
 	@ResponseStatus(code = HttpStatus.NOT_FOUND)
 	public ErrorMessage handleExceptionCustomerAlreadyExist(CustomerAlreadyExistException ex) {
+		return new ErrorMessage(HttpStatus.NOT_FOUND.toString(), ex.getMessage());
+	}
+	
+	@ExceptionHandler(CityNotFoundException.class)
+	@ResponseStatus(code = HttpStatus.NOT_FOUND)
+	public ErrorMessage handleExceptionCityNotFound(CityNotFoundException ex) {
 		return new ErrorMessage(HttpStatus.NOT_FOUND.toString(), ex.getMessage());
 	}
 	
