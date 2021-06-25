@@ -11,5 +11,5 @@ public interface IViewBookingService {
 
 	public List<GasBooking> viewBookingDetails(int customerId) throws GasBookingNotFoundException;
 
-	public Integer viewNoOfCylindersBooked(int year, int customerId) throws NoGasBookingDoneException;
+	public List<GasBooking> viewNoOfCylindersBooked(int year, int customerId) throws NoGasBookingDoneException;
 }

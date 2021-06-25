@@ -3,6 +3,7 @@ package com.cg.web;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,7 +37,8 @@ public class ViewBookingRestController {
 	 *          Description: View gas booking details for given customer id                             
 	 *          Created at: 20-MAY-2021
 	 **********************************************************************************************/
-
+	
+	@CrossOrigin(origins = {"http://localhost:4200"})
 	@GetMapping("viewbookingdetails/{customerid}")
 	public List<GasBooking> viewBookingDetails(@PathVariable("customerid") int customerId)
 			throws GasBookingNotFoundException {
@@ -53,6 +55,7 @@ public class ViewBookingRestController {
 	 *          Created at: 20-MAY-2021
 	 **********************************************************************************************/
 
+	@CrossOrigin(origins = {"http://localhost:4200"})
 	@GetMapping("viewstatus/{gasbookingid}")
 	public GasBooking viewStatus(@PathVariable("gasbookingid") int gasBookingId) throws GasBookingNotFoundException {
 		return bookingService.viewStatus(gasBookingId);
@@ -68,8 +71,9 @@ public class ViewBookingRestController {
 	 *          Created at: 20-MAY-2021
 	 **********************************************************************************************/
 
+	@CrossOrigin(origins = {"http://localhost:4200"})
 	@GetMapping("viewnoofcylindersbooked/{year}/{customerid}")
-	public Integer viewNoOfCylindersBooked(@PathVariable("year") int year, @PathVariable("customerid") int customerId)
+	public List<GasBooking> viewNoOfCylindersBooked(@PathVariable("year") int year, @PathVariable("customerid") int customerId)
 			throws NoGasBookingDoneException {
 		return bookingService.viewNoOfCylindersBooked(year, customerId);
 

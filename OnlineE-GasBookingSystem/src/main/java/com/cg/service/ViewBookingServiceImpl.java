@@ -75,11 +75,11 @@ public class ViewBookingServiceImpl implements IViewBookingService {
 	 **********************************************************************************************/
 
 	@Override
-	public Integer viewNoOfCylindersBooked(int year, int customerId) throws NoGasBookingDoneException {
+	public List<GasBooking> viewNoOfCylindersBooked(int year, int customerId) throws NoGasBookingDoneException {
 		List<GasBooking> lst = bookDao.noOfCylindersBookedInAYear(year, customerId);
 		if (lst.isEmpty())
 			throw new NoGasBookingDoneException(CgUtil.NOBOOKINGDONE);
-		return lst.size();
+		return lst;
 	}
 
 }

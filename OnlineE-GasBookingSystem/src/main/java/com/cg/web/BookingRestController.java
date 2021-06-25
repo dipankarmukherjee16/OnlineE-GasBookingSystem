@@ -3,6 +3,7 @@ package com.cg.web;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -46,6 +47,7 @@ public class BookingRestController {
 	 **********************************************************************************************/
 
 
+	@CrossOrigin(origins = {"http://localhost:4200"})
 	@PostMapping("bookcylinder/{customerid}")
 	public SuccessMessage bookCylinder(@PathVariable("customerid") int customerId) throws CustomerNotFoundException, BookingLimitReachedException, CustomerInactiveException {
 		int gasBookingId = gasBookingService.bookCylinder(customerId);
@@ -61,6 +63,7 @@ public class BookingRestController {
 	 *          Created at: 20-MAY-2021
 	 **********************************************************************************************/
 	
+	@CrossOrigin(origins = {"http://localhost:4200"})
 	@PostMapping("generateinvoice/{bookingid}/{fare}")
 	public SuccessMessage generateInvoice(@PathVariable("bookingid") int bookingId, @PathVariable("fare") double fare)
 			throws GasBookingNotFoundException {
@@ -77,6 +80,7 @@ public class BookingRestController {
 	 *          Created at: 20-MAY-2021
 	 **********************************************************************************************/
 
+	@CrossOrigin(origins = {"http://localhost:4200"})
 	@GetMapping("viewallinvoices")
 	public List<Invoice> getInvoices() throws InvoiceException {
 		return gasBookingService.getInvoices();
@@ -91,6 +95,7 @@ public class BookingRestController {
 	 *          Created at: 20-MAY-2021
 	 **********************************************************************************************/
 
+	@CrossOrigin(origins = {"http://localhost:4200"})
 	@PutMapping("cylinderdelivered/{invoiceid}")
 	public SuccessMessage cylinderDelivered(@PathVariable("invoiceid") int invoiceId) throws InvoiceException {
 		gasBookingService.cylinderDelivered(invoiceId);
