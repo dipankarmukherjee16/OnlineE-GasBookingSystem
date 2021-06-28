@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import com.cg.dto.ErrorMessage;
+import com.cg.exception.AadharAlreadyLinkedException;
 import com.cg.exception.CityNotFoundException;
 import com.cg.exception.CustomerAlreadyExistException;
 import com.cg.exception.CustomerNotFoundException;
@@ -49,6 +50,12 @@ public class CustomerAdvice {
 	@ExceptionHandler(CustomerAlreadyExistException.class)
 	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
 	public ErrorMessage handleExceptionCustomerAlreadyExist(CustomerAlreadyExistException ex) {
+		return new ErrorMessage(HttpStatus.BAD_REQUEST.toString(), ex.getMessage());
+	}
+	
+	@ExceptionHandler(AadharAlreadyLinkedException.class)
+	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
+	public ErrorMessage handleExceptionAadharAlreadyLinked(AadharAlreadyLinkedException ex) {
 		return new ErrorMessage(HttpStatus.BAD_REQUEST.toString(), ex.getMessage());
 	}
 	

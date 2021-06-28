@@ -14,6 +14,7 @@ import com.cg.dao.ICylinderDao;
 import com.cg.dto.CustomerDto;
 import com.cg.entity.Customer;
 import com.cg.entity.Cylinder;
+import com.cg.exception.AadharAlreadyLinkedException;
 import com.cg.exception.CustomerAlreadyExistException;
 import com.cg.exception.CustomerNotFoundException;
 import com.cg.exception.CylinderTypeMismatchException;
@@ -128,6 +129,7 @@ public class CustomerServiceImpl implements ICustomerService {
 	 *          @version: 1.0   
 	 *          @return: true
 	 * @throws ValidateException 
+	 * @throws AadharAlreadyLinkedException 
 	 *          @throws: CustomerNotFoundException, if customer id is wrong          
 	 *          Description: Link aadhar number to an existing customer details                   
 	 *          Created at: 18-MAY-2021
@@ -136,7 +138,7 @@ public class CustomerServiceImpl implements ICustomerService {
 	
 	@Override
 	@Transactional
-	public boolean linkAadhar(int custId, String aadharNo) throws CustomerNotFoundException, ValidateException {
+	public boolean linkAadhar(int custId, String aadharNo) throws CustomerNotFoundException, ValidateException, AadharAlreadyLinkedException {
 		Optional<Customer> optcust = custDao.findById(custId);
 		if (!optcust.isPresent()) {
 			throw new CustomerNotFoundException(CgUtil.CUSTOMERNOTFOUND);
@@ -144,6 +146,8 @@ public class CustomerServiceImpl implements ICustomerService {
 		if(aadharNo==null || !aadharNo.matches("[0-9]{12}")) {
 			throw new ValidateException(CgUtil.AADHAR_PATTERN);
 		}
+		if(custDao.checkAadharLinkage(custId)!=null)
+			throw new AadharAlreadyLinkedException(CgUtil.ALREADY_LINKED);
 		Customer cust = optcust.get();
 		cust.setAadharCard(aadharNo);
 		custDao.save(cust);

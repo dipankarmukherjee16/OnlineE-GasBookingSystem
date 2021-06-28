@@ -1,6 +1,7 @@
 package com.cg.service;
 
 import com.cg.dto.CustomerDto;
+import com.cg.exception.AadharAlreadyLinkedException;
 import com.cg.exception.CustomerAlreadyExistException;
 import com.cg.exception.CustomerNotFoundException;
 import com.cg.exception.CylinderTypeMismatchException;
@@ -12,6 +13,6 @@ public interface ICustomerService {
 	public boolean updateCustomer(CustomerDto customerdto, Integer customerId)
 			throws CustomerNotFoundException, CylinderTypeMismatchException;
 
-	public boolean linkAadhar(int custId, String aadharNo) throws CustomerNotFoundException, ValidateException;
+	public boolean linkAadhar(int custId, String aadharNo) throws CustomerNotFoundException, ValidateException, AadharAlreadyLinkedException;
 
 }

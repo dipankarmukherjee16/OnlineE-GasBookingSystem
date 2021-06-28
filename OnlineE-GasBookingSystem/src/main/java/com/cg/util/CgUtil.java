@@ -41,6 +41,7 @@ public class CgUtil {
 	public static final String CUSTOMER_INACTIVE="Customer is inactive";
 	public static final String NO_OF_BOOKINGS="No of cylinders booked ";
 	public static final String DUPLICATE_INVOICE="Invoice already generated";
+	public static final String ALREADY_LINKED="Aadhar already linked";
 
 	private CgUtil() {
 		

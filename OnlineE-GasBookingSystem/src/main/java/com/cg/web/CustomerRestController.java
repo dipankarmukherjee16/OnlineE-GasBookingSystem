@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.dto.CustomerDto;
 import com.cg.dto.SuccessMessage;
+import com.cg.exception.AadharAlreadyLinkedException;
 import com.cg.exception.CustomerAlreadyExistException;
 import com.cg.exception.CustomerNotFoundException;
 import com.cg.exception.CylinderTypeMismatchException;
@@ -89,6 +90,7 @@ public class CustomerRestController {
 	 *          @version: 1.0   
 	 *          @return: SuccessMessage
 	 * @throws ValidateException 
+	 * @throws AadharAlreadyLinkedException 
 	 *          @throws: CustomerNotFoundException, if customer id is wrong          
 	 *          Description: Link aadhar number to an existing customer details                   
 	 *          Created at: 19-MAY-2021
@@ -98,7 +100,7 @@ public class CustomerRestController {
 	@CrossOrigin(origins = {"http://localhost:4200"})
 	@PutMapping("linkaadhar/{customerid}/{aadharno}")
 	public SuccessMessage linkAadhar(@PathVariable("customerid") int customerId,
-			@PathVariable("aadharno") String aadharno) throws CustomerNotFoundException, ValidateException {
+			@PathVariable("aadharno") String aadharno) throws CustomerNotFoundException, ValidateException, AadharAlreadyLinkedException {
 		customerService.linkAadhar(customerId, aadharno);
 		return new SuccessMessage(CgUtil.AADHAR_LINKED);
 	}

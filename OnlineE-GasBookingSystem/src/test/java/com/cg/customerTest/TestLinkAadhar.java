@@ -15,6 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.cg.dao.ICustomerDao;
 import com.cg.entity.Customer;
+import com.cg.exception.AadharAlreadyLinkedException;
 import com.cg.exception.CustomerNotFoundException;
 import com.cg.exception.ValidateException;
 import com.cg.service.CustomerServiceImpl;
@@ -39,7 +40,7 @@ public class TestLinkAadhar {
 	}
 
 	@Test
-	public void testLinkAdhar1() throws CustomerNotFoundException, ValidateException {
+	public void testLinkAdhar1() throws CustomerNotFoundException, ValidateException, AadharAlreadyLinkedException {
 		assertTrue(service.linkAadhar(1, "574185478523"));
 	}
 
