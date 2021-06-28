@@ -67,7 +67,7 @@ public class LoginServiceImpl implements ILoginService {
 		StringBuilder sb = new StringBuilder();
 		int ch;
 		for (int idx = 0; idx < arr.length; idx++) {
-			ch = arr[idx] + 3;
+			ch = arr[idx] - 10;
 			sb.append((char) ch);
 		}
 		return sb.toString();
@@ -82,7 +82,7 @@ public class LoginServiceImpl implements ILoginService {
 		StringBuilder sb = new StringBuilder();
 		int ch;
 		for (int idx = 0; idx < arr.length; idx++) {
-			ch = arr[idx] - 3;
+			ch = arr[idx] + 10;
 			sb.append((char) ch);
 		}
 		return sb.toString();
