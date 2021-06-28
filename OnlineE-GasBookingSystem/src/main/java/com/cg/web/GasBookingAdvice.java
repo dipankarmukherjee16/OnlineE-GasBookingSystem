@@ -11,6 +11,7 @@ import com.cg.dto.ErrorMessage;
 import com.cg.exception.BookingLimitReachedException;
 import com.cg.exception.CustomerInactiveException;
 import com.cg.exception.CustomerNotFoundException;
+import com.cg.exception.DuplicateInvoiceException;
 import com.cg.exception.GasBookingNotFoundException;
 import com.cg.exception.InvoiceException;
 import com.cg.exception.NoGasBookingDoneException;
@@ -31,9 +32,9 @@ public class GasBookingAdvice {
 	}
 	
 	@ExceptionHandler(CustomerInactiveException.class)
-	@ResponseStatus(code = HttpStatus.NOT_FOUND)
+	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
 	public ErrorMessage handleExceptionCustomerInactive(CustomerInactiveException ex) {
-		return new ErrorMessage(HttpStatus.NOT_FOUND.toString(), ex.getMessage());
+		return new ErrorMessage(HttpStatus.BAD_REQUEST.toString(), ex.getMessage());
 	}
 
 	@ExceptionHandler(GasBookingNotFoundException.class)
@@ -43,16 +44,23 @@ public class GasBookingAdvice {
 	}
 	
 	@ExceptionHandler(BookingLimitReachedException.class)
-	@ResponseStatus(code = HttpStatus.NOT_FOUND)
+	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
 	public ErrorMessage handleExceptionBookingLimitReached(BookingLimitReachedException ex) {
-		return new ErrorMessage(HttpStatus.NOT_FOUND.toString(), ex.getMessage());
+		return new ErrorMessage(HttpStatus.BAD_REQUEST.toString(), ex.getMessage());
 	}
 
 	@ExceptionHandler(InvoiceException.class)
 	@ResponseStatus(code = HttpStatus.NOT_FOUND)
-	public ErrorMessage handleExceptionCylinderNotFound(InvoiceException ex) {
+	public ErrorMessage handleExceptionInvoiceNotFound(InvoiceException ex) {
 		return new ErrorMessage(HttpStatus.NOT_FOUND.toString(), ex.getMessage());
 	}
+	
+	@ExceptionHandler(DuplicateInvoiceException.class)
+	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
+	public ErrorMessage handleExceptionDuplicateInvoice(DuplicateInvoiceException ex) {
+		return new ErrorMessage(HttpStatus.BAD_REQUEST.toString(), ex.getMessage());
+	}
+
 
 	@ExceptionHandler(MethodArgumentTypeMismatchException.class)
 	@ResponseStatus(code = HttpStatus.BAD_REQUEST)

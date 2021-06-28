@@ -19,6 +19,7 @@ import com.cg.dao.IGasBookingDao;
 import com.cg.dao.IInvoiceDao;
 import com.cg.entity.GasBooking;
 import com.cg.entity.Invoice;
+import com.cg.exception.DuplicateInvoiceException;
 import com.cg.exception.GasBookingNotFoundException;
 import com.cg.service.GasBookingServiceImpl;
 import com.cg.service.IGasBookingService;
@@ -51,7 +52,7 @@ public class TestGenerateInvoice {
 	
 	@Test
 	@DisplayName(value="testGenerateInvoice for booking id 1 and fare 855.5")
-	public void testGenerateInvoice1() throws GasBookingNotFoundException
+	public void testGenerateInvoice1() throws GasBookingNotFoundException, DuplicateInvoiceException
 	{
 		assertNotNull(gasBookingService.generateInvoice(1, 855.5));
 	}

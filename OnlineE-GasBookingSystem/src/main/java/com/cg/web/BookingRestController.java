@@ -15,6 +15,7 @@ import com.cg.entity.Invoice;
 import com.cg.exception.BookingLimitReachedException;
 import com.cg.exception.CustomerInactiveException;
 import com.cg.exception.CustomerNotFoundException;
+import com.cg.exception.DuplicateInvoiceException;
 import com.cg.exception.GasBookingNotFoundException;
 import com.cg.exception.InvoiceException;
 import com.cg.service.IGasBookingService;
@@ -58,6 +59,7 @@ public class BookingRestController {
 	 *          @author: Moinak Majumder       
 	 *          @version: 1.0   
 	 *          @return: SuccessMessage
+	 * @throws DuplicateInvoiceException 
 	 *          @throws: CustomerNotFoundException, if customer not found for given customer id
 	 *          Description: Insert new invoice into the database                             
 	 *          Created at: 20-MAY-2021
@@ -66,7 +68,7 @@ public class BookingRestController {
 	@CrossOrigin(origins = {"http://localhost:4200"})
 	@PostMapping("generateinvoice/{bookingid}/{fare}")
 	public SuccessMessage generateInvoice(@PathVariable("bookingid") int bookingId, @PathVariable("fare") double fare)
-			throws GasBookingNotFoundException {
+			throws GasBookingNotFoundException, DuplicateInvoiceException {
 		gasBookingService.generateInvoice(bookingId, fare);
 		return new SuccessMessage(CgUtil.INVOICE_GENERATED);
 	}

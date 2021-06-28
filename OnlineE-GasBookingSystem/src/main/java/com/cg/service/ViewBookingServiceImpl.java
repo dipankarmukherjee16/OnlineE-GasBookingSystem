@@ -54,13 +54,13 @@ public class ViewBookingServiceImpl implements IViewBookingService {
 	 **********************************************************************************************/
 	
 	@Override
-	public GasBooking viewStatus(int gasBookingId) throws GasBookingNotFoundException {
+	public String viewStatus(int gasBookingId) throws GasBookingNotFoundException {
 		Optional<GasBooking> opbook = bookDao.findById(gasBookingId);
 		if (!opbook.isPresent())
 			throw new GasBookingNotFoundException(CgUtil.BOOKINGNOTFOUND);
 		GasBooking book = opbook.get();
 
-		return book;
+		return book.getStatus();
 
 	}
 	
@@ -75,11 +75,11 @@ public class ViewBookingServiceImpl implements IViewBookingService {
 	 **********************************************************************************************/
 
 	@Override
-	public List<GasBooking> viewNoOfCylindersBooked(int year, int customerId) throws NoGasBookingDoneException {
+	public Integer viewNoOfCylindersBooked(int year, int customerId) throws NoGasBookingDoneException {
 		List<GasBooking> lst = bookDao.noOfCylindersBookedInAYear(year, customerId);
 		if (lst.isEmpty())
 			throw new NoGasBookingDoneException(CgUtil.NOBOOKINGDONE);
-		return lst;
+		return lst.size();
 	}
 
 }

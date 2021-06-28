@@ -47,9 +47,9 @@ public class CustomerAdvice {
 	
 	
 	@ExceptionHandler(CustomerAlreadyExistException.class)
-	@ResponseStatus(code = HttpStatus.NOT_FOUND)
+	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
 	public ErrorMessage handleExceptionCustomerAlreadyExist(CustomerAlreadyExistException ex) {
-		return new ErrorMessage(HttpStatus.NOT_FOUND.toString(), ex.getMessage());
+		return new ErrorMessage(HttpStatus.BAD_REQUEST.toString(), ex.getMessage());
 	}
 	
 	@ExceptionHandler(CityNotFoundException.class)

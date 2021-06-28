@@ -39,6 +39,8 @@ public class CgUtil {
 	public static final String CUSTOMER_EXIST="Customer already exist";
 	public static final String BOOKING_LIMIT_REACHED="Booking limit reached";
 	public static final String CUSTOMER_INACTIVE="Customer is inactive";
+	public static final String NO_OF_BOOKINGS="No of cylinders booked ";
+	public static final String DUPLICATE_INVOICE="Invoice already generated";
 
 	private CgUtil() {
 		

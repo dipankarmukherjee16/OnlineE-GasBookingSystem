@@ -18,6 +18,7 @@ import com.cg.entity.Invoice;
 import com.cg.exception.BookingLimitReachedException;
 import com.cg.exception.CustomerInactiveException;
 import com.cg.exception.CustomerNotFoundException;
+import com.cg.exception.DuplicateInvoiceException;
 import com.cg.exception.GasBookingNotFoundException;
 import com.cg.exception.InvoiceException;
 import com.cg.util.CgUtil;
@@ -82,6 +83,7 @@ public class GasBookingServiceImpl implements IGasBookingService {
 	 *          @author: Moinak Majumder        
 	 *          @version: 1.0   
 	 *          @return: Invoice instance
+	 * @throws DuplicateInvoiceException 
 	 *          @throws: GasBookingNotFoundException, if booking not found for given booking id
 	 *          Description: Insert new invoice into the database                              
 	 *          Created at: 18-MAY-2021
@@ -89,12 +91,15 @@ public class GasBookingServiceImpl implements IGasBookingService {
 
 	@Override
 	@Transactional
-	public Invoice generateInvoice(Integer bookingId, Double fare) throws GasBookingNotFoundException {
+	public Invoice generateInvoice(Integer bookingId, Double fare) throws GasBookingNotFoundException, DuplicateInvoiceException {
 		Optional<GasBooking> opbook = bookDao.findById(bookingId);
 		if (!opbook.isPresent())
 			throw new GasBookingNotFoundException(CgUtil.BOOKINGNOTFOUND); 
 		GasBooking book = opbook.get();
 
+		if(invoiceDao.findByBooking(book)!=null) {
+			throw new DuplicateInvoiceException(CgUtil.DUPLICATE_INVOICE);
+		}
 		Invoice invoice = new Invoice();
 		invoice.setInvoiceDate(LocalDate.now());
 		invoice.setBillAmount(fare);

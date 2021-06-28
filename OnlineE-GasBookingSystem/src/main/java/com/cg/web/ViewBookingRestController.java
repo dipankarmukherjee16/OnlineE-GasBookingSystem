@@ -8,10 +8,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cg.dto.SuccessMessage;
 import com.cg.entity.GasBooking;
 import com.cg.exception.GasBookingNotFoundException;
 import com.cg.exception.NoGasBookingDoneException;
 import com.cg.service.IViewBookingService;
+import com.cg.util.CgUtil;
 
 /*********************************************************************************************
  *          @author: Moinak Majumder       
@@ -57,8 +59,9 @@ public class ViewBookingRestController {
 
 	@CrossOrigin(origins = {"http://localhost:4200"})
 	@GetMapping("viewstatus/{gasbookingid}")
-	public GasBooking viewStatus(@PathVariable("gasbookingid") int gasBookingId) throws GasBookingNotFoundException {
-		return bookingService.viewStatus(gasBookingId);
+	public SuccessMessage viewStatus(@PathVariable("gasbookingid") int gasBookingId) throws GasBookingNotFoundException {
+		String status=bookingService.viewStatus(gasBookingId);
+		return new SuccessMessage(status);
 
 	}
 	
@@ -73,9 +76,10 @@ public class ViewBookingRestController {
 
 	@CrossOrigin(origins = {"http://localhost:4200"})
 	@GetMapping("viewnoofcylindersbooked/{year}/{customerid}")
-	public List<GasBooking> viewNoOfCylindersBooked(@PathVariable("year") int year, @PathVariable("customerid") int customerId)
+	public SuccessMessage viewNoOfCylindersBooked(@PathVariable("year") int year, @PathVariable("customerid") int customerId)
 			throws NoGasBookingDoneException {
-		return bookingService.viewNoOfCylindersBooked(year, customerId);
+		int count=bookingService.viewNoOfCylindersBooked(year, customerId);
+		return new SuccessMessage(CgUtil.NO_OF_BOOKINGS+count);
 
 	}
 }

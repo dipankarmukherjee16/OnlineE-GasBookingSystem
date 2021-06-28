@@ -36,13 +36,13 @@ public class Customer {
 	@Column(name = "mob_number", length = 10, nullable = false, unique = true)
 	private String mobileNumber;
 
-	@Column(name = "email", length = 20, nullable = false, unique = true)
+	@Column(name = "email", length = 30, nullable = false, unique = true)
 	private String email;
 
 	@Column(name = "aadhar_card", length = 12, unique = true)
 	private String aadharCard;
 
-	@Column(name = "address", nullable = false, length = 50)
+	@Column(name = "address", nullable = false, length = 80)
 	private String address;
 
 	@Column(name = "city", nullable = false, length = 20)

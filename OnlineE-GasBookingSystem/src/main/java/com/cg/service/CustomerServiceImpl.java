@@ -65,8 +65,10 @@ public class CustomerServiceImpl implements ICustomerService {
 			throw new CustomerAlreadyExistException(CgUtil.CUSTOMER_EXIST);
 		if(custDao.findByEmail(customerdto.getEmail())!=null)
 			throw new CustomerAlreadyExistException(CgUtil.CUSTOMER_EXIST);
-		if(custDao.findByAadharCard(customerdto.getAadharCard())!=null)
-			throw new CustomerAlreadyExistException(CgUtil.CUSTOMER_EXIST);
+		if(customerdto.getAadharCard()!=null) {
+			if(custDao.findByAadharCard(customerdto.getAadharCard())!=null)
+				throw new CustomerAlreadyExistException(CgUtil.CUSTOMER_EXIST);
+		}
 		Customer cust = new Customer();
 		cust.setUserName(customerdto.getUserName());
 		cust.setMobileNumber(customerdto.getMobileNumber());
