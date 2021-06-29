@@ -41,17 +41,23 @@ public class TestBookCylinder {
 	@BeforeEach 
 	  public void beforeEach() {
 		Optional<Customer> optcust1 = Optional.of(new Customer(1,"rahim", "8574123690", "rahim64@gmail.com", "741258743699",
-				"17 s k road, kolkata", "kolkata", "domestic"));
+				"17 s k road, kolkata", "kolkata", "active"));
 		Optional<Customer> optcust2 = Optional.empty();
+		Optional<Customer> optcust3 = Optional.of(new Customer(3,"Ramesh", "9674123390", "ramesh39@gmail.com", "678258143459",
+				"16 m l road, kolkata", "kolkata","inactive"));
+		
 		when(custDao.findById(1)).thenReturn(optcust1);
 		when(custDao.findById(2)).thenReturn(optcust2);
+		when(custDao.findById(3)).thenReturn(optcust3);
+		
+		when(custDao.checkConnectionStatus(3)).thenReturn(optcust3.get());
 		
 		GasBooking book = new GasBooking(1004,LocalDate.of(2020, 05, 13), "DELIVERED");
 		when(gasBookingDao.save(any(GasBooking.class))).thenReturn(book);
 	}
 	
 	@Test
-	@DisplayName(value="testBookCylinder for customer id 1")
+	@DisplayName(value="testBookCylinder for customer id 1 and status active")
 	public void testBookCylinder1() throws CustomerNotFoundException, BookingLimitReachedException, CustomerInactiveException
 	{
 		assertTrue(gasBookingService.bookCylinder(1)>0);
@@ -62,5 +68,12 @@ public class TestBookCylinder {
 	public void testBookCylinder2() throws CustomerNotFoundException
 	{
 		assertThrows(CustomerNotFoundException.class, () -> gasBookingService.bookCylinder(2));
+	}
+	
+	@Test
+	@DisplayName(value="testBookCylinder for customer id 3 and status inactive")
+	public void testBookCylinder3() throws CustomerInactiveException
+	{
+		assertThrows(CustomerInactiveException.class, () -> gasBookingService.bookCylinder(3));
 	}
 }
