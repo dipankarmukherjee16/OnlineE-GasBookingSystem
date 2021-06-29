@@ -124,7 +124,7 @@ public class GasBookingServiceImpl implements IGasBookingService {
 	public List<Invoice> getInvoices() throws InvoiceException {
 		List<Invoice> invoices = invoiceDao.findByInvoiceStatus(CgUtil.INVOICE_GENERATED);
 		if (invoices.isEmpty()) {
-			throw new InvoiceException(CgUtil.INVOICE_EMPTY);
+			throw new InvoiceException(CgUtil.INVOICE_NOTFOUND);
 		}
 		invoices.sort((e1, e2) -> e1.getInvoiceDate().compareTo(e2.getInvoiceDate()));
 		return invoices;
@@ -143,7 +143,7 @@ public class GasBookingServiceImpl implements IGasBookingService {
 	public boolean cylinderDelivered(Integer invoiceId) throws InvoiceException {
 		Optional<Invoice> optinvoice = invoiceDao.findById(invoiceId);
 		if (!optinvoice.isPresent()) {
-			throw new InvoiceException(CgUtil.INVOICE_NOTFOUND);
+			throw new InvoiceException(CgUtil.INVOICE_EMPTY);
 		}
 		Invoice invoice = optinvoice.get();
 		invoice.setInvoiceStatus(CgUtil.DELIVERED);
