@@ -143,7 +143,7 @@ public class GasBookingServiceImpl implements IGasBookingService {
 	public boolean cylinderDelivered(Integer invoiceId) throws InvoiceException {
 		Optional<Invoice> optinvoice = invoiceDao.findById(invoiceId);
 		if (!optinvoice.isPresent()) {
-			throw new InvoiceException(CgUtil.INVOICE_EMPTY);
+			throw new InvoiceException(CgUtil.INVOICE_NOTFOUND);
 		}
 		Invoice invoice = optinvoice.get();
 		invoice.setInvoiceStatus(CgUtil.DELIVERED);

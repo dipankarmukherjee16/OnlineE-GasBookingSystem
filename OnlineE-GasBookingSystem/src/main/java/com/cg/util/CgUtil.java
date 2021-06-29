@@ -42,6 +42,7 @@ public class CgUtil {
 	public static final String NO_OF_BOOKINGS="No of cylinders booked ";
 	public static final String DUPLICATE_INVOICE="Invoice already generated";
 	public static final String ALREADY_LINKED="Aadhar already linked";
+	public static final String INVOICE_NOTFOUND="No Invoices Found";
 
 	private CgUtil() {
 		
