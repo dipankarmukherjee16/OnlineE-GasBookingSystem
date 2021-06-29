@@ -43,6 +43,7 @@ public class CgUtil {
 	public static final String DUPLICATE_INVOICE="Invoice already generated";
 	public static final String ALREADY_LINKED="Aadhar already linked";
 	public static final String INVOICE_NOTFOUND="No Invoices Found";
+	public static final String DUPLICATE_AADHAR="Aadhar Number Exists for Another Customer";
 
 	private CgUtil() {
 		

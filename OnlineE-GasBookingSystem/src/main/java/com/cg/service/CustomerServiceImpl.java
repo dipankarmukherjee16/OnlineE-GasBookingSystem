@@ -18,6 +18,7 @@ import com.cg.exception.AadharAlreadyLinkedException;
 import com.cg.exception.CustomerAlreadyExistException;
 import com.cg.exception.CustomerNotFoundException;
 import com.cg.exception.CylinderTypeMismatchException;
+import com.cg.exception.DuplicateAadharException;
 import com.cg.exception.ValidateException;
 import com.cg.util.CgUtil;
 
@@ -48,6 +49,7 @@ public class CustomerServiceImpl implements ICustomerService {
 	 *          @version: 1.0   
 	 *          @return: customerId
 	 *		    @throws CustomerAlreadyExistException 
+	 * @throws DuplicateAadharException 
 	 *          @throws: CylinderTypeMismatchException, if cylinder type does not match
 	 *          Description: Insert new customer with details into the database                             
 	 *          Created at: 18-MAY-2021
@@ -56,7 +58,7 @@ public class CustomerServiceImpl implements ICustomerService {
 	
 	@Override
 	@Transactional
-	public Integer insertCustomer(CustomerDto customerdto) throws CylinderTypeMismatchException, CustomerAlreadyExistException {
+	public Integer insertCustomer(CustomerDto customerdto) throws CylinderTypeMismatchException, CustomerAlreadyExistException, DuplicateAadharException {
 		Cylinder cylinder = null;
 		cylinder = cylinderDao.findByCylinderType(customerdto.getCylinderType());
 		if (cylinder == null) {
@@ -68,7 +70,7 @@ public class CustomerServiceImpl implements ICustomerService {
 			throw new CustomerAlreadyExistException(CgUtil.CUSTOMER_EXIST);
 		if(customerdto.getAadharCard()!=null) {
 			if(custDao.findByAadharCard(customerdto.getAadharCard())!=null)
-				throw new CustomerAlreadyExistException(CgUtil.CUSTOMER_EXIST);
+				throw new DuplicateAadharException(CgUtil.DUPLICATE_AADHAR);
 		}
 		Customer cust = new Customer();
 		cust.setUserName(customerdto.getUserName());
@@ -130,6 +132,7 @@ public class CustomerServiceImpl implements ICustomerService {
 	 *          @return: true
 	 * @throws ValidateException 
 	 * @throws AadharAlreadyLinkedException 
+	 * @throws DuplicateAadharException 
 	 *          @throws: CustomerNotFoundException, if customer id is wrong          
 	 *          Description: Link aadhar number to an existing customer details                   
 	 *          Created at: 18-MAY-2021
@@ -138,7 +141,7 @@ public class CustomerServiceImpl implements ICustomerService {
 	
 	@Override
 	@Transactional
-	public boolean linkAadhar(int custId, String aadharNo) throws CustomerNotFoundException, ValidateException, AadharAlreadyLinkedException {
+	public boolean linkAadhar(int custId, String aadharNo) throws CustomerNotFoundException, ValidateException, AadharAlreadyLinkedException, DuplicateAadharException {
 		Optional<Customer> optcust = custDao.findById(custId);
 		if (!optcust.isPresent()) {
 			throw new CustomerNotFoundException(CgUtil.CUSTOMERNOTFOUND);
@@ -148,6 +151,9 @@ public class CustomerServiceImpl implements ICustomerService {
 		}
 		if(custDao.checkAadharLinkage(custId)!=null)
 			throw new AadharAlreadyLinkedException(CgUtil.ALREADY_LINKED);
+		if(custDao.findByAadharCard(aadharNo)!=null)
+			throw new DuplicateAadharException(CgUtil.DUPLICATE_AADHAR);
+		
 		Customer cust = optcust.get();
 		cust.setAadharCard(aadharNo);
 		custDao.save(cust);

@@ -17,6 +17,7 @@ import com.cg.exception.CustomerAlreadyExistException;
 import com.cg.exception.CustomerNotFoundException;
 import com.cg.exception.CylinderNotFoundException;
 import com.cg.exception.CylinderTypeMismatchException;
+import com.cg.exception.DuplicateAadharException;
 import com.cg.exception.ValidateException;
 
 
@@ -56,6 +57,12 @@ public class CustomerAdvice {
 	@ExceptionHandler(AadharAlreadyLinkedException.class)
 	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
 	public ErrorMessage handleExceptionAadharAlreadyLinked(AadharAlreadyLinkedException ex) {
+		return new ErrorMessage(HttpStatus.BAD_REQUEST.toString(), ex.getMessage());
+	}
+	
+	@ExceptionHandler(DuplicateAadharException.class)
+	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
+	public ErrorMessage handleExceptionDuplicateAadhar(DuplicateAadharException ex) {
 		return new ErrorMessage(HttpStatus.BAD_REQUEST.toString(), ex.getMessage());
 	}
 	

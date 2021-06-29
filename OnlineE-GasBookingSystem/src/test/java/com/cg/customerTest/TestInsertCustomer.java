@@ -20,6 +20,7 @@ import com.cg.entity.Customer;
 import com.cg.entity.Cylinder;
 import com.cg.exception.CustomerAlreadyExistException;
 import com.cg.exception.CylinderTypeMismatchException;
+import com.cg.exception.DuplicateAadharException;
 import com.cg.service.CustomerServiceImpl;
 import com.cg.service.ICustomerService;
 import com.cg.util.CgUtil;
@@ -73,7 +74,7 @@ public class TestInsertCustomer {
 
 	@Test
 	@DisplayName(value = "test insert customer for domestic")
-	public void testInsertCustomer1() throws CylinderTypeMismatchException, CustomerAlreadyExistException {
+	public void testInsertCustomer1() throws CylinderTypeMismatchException, CustomerAlreadyExistException, DuplicateAadharException {
 		CustomerDto customerDto = new CustomerDto("rahim", "8574123690", "rahim64@gmail.com", "741258743699",
 				"17 s k road, kolkata", "kolkata", "domestic");
 		assertNotNull(customerService.insertCustomer(customerDto));

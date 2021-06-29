@@ -5,14 +5,15 @@ import com.cg.exception.AadharAlreadyLinkedException;
 import com.cg.exception.CustomerAlreadyExistException;
 import com.cg.exception.CustomerNotFoundException;
 import com.cg.exception.CylinderTypeMismatchException;
+import com.cg.exception.DuplicateAadharException;
 import com.cg.exception.ValidateException;
 
 public interface ICustomerService {
-	public Integer insertCustomer(CustomerDto customerdto) throws CylinderTypeMismatchException, CustomerAlreadyExistException;
+	public Integer insertCustomer(CustomerDto customerdto) throws CylinderTypeMismatchException, CustomerAlreadyExistException, DuplicateAadharException;
 
 	public boolean updateCustomer(CustomerDto customerdto, Integer customerId)
 			throws CustomerNotFoundException, CylinderTypeMismatchException;
 
-	public boolean linkAadhar(int custId, String aadharNo) throws CustomerNotFoundException, ValidateException, AadharAlreadyLinkedException;
+	public boolean linkAadhar(int custId, String aadharNo) throws CustomerNotFoundException, ValidateException, AadharAlreadyLinkedException, DuplicateAadharException;
 
 }

@@ -17,6 +17,7 @@ import com.cg.exception.AadharAlreadyLinkedException;
 import com.cg.exception.CustomerAlreadyExistException;
 import com.cg.exception.CustomerNotFoundException;
 import com.cg.exception.CylinderTypeMismatchException;
+import com.cg.exception.DuplicateAadharException;
 import com.cg.exception.ValidateException;
 import com.cg.service.ICustomerService;
 import com.cg.util.CgUtil;
@@ -43,6 +44,7 @@ public class CustomerRestController {
 	 *          @version: 1.0   
 	 *          @return: SuccessMessage
 	 * @throws CustomerAlreadyExistException 
+	 * @throws DuplicateAadharException 
 	 *          @throws: CylinderTypeMismatchException, if cylinder type does not match
 	 *          		 ValidateException, if invalid details entered
 	 *          Description: Insert new customer with details into the database                             
@@ -52,7 +54,7 @@ public class CustomerRestController {
 	@CrossOrigin(origins = {"http://localhost:4200"})
 	@PostMapping("addcustomer")
 	public SuccessMessage addCustomer(@Valid @RequestBody CustomerDto customerDto, BindingResult br)
-			throws ValidateException, CylinderTypeMismatchException, CustomerAlreadyExistException {
+			throws ValidateException, CylinderTypeMismatchException, CustomerAlreadyExistException, DuplicateAadharException {
 		if (br.hasErrors()) {
 			throw new ValidateException(br.getFieldErrors());
 		}
@@ -91,6 +93,7 @@ public class CustomerRestController {
 	 *          @return: SuccessMessage
 	 * @throws ValidateException 
 	 * @throws AadharAlreadyLinkedException 
+	 * @throws DuplicateAadharException 
 	 *          @throws: CustomerNotFoundException, if customer id is wrong          
 	 *          Description: Link aadhar number to an existing customer details                   
 	 *          Created at: 19-MAY-2021
@@ -100,7 +103,7 @@ public class CustomerRestController {
 	@CrossOrigin(origins = {"http://localhost:4200"})
 	@PutMapping("linkaadhar/{customerid}/{aadharno}")
 	public SuccessMessage linkAadhar(@PathVariable("customerid") int customerId,
-			@PathVariable("aadharno") String aadharno) throws CustomerNotFoundException, ValidateException, AadharAlreadyLinkedException {
+			@PathVariable("aadharno") String aadharno) throws CustomerNotFoundException, ValidateException, AadharAlreadyLinkedException, DuplicateAadharException {
 		customerService.linkAadhar(customerId, aadharno);
 		return new SuccessMessage(CgUtil.AADHAR_LINKED);
 	}

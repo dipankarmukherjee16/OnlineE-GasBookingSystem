@@ -17,6 +17,7 @@ import com.cg.dao.ICustomerDao;
 import com.cg.entity.Customer;
 import com.cg.exception.AadharAlreadyLinkedException;
 import com.cg.exception.CustomerNotFoundException;
+import com.cg.exception.DuplicateAadharException;
 import com.cg.exception.ValidateException;
 import com.cg.service.CustomerServiceImpl;
 import com.cg.service.ICustomerService;
@@ -40,7 +41,7 @@ public class TestLinkAadhar {
 	}
 
 	@Test
-	public void testLinkAdhar1() throws CustomerNotFoundException, ValidateException, AadharAlreadyLinkedException {
+	public void testLinkAdhar1() throws CustomerNotFoundException, ValidateException, AadharAlreadyLinkedException, DuplicateAadharException {
 		assertTrue(service.linkAadhar(1, "574185478523"));
 	}
 
